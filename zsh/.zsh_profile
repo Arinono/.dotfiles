@@ -5,15 +5,15 @@ export DOTFILES=$HOME/.dotfiles
 source $DOTFILES/wtg/env
 
 prependPath() {
-    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="$1:$PATH"
-    fi
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$1:$PATH"
+  fi
 }
 
 appendPath() {
-    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-        PATH="$PATH:$1"
-    fi
+  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+    PATH="$PATH:$1"
+  fi
 }
 
 export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
@@ -23,7 +23,7 @@ prependPath HOMEBREW_BIN
 
 PERSONAL=$DOTFILES/personal/env
 for i in `find -L $PERSONAL`; do
-    source $i
+  source $i
 done
 
 # Case insensitive.
