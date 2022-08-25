@@ -1,0 +1,47 @@
+[user]
+  name = Aurelien Arino
+  email = aurelien.arino@gmail.com
+[gpg]
+  program = gpg
+[web]
+  browser = brave-browser
+[core]
+  editor = nvim
+  excludesfile = ~/.gitignore
+  ignorecase = false
+[color]
+  branch = auto
+  diff = auto
+  interactive = auto
+  status = auto
+[credential]
+  helper = osxkeychain
+[alias]
+  st = status
+  ci = commit
+  cim = commit -m
+  cam = commit --amend
+  cams = commit --amend --no-verify
+  came = commit --amend --no-edit
+	cames = commit --amend --no-edit --no-verify
+	sth=stash
+	sthp=stash pop
+  br = branch
+  co = checkout
+  df = diff
+  dc = diff --cached
+  ds = diff --staged
+  lg = log -p
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+[commit]
+	gpgsign = true
+[pull]
+	rebase = true
+[url "ssh://git@github.com:"]
+	insteadOf = https://github.com
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
