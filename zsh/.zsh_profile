@@ -1,0 +1,30 @@
+export LANG=en_US.UTF-8
+export EDITOR='nvim'
+export DOTFILES=$HOME/.dotfiles
+
+source $DOTFILES/wtg/env
+
+prependPath() {
+    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$1:$PATH"
+    fi
+}
+
+appendPath() {
+    if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
+        PATH="$PATH:$1"
+    fi
+}
+
+export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
+HOMEBREW_BIN=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin
+
+prependPath HOMEBREW_BIN
+
+PERSONAL=$DOTFILES/personal/env
+for i in `find -L $PERSONAL`; do
+    source $i
+done
+
+# Case insensitive.
+zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
