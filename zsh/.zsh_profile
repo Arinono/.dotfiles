@@ -17,9 +17,9 @@ appendPath() {
 }
 
 export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
-HOMEBREW_BIN=$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin
 
-prependPath HOMEBREW_BIN
+prependPath $HOMEBREW_PREFIX/bin
+prependPath $HOMEBREW_PREFIX/sbin
 
 PERSONAL=$DOTFILES/personal/env
 for i in `find -L $PERSONAL`; do
@@ -33,9 +33,9 @@ zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}
 
 switch() {
   if [[ -z "$1" ]]; then
-    selected = echo "personal wtg" | tr ' ' '\n' | fzf
+    selected=`echo "personal wtg" | tr ' ' '\n' | fzf`
   else
-    selected = $1
+    selected="$1"
   fi
 
   if [[ "$selected" == "personal" ]]; then
