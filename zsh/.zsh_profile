@@ -26,7 +26,33 @@ for i in `find -L $PERSONAL`; do
   source $i
 done
 
-source ~/.fzf.zsh
+source $DOTFILES/zsh/fzf.zsh
 
 # Case insensitive.
 zstyle ':completion:*' matcher-list 'm:{[:lower:][:upper:]}={[:upper:][:lower:]}' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*' 'm:{[:lower:][:upper:]}={[:upper:][:lower:]} l:|=* r:|=*'
+
+switch() {
+  if [[ -z "$1" ]]; then
+    selected = echo "personal wtg" | tr ' ' '\n' | fzf
+  else
+    selected = $1
+  fi
+
+  if [[ "$selected" == "personal" ]]; then
+    if [[ -f $DOTFILES/personal/npmrc ]]; then
+      cp $DOTFILES/personal/.npm-personal-rc ~/.npmrc
+    fi
+    if [[ -f $DOTFILES/personal/ssh/config ]]; then
+      cp $DOTFILES/personal/ssh/config ~/.ssh/config
+    fi
+  elif [[ "$selected" == "wtg" ]]; then
+    if [[ -f $DOTFILES/wtg/npmrc ]]; then
+      cp $DOTFILES/wtg/.npm-wtg-rc ~/.npmrc
+    fi
+    if [[ -f $DOTFILES/wtg/ssh/config ]]; then
+      cp $DOTFILES/wtg/ssh/config ~/.ssh/config
+    fi
+  fi
+}
+
+switch "personal"
