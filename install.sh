@@ -2,12 +2,14 @@
 
 DOTFILES=$HOME/.dotfiles
 CONFIG=$HOME/.config
+BINS=$HOME/.local/bin
 
 [[ -d ~/.personal ]] || mkdir ~/.personal
 [[ -d ~/.ssh ]] || mkdir ~/.ssh
 [[ -d $CONFIG ]] || mkdir $CONFIG
 [[ -d $CONFIG/alacritty ]] || mkdir $CONFIG/alacritty
 [[ -d $CONFIG/htop ]] || mkdir $CONFIG/htop
+[[ -d $BINS ]] || mkdir $BINS
 
 echo "Linking zsh"
 [[ -f ~/.zshrc ]] || ln -s $DOTFILES/zsh/.zshrc ~/.zshrc
@@ -33,4 +35,9 @@ echo "Linking alacritty"
 [[ -f $CONFIG/alacritty/alacritty.yml ]] || ln -s $DOTFILES/term/alacritty/alacritty.yml $CONFIG/alacritty/alacritty.yml
 
 echo "Linking htop"
-ln -s $DOTFILES/htop/htoprc $CONFIG/htop/htoprc
+[[ -f $CONFIG/htop/htoprc ]] || ln -s $DOTFILES/htop/htoprc $CONFIG/htop/htoprc
+
+echo "Linking bins"
+[[ -d $BINS/wtg ]] || ln -s $DOTFILES/wtg/bin $BINS/wtg
+[[ -d $BINS/personal ]] || ln -s $DOTFILES/personal/bin $BINS/personal
+ln -s $DOTFILES/bin/* $BINS
