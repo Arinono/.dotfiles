@@ -39,19 +39,21 @@ switch() {
     selected="$1"
   fi
 
+  [[ -f ~/.npmrc ]] && rm ~/.npmrc
+  [[ -f ~/.ssh/config ]] && rm ~/.ssh/config
   if [[ "$selected" == "personal" ]]; then
-    if [[ -f $DOTFILES/personal/npmrc ]]; then
-      cp $DOTFILES/personal/.npm-personal-rc ~/.npmrc
+    if [[ -f $DOTFILES/personal/.npmrc ]]; then
+      ln -s $DOTFILES/personal/.npmrc ~/.npmrc
     fi
     if [[ -f $DOTFILES/personal/ssh/config ]]; then
-      cp $DOTFILES/personal/ssh/config ~/.ssh/config
+      ln -s $DOTFILES/personal/ssh/config ~/.ssh/config
     fi
   elif [[ "$selected" == "wtg" ]]; then
-    if [[ -f $DOTFILES/wtg/npmrc ]]; then
-      cp $DOTFILES/wtg/.npm-wtg-rc ~/.npmrc
+    if [[ -f $DOTFILES/wtg/.npmrc ]]; then
+      ln -s $DOTFILES/wtg/.npmrc ~/.npmrc
     fi
     if [[ -f $DOTFILES/wtg/ssh/config ]]; then
-      cp $DOTFILES/wtg/ssh/config ~/.ssh/config
+      ln -s $DOTFILES/wtg/ssh/config ~/.ssh/config
     fi
   fi
 }
