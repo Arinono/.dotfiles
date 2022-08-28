@@ -23,3 +23,4 @@ source ~/.oh-my-zsh/themes/powerlevel10k.zsh-theme
 source $ZSH/oh-my-zsh.sh
 
 source ~/.zsh_profile
+export GPG_TTY=$TTY
