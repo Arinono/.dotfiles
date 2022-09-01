@@ -40,4 +40,5 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { 'nvim-lua/plenary.nvim' }
   }
+  use 'nvim-treesitter/nvim-treesitter-context'
 end)
