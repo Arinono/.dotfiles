@@ -3,6 +3,7 @@ vim.cmd [[packadd packer.nvim]]
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+
   use 'sbdchd/neoformat'
 
   -- Theme
@@ -23,10 +24,15 @@ return require('packer').startup(function(use)
     requires = { 'othree/html5.vim', 'pangloss/vim-javascript' }
   } 
 
-  -- Misc
-  use 'andweeb/presence.nvim'
+  -- Edition
+  use {
+    'ThePrimeagen/harpoon',
+    requires = {
+      'nvim-lua/plenary.nvim',
+    }
+  }
 
-  -- Longue vue
+  -- Telescope
   use {
     'nvim-treesitter/nvim-treesitter',
     run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
@@ -41,4 +47,7 @@ return require('packer').startup(function(use)
     requires = { 'nvim-lua/plenary.nvim' }
   }
   use 'nvim-treesitter/nvim-treesitter-context'
+
+  -- Misc
+  use 'andweeb/presence.nvim'
 end)

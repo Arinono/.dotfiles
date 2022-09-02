@@ -84,6 +84,11 @@ _G.packer_plugins = {
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/dart-vim-plugin",
     url = "https://github.com/dart-lang/dart-vim-plugin"
   },
+  harpoon = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/harpoon",
+    url = "https://github.com/ThePrimeagen/harpoon"
+  },
   ["html5.vim"] = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/html5.vim",
