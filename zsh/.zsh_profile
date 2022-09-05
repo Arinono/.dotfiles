@@ -57,4 +57,8 @@ switch() {
   fi
 }
 
+git-contrib() {
+  git shortlog -sne --all
+}
+
 switch "personal"
