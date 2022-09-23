@@ -10,13 +10,14 @@ return require('packer').startup(function(use)
   use 'marko-cerovac/material.nvim'
   use {
     'nvim-lualine/lualine.nvim',
-    requires = { 'kyazdani42/nvim-web-devicons', opt = true }
+    requires = { 'kyazdani42/nvim-web-devicons', opt = false }
   }
 
   -- Lang
   use { 'neoclide/coc.nvim', branch = 'release' }
   use 'dart-lang/dart-vim-plugin'
   use 'github/copilot.vim'
+  use 'ellisonleao/glow.nvim'
 
   -- Lang: Svelte
   use { 'evanleck/vim-svelte',
@@ -50,4 +51,9 @@ return require('packer').startup(function(use)
 
   -- Misc
   use 'andweeb/presence.nvim'
+  use {
+    'kadobot/nvim-spotify',
+    requires = 'nvim-telescope/telescope.nvim',
+    run = 'make',
+  }
 end)

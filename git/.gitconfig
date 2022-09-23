@@ -34,10 +34,16 @@
   lg = log -p
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+  wa = worktree add
+  wr = worktree remove
+  wrf = worktree remove -f
+  wl = worktree list
 [commit]
 	gpgsign = true
 [pull]
 	rebase = true
+[push]
+  autoSetupRemote = true
 [url "ssh://git@github.com:"]
 	insteadOf = https://github.com
 [filter "lfs"]

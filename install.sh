@@ -9,6 +9,8 @@ BINS=$HOME/.local/bin
 [[ -d $CONFIG ]] || mkdir $CONFIG
 [[ -d $CONFIG/alacritty ]] || mkdir $CONFIG/alacritty
 [[ -d $CONFIG/htop ]] || mkdir $CONFIG/htop
+[[ -d $CONFIG/spotifyd ]] || mkdir $CONFIG/spotifyd
+[[ -d $CONFIG/spotify-tui ]] || mkdir $CONFIG/spotify-tui
 [[ -d $BINS ]] || mkdir $BINS
 
 echo "Linking zsh"
@@ -41,3 +43,8 @@ echo "Linking bins"
 [[ -d $BINS/wtg ]] || ln -s $DOTFILES/wtg/bin $BINS/wtg
 [[ -d $BINS/personal ]] || ln -s $DOTFILES/personal/bin $BINS/personal
 ln -s $DOTFILES/bin/* $BINS
+
+echo "Linking spotify"
+[[ -f $CONFIG/spotifyd/spotifyd.conf ]] || ln -s $DOTFILES/personal/spotify/spotifyd/spotifyd.conf $CONFIG/spotifyd/spotifyd.conf
+[[ -f $CONFIG/spotify-tui/client.yml ]] || ln -s $DOTFILES/personal/spotify/spotify-tui/client.yml $CONFIG/spotify-tui/client.yml
+[[ -f $CONFIG/spotify-tui/config.yml ]] || ln -s $DOTFILES/personal/spotify/spotify-tui/config.yml $CONFIG/spotify-tui/config.yml

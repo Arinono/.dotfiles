@@ -16,6 +16,7 @@ nnoremap("<leader>e", "<cmd>Ex<cr>")
 -- Edition
 vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
+xnoremap("<leader>p", "\"_dP")
 
 -- Commands
 nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })

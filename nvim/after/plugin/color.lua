@@ -24,6 +24,9 @@ require('material').setup({
   },
 })
 
+local spotify = require('nvim-spotify').status
+spotify:start()
+
 -- Status line
 require('lualine').setup({
   options = {
@@ -43,9 +46,9 @@ require('lualine').setup({
         path = 3
       }
     },
-    lualine_x = { 'filetype' },
-    lualine_y = { 'progress' },
-    lualine_z = { 'location' }
+    lualine_x = {},
+    lualine_y = { spotify.listen },
+    lualine_z = { 'filetype' }
   },
   inactive_sections = {
     lualine_a = {},
