@@ -7,7 +7,8 @@ return require('packer').startup(function(use)
   use 'sbdchd/neoformat'
 
   -- Theme
-  use 'marko-cerovac/material.nvim'
+  -- use 'marko-cerovac/material.nvim'
+  use 'folke/tokyonight.nvim'
   use {
     'nvim-lualine/lualine.nvim',
     requires = { 'kyazdani42/nvim-web-devicons', opt = false }
