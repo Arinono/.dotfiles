@@ -14,7 +14,7 @@ export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k"
 
 # Enable plugins.
-plugins=(git git-auto-fetch)
+plugins=(git git-auto-fetch asdf)
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
