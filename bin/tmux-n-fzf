@@ -5,6 +5,10 @@ installed=`n ls`
 
 selected=`echo "$keyed $installed" | tr ' ' '\n' | fzf`
 
+if [[ -z $selected ]]; then
+  exit 0
+fi
+
 if [ -z "$selected" ]; then
 	read -p "install version: " selected
 fi
