@@ -16,6 +16,12 @@
   status = auto
 [credential]
   helper = osxkeychain
+[difftool]
+  prompt = false
+[diff]
+    tool = nvimdiff
+[difftool "nvimdiff"]
+    cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
 [alias]
   st = status
   ci = commit
