@@ -46,12 +46,12 @@ function material()
     disable = {
       colored_cursor = true,
     },
-    italics = {
-      comments = true,
-      strings = true,
-      keywords = true,
-      functions = false,
-      variables = false
+    styles = {
+      comments = { italic = true },
+      strings = { italic = true },
+      keywords = { italic = true },
+      functions = { italic = false },
+      variables = { italic = false },
     },
     high_visibility = {
       palenight = true,
@@ -103,6 +103,8 @@ require('nvim-web-devicons').setup({
 vim.g.guifont=Dank_Mono
 
 tokyonight('storm')
+-- material()
 
 -- Apply the colorscheme
 vim.cmd 'colorscheme tokyonight-storm'
+-- vim.cmd 'colorscheme material'

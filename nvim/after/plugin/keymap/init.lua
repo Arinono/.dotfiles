@@ -6,6 +6,7 @@ local xnoremap = Remap.xnoremap
 local nmap = Remap.nmap
 
 inoremap("<C-c>", "<esc>")
+nnoremap("<leader>t", ":tabnew<cr>")
 
 -- Neoformat
 nnoremap("<leader>fmt", "<cmd>:Neoformat<cr>")

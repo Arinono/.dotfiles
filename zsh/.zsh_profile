@@ -5,16 +5,23 @@ export WORKSPACE=$HOME/workspace
 
 source $DOTFILES/wtg/env
 
-prependPath() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-    PATH="$1:$PATH"
+pathadd() {
+  newelement=${1%/}
+  if [ -d "$1" ] && ! echo $PATH | grep -E -q "(^|:)$newelement($|:)" ; then
+    if [ "$2" = "after" ] ; then
+      PATH="$PATH:$newelement"
+    else
+      PATH="$newelement:$PATH"
+    fi
   fi
 }
 
+prependPath() {
+  pathadd "$1"
+}
+
 appendPath() {
-  if [[ -d "$1" ]] && [[ ":$PATH:" != *":$1:"* ]]; then
-    PATH="$PATH:$1"
-  fi
+  pathadd "$1" after
 }
 
 export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
