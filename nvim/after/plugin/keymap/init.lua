@@ -19,6 +19,12 @@ vnoremap("J", ":m '>+1<CR>gv=gv")
 vnoremap("K", ":m '<-2<CR>gv=gv")
 xnoremap("<leader>p", "\"_dP")
 
+-- Navigation
+nnoremap("<C-d>", "<C-d>zz")
+nnoremap("<C-u>", "<C-u>zz")
+nnoremap("n", "nzz")
+nnoremap("N", "Nzz")
+
 -- Commands
 nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 nnoremap("<leader>nox", "<cmd>!chmod -x %<CR>", { silent = true })
