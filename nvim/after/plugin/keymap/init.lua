@@ -24,6 +24,7 @@ nnoremap("<C-d>", "<C-d>zz")
 nnoremap("<C-u>", "<C-u>zz")
 nnoremap("n", "nzz")
 nnoremap("N", "Nzz")
+nnoremap("G", "Gzz")
 
 -- Commands
 nnoremap("<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
