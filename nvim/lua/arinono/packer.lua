@@ -35,11 +35,19 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- Telescope
   use {
     'nvim-treesitter/nvim-treesitter',
-    run = function() require('nvim-treesitter.install').update({ with_sync = true }) end,
+    run = function()
+      local ts_udpate = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
   }
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+  }
+
+  -- Telescope
   use {
     'nvim-telescope/telescope-fzf-native.nvim',
     run = 'make',
@@ -49,7 +57,6 @@ return require('packer').startup(function(use)
     branch = '0.1.x',
     requires = { 'nvim-lua/plenary.nvim' }
   }
-  use 'nvim-treesitter/nvim-treesitter-context'
 
   -- Misc
   use 'andweeb/presence.nvim'
