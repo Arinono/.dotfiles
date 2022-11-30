@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+if [ -z $1 ]; then
+  echo "Please provide a file path".
+  exit 1
+fi
+
+dir=`dirname $1`
+name=`basename $1 | sed 's/\..*//'`
+
+ffmpeg -i "$1" -r 10 -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.gif"
