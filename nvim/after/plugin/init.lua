@@ -6,6 +6,7 @@ require('arinono.trouble')
 require('arinono.treesitter')
 require('arinono.dart')
 require('arinono.glow')
+require('arinono.which-key')
 
 require('arinono.copilot')
 

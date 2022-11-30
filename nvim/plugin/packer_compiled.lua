@@ -178,6 +178,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/vim-svelte",
     url = "https://github.com/evanleck/vim-svelte"
+  },
+  ["which-key.nvim"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/which-key.nvim",
+    url = "https://github.com/folke/which-key.nvim"
   }
 }
 
