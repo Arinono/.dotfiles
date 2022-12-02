@@ -3,6 +3,8 @@
   "javascript.suggest.autoImports": true,
   "typescript.suggest.autoImports": true,
   "rust-analyzer.enable": true,
+  "rust-analyzer.server.path": "/opt/homebrew/bin/rust-analyzer",
+  "rust-analyzer.cargo.features": "all",
   "diagnostic.virtualText": true,
   "diagnostic.virtualTextCurrentLineOnly": false,
   "diagnostic.virtualTextPrefix": "▪ ",
