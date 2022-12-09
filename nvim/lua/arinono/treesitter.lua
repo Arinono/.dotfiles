@@ -7,6 +7,7 @@ require('nvim-treesitter.configs').setup({
     "bash",
     "lua",
     "rust",
+    "toml",
     "javascript",
     "typescript",
   },
