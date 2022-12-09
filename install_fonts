@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+if [[ $OSTYPE != "darwin"* ]]; then
+  echo "Only available on macos"
+  exit 1
+fi
+
+echo "Installing fonts"
+cp -v fonts/* ~/Library/Fonts/
