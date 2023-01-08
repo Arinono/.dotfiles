@@ -100,7 +100,7 @@ require('nvim-web-devicons').setup({
   default = true;
 })
 
-vim.g.guifont=Dank_Mono
+vim.g.guifont='Dank_Mono'
 
 tokyonight('storm')
 -- material()

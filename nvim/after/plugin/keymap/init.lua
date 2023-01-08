@@ -3,10 +3,10 @@ local nnoremap = Remap.nnoremap
 local vnoremap = Remap.vnoremap
 local inoremap = Remap.inoremap
 local xnoremap = Remap.xnoremap
-local nmap = Remap.nmap
 
 inoremap("<C-c>", "<esc>")
 nnoremap("<leader>t", ":tabnew<cr>")
+nnoremap("Q", "<nop>")
 
 -- Neoformat
 nnoremap("<leader>fmt", "<cmd>:Neoformat<cr>")

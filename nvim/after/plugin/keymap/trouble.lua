@@ -1,4 +1,4 @@
 local nnoremap = require('arinono.keymap').nnoremap
 
-nnoremap('<leader>xl', "<cmd>call coc#rpc#request('fillDiagnostics', [bufnr('%')])<cr><cmd>TroubleToggle loclist<cr>")
-nnoremap('<leader>xr', "<cmd>TroubleRefresh<cr>")
+nnoremap('<leader>xl', vim.cmd.TroubleToggle)
+nnoremap('<leader>xr', vim.cmd.TroubleRefresh)
