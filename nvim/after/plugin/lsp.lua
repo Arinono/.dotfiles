@@ -34,7 +34,7 @@ lsp.set_preferences({
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
 
-  nnoremap('gd', function() vim.lsp.buf.definitions() end, opts)
+  nnoremap('gd', function() vim.lsp.buf.definition() end, opts)
   nnoremap('K', function() vim.lsp.buf.hover() end, opts)
   nnoremap('<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
   nnoremap('<leader>vd', function() vim.lsp.diagnostic.open_float() end, opts)

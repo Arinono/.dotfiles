@@ -4,8 +4,6 @@ return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
 
-  use 'sbdchd/neoformat'
-
   -- Theme
   -- use 'marko-cerovac/material.nvim'
   use 'folke/tokyonight.nvim'
