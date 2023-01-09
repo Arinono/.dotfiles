@@ -37,3 +37,7 @@ end)
 nnoremap("<leader>ht", function()
   require("telescope.builtin").help_tags()
 end)
+
+nnoremap("<leader>sd", function()
+  require("telescope.builtin").diagnostics()
+end)

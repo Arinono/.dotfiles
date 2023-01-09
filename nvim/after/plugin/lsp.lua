@@ -13,10 +13,9 @@ lsp.ensure_installed({
 local cmp = require('cmp')
 local cmp_select = { behaviour = cmp.SelectBehavior.Select }
 local cmp_mappings = lsp.defaults.cmp_mappings({
-  ['<C-p'] = cmp.mapping.select_prev_item(cmp_select),
-  ['<C-n'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-y'] = cmp.mapping.confirm({ select = true }),
-  ['<C-Space'] = cmp.mapping.complete(),
+  ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
+  ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+  ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
 })
 
 lsp.setup_nvim_cmp({
@@ -31,17 +30,28 @@ lsp.set_preferences({
   }
 })
 
+local config = require('lspconfig')
+
+config.sumneko_lua.setup({
+  settings = {
+    Lua = {
+      telemetry = { enable = false },
+    }
+  }
+})
+
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
 
   nnoremap('gd', function() vim.lsp.buf.definition() end, opts)
+  nnoremap('gr', function() vim.lsp.buf.references() end, opts)
+  nnoremap('gI', function() vim.lsp.buf.implementations() end, opts)
   nnoremap('K', function() vim.lsp.buf.hover() end, opts)
   nnoremap('<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-  nnoremap('<leader>vd', function() vim.lsp.diagnostic.open_float() end, opts)
-  nnoremap('[d', function() vim.lsp.diagnostic.goto_next() end, opts)
-  nnoremap('d]', function() vim.lsp.diagnostic.goto_prev() end, opts)
+  nnoremap('<leader>vd', function() vim.diagnostic.open_float() end, opts)
+  nnoremap('[d', function() vim.diagnostic.goto_next() end, opts)
+  nnoremap('d]', function() vim.diagnostic.goto_prev() end, opts)
   nnoremap('<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-  nnoremap('gr', function() vim.lsp.buf.references() end, opts)
   nnoremap('<leader>rn', function() vim.lsp.buf.rename() end, opts)
   nnoremap('<C-h>', function() vim.lsp.buf.signature_help() end, opts)
 end)
