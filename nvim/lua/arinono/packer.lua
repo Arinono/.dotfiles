@@ -81,7 +81,7 @@ return require('packer').startup(function(use)
   }
 
   -- Misc
-  use 'andweeb/presence.nvim'
+  -- use 'andweeb/presence.nvim'
   use {
     'kadobot/nvim-spotify',
     requires = 'nvim-telescope/telescope.nvim',

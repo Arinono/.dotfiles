@@ -1,4 +1,6 @@
-local nnoremap = require("arinono.keymap").nnoremap
+local map = require("arinono.keymap")
+local nnoremap = map.nnoremap
+
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
@@ -12,22 +14,16 @@ lsp.ensure_installed({
 
 local cmp = require('cmp')
 local cmp_select = { behaviour = cmp.SelectBehavior.Select }
-local cmp_mappings = lsp.defaults.cmp_mappings({
+local cmp_mapping = lsp.defaults.cmp_mappings({
   ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
   ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
-  ['<C-Space>'] = cmp.mapping.confirm({ select = true }),
+  ['<C-e>'] = cmp.mapping.close(),
 })
+
+cmp_mapping['<CR>'] = nil
 
 lsp.setup_nvim_cmp({
-  mappings = cmp_mappings
-})
-
-lsp.set_preferences({
-  sign_icons = {
-    error = "",
-    warning = "⚠",
-    info = "ⓘ",
-  }
+  mapping = cmp_mapping
 })
 
 local config = require('lspconfig')
@@ -43,17 +39,10 @@ config.sumneko_lua.setup({
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
 
-  nnoremap('gd', function() vim.lsp.buf.definition() end, opts)
-  nnoremap('gr', function() vim.lsp.buf.references() end, opts)
-  nnoremap('gI', function() vim.lsp.buf.implementations() end, opts)
-  nnoremap('K', function() vim.lsp.buf.hover() end, opts)
-  nnoremap('<leader>vws', function() vim.lsp.buf.workspace_symbol() end, opts)
-  nnoremap('<leader>vd', function() vim.diagnostic.open_float() end, opts)
-  nnoremap('[d', function() vim.diagnostic.goto_next() end, opts)
-  nnoremap('d]', function() vim.diagnostic.goto_prev() end, opts)
-  nnoremap('<leader>vca', function() vim.lsp.buf.code_action() end, opts)
-  nnoremap('<leader>rn', function() vim.lsp.buf.rename() end, opts)
-  nnoremap('<C-h>', function() vim.lsp.buf.signature_help() end, opts)
+  nnoremap('<leader>vws', vim.lsp.buf.workspace_symbol, opts)
+  nnoremap('<leader>vca', vim.lsp.buf.code_action, opts)
+  nnoremap('<leader>rn', vim.lsp.buf.rename, opts)
+  nnoremap('<C-h>', vim.lsp.buf.signature_help, opts)
 end)
 
 lsp.setup()
