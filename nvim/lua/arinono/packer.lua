@@ -83,6 +83,11 @@ return require('packer').startup(function(use)
   -- Misc
   -- use 'andweeb/presence.nvim'
   use {
+    'kristijanhusak/vim-dadbod-ui',
+    requires = { 'tpope/vim-dadbod' },
+  }
+
+  use {
     'kadobot/nvim-spotify',
     requires = 'nvim-telescope/telescope.nvim',
     run = 'make',

@@ -185,11 +185,6 @@ _G.packer_plugins = {
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["presence.nvim"] = {
-    loaded = true,
-    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/presence.nvim",
-    url = "https://github.com/andweeb/presence.nvim"
-  },
   ["telescope-fzf-native.nvim"] = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim",
@@ -214,6 +209,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/undotree",
     url = "https://github.com/mbbill/undotree"
+  },
+  ["vim-dadbod"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/vim-dadbod",
+    url = "https://github.com/tpope/vim-dadbod"
+  },
+  ["vim-dadbod-ui"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/vim-dadbod-ui",
+    url = "https://github.com/kristijanhusak/vim-dadbod-ui"
   },
   ["which-key.nvim"] = {
     loaded = true,

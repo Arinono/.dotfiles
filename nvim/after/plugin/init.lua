@@ -6,5 +6,5 @@ require('arinono.treesitter')
 require('arinono.glow')
 require('arinono.which-key')
 
-require('arinono.presence')
+-- require('arinono.presence')
 require('arinono.spotify')
