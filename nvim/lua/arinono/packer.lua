@@ -67,6 +67,11 @@ return require('packer').startup(function(use)
     requires = { 'nvim-treesitter/nvim-treesitter' },
   }
 
+  use {
+    'nvim-treesitter/playground',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+  }
+
   use { 'folke/which-key.nvim' }
 
   -- Telescope
