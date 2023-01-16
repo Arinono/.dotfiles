@@ -27,6 +27,7 @@ vim.opt.updatetime = 50
 vim.opt.signcolumn = "yes"
 vim.opt.colorcolumn = {80, 100}
 vim.opt.termguicolors = true
+vim.opt.laststatus = 3
 
 vim.opt.encoding = "utf-8"
 
