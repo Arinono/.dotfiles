@@ -41,3 +41,7 @@ end)
 nnoremap("<leader>sd", function()
   require("telescope.builtin").diagnostics()
 end)
+
+nnoremap("<leader>pk", function()
+  require("telescope.builtin").keymaps()
+end)

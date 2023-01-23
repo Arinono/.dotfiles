@@ -76,6 +76,9 @@ function tokyonight(variant)
       variables = { italic = false },
       sidebars = 'dark',
     },
+    on_colors = function(colors)
+      colors.border = "#9c9c9c"
+    end
   })
 
   -- Status line

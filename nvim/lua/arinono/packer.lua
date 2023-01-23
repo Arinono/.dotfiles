@@ -36,11 +36,27 @@ return require('packer').startup(function(use)
     }
   }
 
-  -- Lang
-  use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
-  use 'ellisonleao/glow.nvim'
-
   -- Edition
+  use {
+    'nvim-treesitter/nvim-treesitter',
+    run = function()
+      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
+      ts_update()
+    end,
+  }
+  use {
+    'nvim-treesitter/nvim-treesitter-context',
+    requires = { 'nvim-treesitter/nvim-treesitter' },
+  }
+  use('mbbill/undotree')
+  use({
+    'brenoprata10/nvim-highlight-colors',
+    consfig = function()
+      require('nvim-highlight-colors').setup({
+        enable_tailwind = true,
+      })
+    end
+  })
   use {
     'ThePrimeagen/harpoon',
     requires = {
@@ -53,19 +69,7 @@ return require('packer').startup(function(use)
         require('Comment').setup()
     end
   }
-  use('mbbill/undotree')
 
-  use {
-    'nvim-treesitter/nvim-treesitter',
-    run = function()
-      local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
-      ts_update()
-    end,
-  }
-  use {
-    'nvim-treesitter/nvim-treesitter-context',
-    requires = { 'nvim-treesitter/nvim-treesitter' },
-  }
 
   use {
     'nvim-treesitter/playground',
@@ -73,6 +77,10 @@ return require('packer').startup(function(use)
   }
 
   use { 'folke/which-key.nvim' }
+
+  -- Lang
+  use { 'folke/trouble.nvim', requires = 'kyazdani42/nvim-web-devicons' }
+  use 'ellisonleao/glow.nvim'
 
   -- Telescope
   use {
