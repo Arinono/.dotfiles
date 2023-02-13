@@ -30,13 +30,22 @@ lsp.setup_nvim_cmp({
 
 local config = require('lspconfig')
 
-config.sumneko_lua.setup({
+config.lua_ls.setup({
   settings = {
     Lua = {
       telemetry = { enable = false },
     }
   }
 })
+
+config.volar.setup{
+  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  init_options = {
+    typescript = {
+      tsdk = '/Users/arinono/Library/pnpm/global/5/node_modules/typescript/lib'
+    }
+  }
+}
 
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }

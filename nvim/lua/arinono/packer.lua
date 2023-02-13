@@ -5,7 +5,7 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
 
   -- Theme
-  -- use 'marko-cerovac/material.nvim'
+  use 'marko-cerovac/material.nvim'
   use 'folke/tokyonight.nvim'
   use {
     'nvim-lualine/lualine.nvim',

@@ -105,8 +105,8 @@ require('nvim-web-devicons').setup({
 
 vim.g.guifont='Dank_Mono'
 
+material()
 tokyonight('storm')
--- material()
 
 -- Apply the colorscheme
 vim.cmd 'colorscheme tokyonight-storm'

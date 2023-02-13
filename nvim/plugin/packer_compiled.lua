@@ -145,6 +145,11 @@ _G.packer_plugins = {
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["material.nvim"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/material.nvim",
+    url = "https://github.com/marko-cerovac/material.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/nvim-cmp",
