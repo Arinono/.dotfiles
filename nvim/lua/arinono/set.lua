@@ -31,6 +31,9 @@ vim.opt.laststatus = 3
 
 vim.opt.encoding = "utf-8"
 
+vim.opt.splitbelow = true
+vim.opt.splitright = true
+
 vim.g.netrw_banner = 0
 
 vim.g.loaded_ruby_provider = 0
