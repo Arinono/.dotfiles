@@ -39,7 +39,7 @@ config.lua_ls.setup({
 })
 
 config.volar.setup{
-  filetypes = {'typescript', 'javascript', 'javascriptreact', 'typescriptreact', 'vue', 'json'},
+  filetypes = {'vue'},
   init_options = {
     typescript = {
       tsdk = '/Users/arinono/Library/pnpm/global/5/node_modules/typescript/lib'
@@ -59,10 +59,20 @@ end)
 lsp.setup()
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = {
+    source = "if_many",
+  },
   signs = true,
   update_in_insert = false,
   underline = true,
-  severity_sort = false,
-  float = true,
+  severity_sort = {
+    reverse = true,
+  },
+  float = {
+    source = "always",
+  },
 })
+
+nnoremap('<leader>do', function()
+  vim.diagnostic.open_float(vim.api.nvim_get_current_buf(), { scope = "line" })
+end)
