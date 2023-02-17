@@ -38,14 +38,18 @@ config.lua_ls.setup({
   }
 })
 
-config.volar.setup{
+config.volar.setup({
   filetypes = {'vue'},
   init_options = {
     typescript = {
       tsdk = '/Users/arinono/Library/pnpm/global/5/node_modules/typescript/lib'
     }
   }
-}
+})
+
+config.tailwindcss.setup({
+  filetypes = {'vue', 'svelte', 'html'},
+})
 
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
