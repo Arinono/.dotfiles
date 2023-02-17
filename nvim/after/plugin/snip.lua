@@ -1,5 +1,6 @@
 local keymap = require('arinono.keymap')
 local ls = require('luasnip')
+
 local nnoremap = keymap.nnoremap
 local snoremap = keymap.snoremap
 local inoremap = keymap.inoremap
@@ -16,14 +17,33 @@ function expand_or_jump_bwd()
   end
 end
 
-nnoremap("<C-k>", expand_or_jump_fwd)
-snoremap("<C-k>", expand_or_jump_fwd)
-nnoremap("<C-j>", expand_or_jump_bwd)
-snoremap("<C-j>", expand_or_jump_bwd)
+nnoremap("<C-k>", expand_or_jump_fwd, { silent = true })
+snoremap("<C-k>", expand_or_jump_fwd, { silent = true })
+nnoremap("<C-j>", expand_or_jump_bwd, { silent = true })
+snoremap("<C-j>", expand_or_jump_bwd, { silent = true })
 inoremap("<C-l>", function()
   if ls.choice_active() then
     ls.change_choice(1)
   end
-end)
+end, { silent = true })
 
 nnoremap("<leader><leader>s", "<cmd>source ~/.config/nvim/after/plugin/snip.lua<cr>")
+
+if vim.g.snippets == "luasnip" then
+  return
+end
+
+ls.config.set_config({
+  history = true,
+
+  updateevents = "TextChanged,TextChangedI",
+  enable_autosnippet = false,
+})
+
+ls.snippets = {
+  all = {
+  },
+
+  vue = {
+  },
+}
