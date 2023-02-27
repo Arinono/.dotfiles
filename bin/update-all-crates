@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+for pkg in $(cargo install --list | rg ':' | awk '{print $1}'); do
+  RUSTC_WRAPPER=sccache cargo install "$pkg"
+done
