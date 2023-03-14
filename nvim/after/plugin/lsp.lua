@@ -56,6 +56,11 @@ lsp.on_attach(function(_, buff)
 
   nnoremap('<leader>vws', vim.lsp.buf.workspace_symbol, opts)
   nnoremap('<leader>vca', vim.lsp.buf.code_action, opts)
+  nnoremap('<leader>qf', function()
+    vim.lsp.buf.code_action({
+      apply = true,
+    })
+  end, opts)
   nnoremap('<leader>rn', vim.lsp.buf.rename, opts)
   nnoremap('<C-h>', vim.lsp.buf.signature_help, opts)
   nnoremap('K', vim.lsp.buf.hover, opts)
