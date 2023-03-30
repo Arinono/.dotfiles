@@ -105,4 +105,7 @@ return require('packer').startup(function(use)
     requires = 'nvim-telescope/telescope.nvim',
     run = 'make',
   }
+
+  -- Late load
+  use { 'github/copilot.vim' }
 end)
