@@ -99,6 +99,7 @@ return require('packer').startup(function(use)
     'kristijanhusak/vim-dadbod-ui',
     requires = { 'tpope/vim-dadbod' },
   }
+  use { 'f-person/git-blame.nvim' }
 
   use {
     'kadobot/nvim-spotify',
@@ -107,5 +108,5 @@ return require('packer').startup(function(use)
   }
 
   -- Late load
-  use { 'github/copilot.vim' }
+  -- use { 'github/copilot.vim' }
 end)
