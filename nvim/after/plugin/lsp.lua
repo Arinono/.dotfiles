@@ -47,9 +47,9 @@ config.volar.setup({
   }
 })
 
-config.tailwindcss.setup({
-  filetypes = {'vue', 'svelte', 'html'},
-})
+-- config.tailwindcss.setup({
+--   filetypes = {'vue', 'svelte', 'html'},
+-- })
 
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
