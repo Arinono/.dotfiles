@@ -3,30 +3,6 @@ export EDITOR='nvim'
 export DOTFILES=$HOME/.dotfiles
 export WORKSPACE=$HOME/workspace
 
-pathadd() {
-  newelement=${1%/}
-  if [ -d "$1" ] && ! echo $PATH | grep -E -q "(^|:)$newelement($|:)" ; then
-    if [ "$2" = "after" ] ; then
-      PATH="$PATH:$newelement"
-    else
-      PATH="$newelement:$PATH"
-    fi
-  fi
-}
-
-prependPath() {
-  pathadd "$1"
-}
-
-appendPath() {
-  pathadd "$1" after
-}
-
-export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
-
-prependPath $HOMEBREW_PREFIX/bin
-prependPath $HOMEBREW_PREFIX/sbin
-
 source $DOTFILES/wtg/env
 PERSONAL=$DOTFILES/personal/env
 for i in `find -L $PERSONAL`; do
