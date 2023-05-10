@@ -4,7 +4,7 @@
 [gpg]
   program = gpg
 [web]
-  browser = brave-browser
+  browser = arc
 [core]
   editor = nvim
   excludesfile = ~/.gitignore
