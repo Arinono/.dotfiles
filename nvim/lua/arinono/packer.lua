@@ -94,7 +94,7 @@ return require('packer').startup(function(use)
   }
 
   -- Misc
-  -- use 'andweeb/presence.nvim'
+  use 'andweeb/presence.nvim'
   use {
     'kristijanhusak/vim-dadbod-ui',
     requires = { 'tpope/vim-dadbod' },

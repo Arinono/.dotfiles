@@ -52,7 +52,7 @@ local assets = {
   ["webpack.config.js"] = { "Webpack", "webpack-original" },
 }
 
-require("presence"):setup({
+require("presence").setup({
   auto_update         = true,
   neovim_image_text   = "The only valid editor",
   main_image          = "file",
@@ -62,13 +62,13 @@ require("presence"):setup({
   debounce_timeout    = 10,
   enable_line_number  = false,
   blacklist           = {"workspace/private"},
-  buttons             = true,
+  buttons             = false,
   file_assets         = assets,
-  editing_text        = "Editing %s",
-  file_explorer_text  = "Browsing %s",
+  editing_text        = "Editing",
+  file_explorer_text  = "Browsing",
   git_commit_text     = "Committing changes",
   plugin_manager_text = "Managing plugins",
-  reading_text        = "Reading %s",
+  reading_text        = "Reading",
   workspace_text      = "Working on %s",
   line_number_text    = "Line %s out of %s",
 })
