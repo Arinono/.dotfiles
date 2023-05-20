@@ -13,6 +13,7 @@ return require('packer').startup(function(use)
   }
 
   -- LSP
+  use('folke/neoconf.nvim')
   use {
     'VonHeikemen/lsp-zero.nvim',
     requires = {
@@ -69,6 +70,7 @@ return require('packer').startup(function(use)
         require('Comment').setup()
     end
   }
+  use('laytan/cloak.nvim')
 
 
   use {

@@ -1,6 +1,12 @@
 local map = require("arinono.keymap")
 local nnoremap = map.nnoremap
 
+require('neoconf').setup({
+  import = {
+    vscode = false,
+  }
+})
+
 local lsp = require('lsp-zero')
 
 lsp.preset('recommended')
@@ -46,10 +52,6 @@ config.volar.setup({
     }
   }
 })
-
--- config.tailwindcss.setup({
---   filetypes = {'vue', 'svelte', 'html'},
--- })
 
 lsp.on_attach(function(_, buff)
   local opts = { buffer = buff, remap = false }
