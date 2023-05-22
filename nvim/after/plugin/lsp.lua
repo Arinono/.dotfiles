@@ -104,15 +104,15 @@ lsp.format_mapping("<leader><leader>f", {
 	},
 })
 
-lsp.format_on_save({
-	format_opts = {
-		async = false,
-		timeout_ms = 10000,
-	},
-	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua" },
-	},
-})
+-- lsp.format_on_save({
+-- 	format_opts = {
+-- 		async = false,
+-- 		timeout_ms = 10000,
+-- 	},
+-- 	servers = {
+-- 		["null-ls"] = { "javascript", "typescript", "lua" },
+-- 	},
+-- })
 
 local null_ls = require("null-ls")
 
