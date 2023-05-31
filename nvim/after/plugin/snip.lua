@@ -85,7 +85,7 @@ ls.add_snippets("vue", {
 			1,
 			t({
 				"const { t } = useI18n({",
-				"  messages: ${1:json}",
+				"  messages:",
 				"});",
 			}),
 			"$PARENT_INDENT"
@@ -102,6 +102,18 @@ ls.add_snippets("vue", {
 				"    uuid,",
 				"  };",
 				"},",
+			}),
+			"$PARENT_INDENT"
+		),
+	}),
+	s("unsaved", {
+		isn(
+			1,
+			t({
+				"const {",
+				"  hasUnsavedChanges,",
+				"  beforeRouteLeaveGuard,",
+				"} = useHasUnsavedChanges();",
 			}),
 			"$PARENT_INDENT"
 		),
