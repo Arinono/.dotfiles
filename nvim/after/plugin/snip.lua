@@ -118,4 +118,17 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
+	s("wa_title", {
+		isn(
+			1,
+			t({
+				"watch(_title, (val, oldVal) => {",
+				"  if (val !== oldVal) {",
+				"    title.value = val;",
+				"  }",
+				"});",
+			}),
+			"$PARENT_INDENT"
+		),
+	}),
 })
