@@ -11,11 +11,11 @@ nnoremap("<leader>hg", function()
 end)
 
 nnoremap("<leader>hn", function()
-	require("harpoon.mark").nav_next()
+	require("harpoon.ui").nav_next()
 end)
 
 nnoremap("<leader>hp", function()
-	require("harpoon.mark").nav_prev()
+	require("harpoon.ui").nav_prev()
 end)
 
 nnoremap("<leader>ha", function()
