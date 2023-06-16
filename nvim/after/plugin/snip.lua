@@ -131,4 +131,5 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
+	s("sdk", t("const { sdk } = useSDK();")),
 })
