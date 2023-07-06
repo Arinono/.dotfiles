@@ -68,9 +68,9 @@ ls.add_snippets("all", {
 })
 
 ls.add_snippets("vue", {
-	s("uuid", t("const { uuid } = useUUID();")),
-	s("ret_uuid", t({ "return {", "  uuid,", "};" })),
-	s("title", {
+	s("_uuid", t("const { uuid } = useUUID();")),
+	s("_ret_uuid", t({ "return {", "  uuid,", "};" })),
+	s("_title", {
 		isn(
 			1,
 			t({
@@ -80,7 +80,7 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
-	s("i18n", {
+	s("_i18n", {
 		isn(
 			1,
 			t({
@@ -91,7 +91,7 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
-	s("stp", {
+	s("_stp", {
 		isn(
 			1,
 			t({
@@ -106,7 +106,7 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
-	s("unsaved", {
+	s("_unsaved", {
 		isn(
 			1,
 			t({
@@ -118,7 +118,7 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
-	s("wa_title", {
+	s("_wa_title", {
 		isn(
 			1,
 			t({
@@ -131,5 +131,6 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
-	s("sdk", t("const { sdk } = useSDK();")),
+	s("_sdk", t("const { sdk } = useSDK();")),
+	s("_bus", t("const { emit } = useBusHandler();")),
 })
