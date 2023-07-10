@@ -70,7 +70,7 @@ config.volar.setup({
 	end,
 })
 
-lsp.on_attach(function(_, buff)
+lsp.on_attach(function(client, buff)
 	local opts = { buffer = buff, remap = false }
 
 	nnoremap("<leader>vws", vim.lsp.buf.workspace_symbol, opts)
@@ -88,6 +88,14 @@ lsp.on_attach(function(_, buff)
 	nnoremap("gi", vim.lsp.buf.implementation, opts)
 	nnoremap("gr", vim.lsp.buf.references, opts)
 	nnoremap("go", vim.lsp.buf.type_definition, opts)
+
+	-- disable ts LS client when in deno
+	if util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
+		if client.name == "tsserver" then
+			client.stop()
+			return
+		end
+	end
 end)
 
 lsp.setup()
