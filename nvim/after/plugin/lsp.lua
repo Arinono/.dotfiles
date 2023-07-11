@@ -93,7 +93,10 @@ lsp.on_attach(function(client, buff)
 	if util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
 		if client.name == "tsserver" then
 			client.stop()
-			return
+		end
+	else
+		if client.name == "denols" then
+			client.stop()
 		end
 	end
 end)
