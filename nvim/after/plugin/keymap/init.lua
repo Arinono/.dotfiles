@@ -23,7 +23,9 @@ xnoremap("<leader>p", '"_dP')
 nnoremap("J", "mzJ`z")
 
 nnoremap("<leader>'", "ciw'<C-r>\"'<esc>")
+nnoremap('<leader><leader>"', 'ciw"<C-r>""<esc>')
 nnoremap("<leader>;'", "di'hPl2x")
+nnoremap('<leader>;"', 'di"hPl2x')
 
 -- Navigation
 nnoremap("<C-d>", "<C-d>zz")
