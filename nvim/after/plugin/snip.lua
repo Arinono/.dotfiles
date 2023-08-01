@@ -148,4 +148,9 @@ ls.add_snippets("vue", {
 			"$PARENT_INDENT"
 		),
 	}),
+	s("_hasRight", t("const hasRight: undefined | ((value: string) => boolean) = inject('hasRight');")),
+	s(
+		"_pushRoute",
+		t("const pushRoute: ((location: RouteLocationRaw) => Promise<boolean>) | undefined = inject('pushRoute');")
+	),
 })
