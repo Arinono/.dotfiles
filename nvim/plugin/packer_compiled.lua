@@ -85,6 +85,11 @@ _G.packer_plugins = {
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/LuaSnip",
     url = "https://github.com/L3MON4D3/LuaSnip"
   },
+  ["centerpad.nvim"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/centerpad.nvim",
+    url = "https://github.com/smithbm2316/centerpad.nvim"
+  },
   ["cloak.nvim"] = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/cloak.nvim",
