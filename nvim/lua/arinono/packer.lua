@@ -86,6 +86,7 @@ return require("packer").startup(function(use)
 	-- Lang
 	use({ "folke/trouble.nvim", requires = "kyazdani42/nvim-web-devicons" })
 	use("ellisonleao/glow.nvim")
+	use("NoahTheDuke/vim-just")
 
 	-- Telescope
 	use({
