@@ -132,7 +132,7 @@ ls.add_snippets("vue", {
 		),
 	}),
 	s("_sdk", t("const { sdk } = useSDK();")),
-	s("_bus", t("const { emit } = useBusHandler();")),
+	s("_bus", t("const { emit: busEmit } = useBusHandler();")),
 	s("_emits", {
 		isn(
 			1,
