@@ -114,6 +114,6 @@ return require("packer").startup(function(use)
 	})
 
 	-- Late load
-	-- use { 'github/copilot.vim' }
+	use({ "github/copilot.vim" })
 	use({ "smithbm2316/centerpad.nvim" })
 end)

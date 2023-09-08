@@ -67,6 +67,17 @@ ls.add_snippets("all", {
 	ls.parser.parse_snippet({ trig = "te", wordTrig = false }, "${1:cond} ? ${2:lhs} : ${3:rhs}"),
 })
 
+ls.add_snippets("tape", {
+	s("init", {
+		isn(
+			1,
+			t({
+				"",
+			})
+		),
+	}),
+})
+
 ls.add_snippets("vue", {
 	s("_uuid", t("const { uuid } = useUUID();")),
 	s("_ret_uuid", t({ "return {", "  uuid,", "};" })),
@@ -137,13 +148,9 @@ ls.add_snippets("vue", {
 		isn(
 			1,
 			t({
-				"/* eslint-disable no-spaced-func */",
-				"/* eslint-disable func-call-spacing */",
 				"const emit = defineEmits<{",
-				"  (e: 'input'): void,",
+				"  'update:model-value': [unknown],",
 				"}>();",
-				"/* eslint-enable no-spaced-func */",
-				"/* eslint-enable func-call-spacing */",
 			}),
 			"$PARENT_INDENT"
 		),
