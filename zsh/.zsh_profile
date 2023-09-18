@@ -40,6 +40,22 @@ switch() {
   fi
 }
 
+vmrss() {
+  p=$1
+  if [[ -z $p ]]; then
+    p=$(ps -eo pid,user,comm | tail -n +2 | fzf | awk '{print $1}')
+  fi
+
+  while true; do
+    if [[ -d "/proc" ]]; then
+      cat /proc/$p/status | grep VmRSS | awk '{print $1/1024 " MB"}'
+    else
+      vmmap --summary -resident $p | grep "Physical footprint:" | awk '{print $3}'
+    fi
+    sleep 1
+  done
+}
+
 git-contrib() {
   git shortlog -sne --all
 }
