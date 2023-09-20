@@ -78,28 +78,38 @@ ls.add_snippets("tape", {
 	}),
 })
 
-local keys = isn(1, t({ "const keys = Object.keys as <T>(obj: T) => Array<keyof T>" }), "$PARENT_INDENT")
-local values = isn(1, t({ "const values = Object.values as <T>(obj: T) => Array<T[keyof T]>" }), "$PARENT_INDENT")
-local entries = isn(
-	1,
-	t({
-		"const entries = Object.entries as <T>(",
-		"  o: T",
-		") => Array<[keyof T, T[keyof T]]>",
-	}),
-	"$PARENT_INDENT"
-)
-
-ls.add_snippets("ts", {
-	s("entries", entries),
-	s("keys", keys),
-	s("values", values),
+ls.add_snippets("typescript", {
+	s(
+		"entries",
+		isn(
+			1,
+			t({
+				"const entries = Object.entries as <T>(",
+				"  o: T",
+				") => Array<[keyof T, T[keyof T]]>",
+			}),
+			"$PARENT_INDENT"
+		)
+	),
+	s("keys", isn(1, t({ "const keys = Object.keys as <T>(obj: T) => Array<keyof T>" }), "$PARENT_INDENT")),
+	s("values", isn(1, t({ "const values = Object.values as <T>(obj: T) => Array<T[keyof T]>" }), "$PARENT_INDENT")),
 })
 
 ls.add_snippets("vue", {
-	s("entries", entries),
-	s("keys", keys),
-	s("values", values),
+	s(
+		"entries",
+		isn(
+			1,
+			t({
+				"const entries = Object.entries as <T>(",
+				"  o: T",
+				") => Array<[keyof T, T[keyof T]]>",
+			}),
+			"$PARENT_INDENT"
+		)
+	),
+	s("keys", isn(1, t({ "const keys = Object.keys as <T>(obj: T) => Array<keyof T>" }), "$PARENT_INDENT")),
+	s("values", isn(1, t({ "const values = Object.values as <T>(obj: T) => Array<T[keyof T]>" }), "$PARENT_INDENT")),
 	s("_uuid", t("const { uuid } = useUUID();")),
 	s("_ret_uuid", t({ "return {", "  uuid,", "};" })),
 	s("_title", {
