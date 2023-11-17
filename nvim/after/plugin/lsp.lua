@@ -44,6 +44,8 @@ config.lua_ls.setup({
 	},
 })
 
+config.htmx.setup({})
+
 local util = require("lspconfig.util")
 local function get_typescript_server_path(root_dir)
 	local global_ts = "/Users/arinono/Library/pnpm/global/5/node_modules/typescript/lib"
@@ -128,7 +130,7 @@ lsp.format_mapping("<leader><leader>f", {
 		timeout_ms = 10000,
 	},
 	servers = {
-		["null-ls"] = { "javascript", "typescript", "lua", "vue" },
+		["null-ls"] = { "javascript", "typescript", "lua", "vue", "html" },
 	},
 })
 
