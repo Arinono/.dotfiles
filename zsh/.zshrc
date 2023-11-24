@@ -36,5 +36,11 @@ plugins=(git git-auto-fetch asdf)
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
 
+# Nix
+if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
+  . '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh'
+fi
+# End Nix
+
 source ~/.zsh_profile
 export GPG_TTY=$TTY
