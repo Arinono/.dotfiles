@@ -52,3 +52,6 @@ echo "Linking spotify"
 [[ -f $CONFIG/spotifyd/spotifyd.conf ]] || ln -s "$DOTFILES"/personal/spotify/spotifyd/spotifyd.conf "$CONFIG"/spotifyd/spotifyd.conf
 [[ -f $CONFIG/spotify-tui/client.yml ]] || ln -s "$DOTFILES"/personal/spotify/spotify-tui/client.yml "$CONFIG"/spotify-tui/client.yml
 [[ -f $CONFIG/spotify-tui/config.yml ]] || ln -s "$DOTFILES"/personal/spotify/spotify-tui/config.yml "$CONFIG"/spotify-tui/config.yml
+
+echo "Linking yabai"
+[[ -f ~/.yabairc ]] || ln -s "$DOTFILES"/yabai/.yabairc ~/.yabairc
