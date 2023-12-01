@@ -2,6 +2,7 @@ sudo yabai --load-sa
 yabai -m signal -add event=docker_did_restart action="sudo yabai --load-sa"
 
 yabai -m config layout bsp
+yabai -m config auto_balance on
 
 yabai -m config top_padding 16
 yabai -m config bottom_padding 16
