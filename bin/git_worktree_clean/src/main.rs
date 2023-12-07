@@ -19,14 +19,12 @@ fn main() -> Result<()> {
         .height(Some("100%"))
         .multi(true)
         .preview(Some(""))
-        .build()
-        .unwrap();
+        .build()?;
 
     let output = Command::new("git")
         .arg("worktree")
         .arg("list")
-        .output()
-        .expect("failed to execute process");
+        .output()?;
 
     let output_str = String::from_utf8_lossy(&output.stdout);
     let worktrees = output_str.lines().collect::<Vec<&str>>();
