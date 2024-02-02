@@ -1,0 +1,8 @@
+run:
+  cargo run
+
+build:
+  cargo build --release
+
+install: build
+  ln -s $(pwd)/target/release/git_worktree_clean ~/.local/bin/git_worktree_clean

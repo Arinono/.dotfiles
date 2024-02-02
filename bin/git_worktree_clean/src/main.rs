@@ -18,7 +18,7 @@ fn main() -> Result<()> {
     let options = SkimOptionsBuilder::default()
         .height(Some("100%"))
         .multi(true)
-        .preview(Some(""))
+        .preview(None)
         .build()?;
 
     let output = Command::new("git")
