@@ -61,7 +61,7 @@ ls.config.set_config({
 	enable_autosnippet = false,
 })
 
-ls.cleanup()
+-- ls.cleanup()
 
 ls.add_snippets("all", {
 	ls.parser.parse_snippet({ trig = "te", wordTrig = false }, "${1:cond} ? ${2:lhs} : ${3:rhs}"),

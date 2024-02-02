@@ -33,6 +33,8 @@ nnoremap("<C-u>", "<C-u>zz")
 nnoremap("n", "nzz")
 nnoremap("N", "Nzz")
 nnoremap("G", "Gzz")
+nnoremap("]c", "]czz")
+nnoremap("[c", "[czz")
 
 -- Crossyank
 nnoremap("<leader>y", '"+y')
