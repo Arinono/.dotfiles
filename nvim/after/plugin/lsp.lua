@@ -140,7 +140,7 @@ lsp.format_on_save({
 		timeout_ms = 10000,
 	},
 	servers = {
-		["null-ls"] = { "lua" },
+		["null-ls"] = { "lua", "javascript", "typescript", "vue", "html" },
 	},
 })
 
@@ -149,15 +149,7 @@ local null_ls = require("null-ls")
 null_ls.setup({
 	sources = {
 		-- Replace these with the tools you have installed
-		null_ls.builtins.formatting.prettier.with({
-			extra_args = {
-				"--single-quote",
-				"--jsx-single-quote",
-				"--trailing-comma all",
-				"--single-attribute-per-line",
-				"--prose-wrap always",
-			},
-		}),
+		null_ls.builtins.formatting.prettier.with({}),
 		null_ls.builtins.formatting.stylua,
 		-- null_ls.builtins.diagnostics.eslint,
 	},
