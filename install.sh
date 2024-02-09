@@ -12,6 +12,7 @@ BINS=$HOME/.local/bin
 [[ -d $CONFIG/nix ]] || mkdir "$CONFIG"/nix
 [[ -d $CONFIG/spotifyd ]] || mkdir "$CONFIG"/spotifyd
 [[ -d $CONFIG/spotify-tui ]] || mkdir "$CONFIG"/spotify-tui
+[[ -d $CONFIG/gh-dash ]] || mkdir "$CONFIG"/gh-dash
 [[ -d $BINS ]] || mkdir "$BINS"
 
 echo "Linking zsh"
@@ -52,6 +53,9 @@ echo "Linking spotify"
 [[ -f $CONFIG/spotifyd/spotifyd.conf ]] || ln -s "$DOTFILES"/personal/spotify/spotifyd/spotifyd.conf "$CONFIG"/spotifyd/spotifyd.conf
 [[ -f $CONFIG/spotify-tui/client.yml ]] || ln -s "$DOTFILES"/personal/spotify/spotify-tui/client.yml "$CONFIG"/spotify-tui/client.yml
 [[ -f $CONFIG/spotify-tui/config.yml ]] || ln -s "$DOTFILES"/personal/spotify/spotify-tui/config.yml "$CONFIG"/spotify-tui/config.yml
+
+echo "Linking gh-dash"
+[[ -f $CONFIG/gh-dash/config.yml ]] || ln -s "$DOTFILES"/gh-dash/config.yml "$CONFIG"/gh-dash/config.yml
 
 echo "Linking yabai"
 [[ -f ~/.yabairc ]] || ln -s "$DOTFILES"/yabai/.yabairc ~/.yabairc

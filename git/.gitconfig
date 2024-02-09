@@ -1,6 +1,6 @@
 [user]
-  name = Aurelien Arino
-  email = aurelien@arino.io
+	name = Aurelien Arino
+	email = aurelien@arino.io
 [gpg]
   program = gpg
 [web]
