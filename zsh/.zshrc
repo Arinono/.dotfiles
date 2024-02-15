@@ -35,7 +35,7 @@ plugins=(git git-auto-fetch asdf)
 
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
-eval "$(zoxide init zsh)"
+eval "$(zoxide init --cmd cd zsh)"
 
 # Nix
 if [ -e '/nix/var/nix/profiles/default/etc/profile.d/nix-daemon.sh' ]; then
