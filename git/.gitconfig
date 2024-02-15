@@ -44,6 +44,7 @@
   wr = worktree remove
   wrf = worktree remove -f
   wl = worktree list
+	staash = stash --all
 [commit]
 	gpgsign = true
 [pull]
@@ -57,3 +58,7 @@
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[maintenance]
+	repo = /Users/arinono/workspace/wtg/platform.git/main
+[rerere]
+	enabled = true
