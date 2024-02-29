@@ -200,6 +200,11 @@ _G.packer_plugins = {
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
     url = "https://github.com/neovim/nvim-lspconfig"
   },
+  ["nvim-silicon"] = {
+    loaded = true,
+    path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/nvim-silicon",
+    url = "https://github.com/michaelrommel/nvim-silicon"
+  },
   ["nvim-spotify"] = {
     loaded = true,
     path = "/Users/arinono/.local/share/nvim/site/pack/packer/start/nvim-spotify",
