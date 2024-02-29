@@ -123,6 +123,8 @@ vim.diagnostic.config({
 nnoremap("<leader>do", function()
 	vim.diagnostic.open_float(vim.api.nvim_get_current_buf(), { scope = "line" })
 end)
+nnoremap("]g", vim.diagnostic.goto_next, { silent = true })
+nnoremap("[g", vim.diagnostic.goto_prev, { silent = true })
 
 lsp.format_mapping("<leader><leader>f", {
 	format_opts = {
