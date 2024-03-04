@@ -9,6 +9,12 @@ silicon.setup({
 	pad_horiz = 32,
 	pad_vert = 16,
 	background = "#24283b",
+	window_title = function()
+		local bufname = vim.api.nvim_buf_get_name(vim.api.nvim_get_current_buf())
+		local dir = vim.fn.fnamemodify(bufname, ":h:t")
+		local file = vim.fn.fnamemodify(bufname, ":t")
+		return dir .. "/" .. file
+	end,
 })
 
 vim.keymap.set("v", "<leader>sc", ":Silicon<CR>", { noremap = true })
