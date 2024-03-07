@@ -59,3 +59,6 @@ echo "Linking gh-dash"
 
 echo "Linking yabai"
 [[ -f ~/.yabairc ]] || ln -s "$DOTFILES"/yabai/.yabairc ~/.yabairc
+
+echo "Linking skhd"
+[[ -f ~/.skhd ]] || ln -s "$DOTFILES"/skhd/.skhdrc ~/.skhdrc
