@@ -55,8 +55,8 @@ defaults:
     width: 60 
   refetchIntervalMinutes: 5
 repoPaths: 
+  :owner/:repo: ~/workspace/:repo
   default_path: ~/workspace
-  wtg/*: ~/workspace/wtg/* 
   withthegrid/platform: ~/workspace/wtg/platform.git
 pager:
   diff: more
