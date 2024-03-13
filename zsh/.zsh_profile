@@ -40,19 +40,44 @@ switch() {
   fi
 }
 
+print_vmrss() {
+  total=0
+  declare -a arr
+  arr=("$1" 0)
+
+  while [ ${#arr[@]} -gt 0 ]; do
+    pid=${arr[1]}
+    space=${arr[2]}
+    arr=("${arr[@]:2}")
+
+    kill -0 $pid || continue
+
+    mem=$(ps -p $pid -o rss= | awk '{print $1/1024}')
+    total=$(echo $mem+$total | bc)
+    name=$(ps -p $pid -o comm=)
+
+    printf "%${space}s%s($pid): $mem MB\n" '' "$name"
+
+    children=($(pgrep -P $pid))
+
+    for child in $children; do
+      arr+=("$child" $((space+2)))
+    done
+  done
+
+  printf "Total: $total MB\n"
+}
+
 vmrss() {
   p=$1
   if [[ -z $p ]]; then
     p=$(ps -eo pid,user,comm | tail -n +2 | fzf | awk '{print $1}')
   fi
 
+
   while true; do
-    if [[ -d "/proc" ]]; then
-      cat /proc/$p/status | grep VmRSS | awk '{print $1/1024 " MB"}'
-    else
-      vmmap --summary -resident $p | grep "Physical footprint:" | awk '{print $3}'
-    fi
-    sleep 1
+    print_vmrss $p
+    sleep 0.5
   done
 }
 
