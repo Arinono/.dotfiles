@@ -50,7 +50,7 @@ print_vmrss() {
     space=${arr[2]}
     arr=("${arr[@]:2}")
 
-    kill -0 $pid || continue
+    kill -0 $pid 2>/dev/null || continue
 
     mem=$(ps -p $pid -o rss= | awk '{print $1/1024}')
     total=$(echo $mem+$total | bc)
