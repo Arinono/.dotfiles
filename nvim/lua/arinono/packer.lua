@@ -40,6 +40,13 @@ return require("packer").startup(function(use)
 			{ "jay-babu/mason-null-ls.nvim" },
 		},
 	})
+	use({
+		"pmizio/typescript-tools.nvim",
+		requires = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+		config = function()
+			require("typescript-tools").setup({})
+		end,
+	})
 
 	-- Edition
 	use({

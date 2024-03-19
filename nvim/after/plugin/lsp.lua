@@ -1,20 +1,20 @@
 local map = require("arinono.keymap")
 local nnoremap = map.nnoremap
 
-require("neoconf").setup({
-	import = {
-		vscode = false,
-	},
-})
+-- require("neoconf").setup({
+-- 	import = {
+-- 		vscode = false,
+-- 	},
+-- })
 
 local lsp = require("lsp-zero")
 
 lsp.preset("recommended")
 
 lsp.setup_servers({
-	"tsserver",
 	"eslint",
 	"rust-analyzer",
+	"vue-language-server",
 })
 
 -- (Optional) Configure lua language server for neovim
@@ -46,31 +46,14 @@ config.lua_ls.setup({
 
 config.htmx.setup({})
 
-local util = require("lspconfig.util")
-local function get_typescript_server_path(root_dir)
-	local global_ts = "/Users/arinono/Library/pnpm/global/5/node_modules/typescript/lib"
-	-- Alternative location if installed as root:
-	-- local global_ts = '/usr/local/lib/node_modules/typescript/lib'
-	local found_ts = ""
-	local function check_dir(path)
-		found_ts = util.path.join(path, "node_modules", "typescript", "lib")
-		if util.path.exists(found_ts) then
-			return path
-		end
-	end
-	if util.search_ancestors(root_dir, check_dir) then
-		return found_ts
-	else
-		return global_ts
-	end
-end
-
-config.volar.setup({
-	filetypes = { "vue" },
-	on_new_config = function(new_config, new_root_dir)
-		new_config.init_options.typescript.tsdk = get_typescript_server_path(new_root_dir)
-	end,
+require("typescript-tools").setup({
+	filetypes = { "typescript", "javascript", "vue" },
+	tsserver_plugins = {
+		"@vue/typescript-plugin",
+	},
 })
+
+config.volar.setup({})
 
 lsp.on_attach(function(client, buff)
 	local opts = { buffer = buff, remap = false }
@@ -90,17 +73,6 @@ lsp.on_attach(function(client, buff)
 	nnoremap("gi", vim.lsp.buf.implementation, opts)
 	nnoremap("gr", vim.lsp.buf.references, opts)
 	nnoremap("go", vim.lsp.buf.type_definition, opts)
-
-	-- disable ts LS client when in deno
-	if util.root_pattern("deno.json", "deno.jsonc")(vim.fn.getcwd()) then
-		if client.name == "tsserver" then
-			client.stop()
-		end
-	else
-		if client.name == "denols" then
-			client.stop()
-		end
-	end
 end)
 
 lsp.setup()
