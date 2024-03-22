@@ -46,14 +46,32 @@ config.lua_ls.setup({
 
 config.htmx.setup({})
 
-require("typescript-tools").setup({
-	filetypes = { "typescript", "javascript", "vue" },
-	tsserver_plugins = {
-		"@vue/typescript-plugin",
-	},
+-- local tsplugin =
+-- 	"/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin"
+-- require("typescript-tools").setup({
+-- 	filetypes = { "typescript", "javascript", "vue" },
+-- 	tsserver_plugins = {
+-- 		-- "@vue/typescript-plugin",
+-- 		tsplugin,
+-- 	},
+-- })
+
+config.volar.setup({
+	filetypes = { "vue" },
 })
 
-config.volar.setup({})
+config.tsserver.setup({
+	filetypes = { "typescript", "javascript", "vue" },
+	init_options = {
+		plugins = {
+			{
+				name = "@vue/typescript-plugin",
+				location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+				languages = { "vue" },
+			},
+		},
+	},
+})
 
 lsp.on_attach(function(client, buff)
 	local opts = { buffer = buff, remap = false }
