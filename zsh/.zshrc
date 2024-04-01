@@ -32,7 +32,7 @@ prependPath $HOME/.go/bin
 ZSH_THEME="robbyrussell"
 
 # Enable plugins.
-plugins=(git git-auto-fetch asdf)
+plugins=(git git-auto-fetch)
 
 source $ZSH/oh-my-zsh.sh
 eval "$(starship init zsh)"
