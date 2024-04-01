@@ -27,6 +27,7 @@ export HOMEBREW_PREFIX=`/opt/homebrew/bin/brew --prefix`
 prependPath $HOMEBREW_PREFIX/bin
 prependPath $HOMEBREW_PREFIX/sbin
 prependPath $HOME/.go/bin
+prependPath $HOME/.cargo/bin
 
 # ohmyz.sh
 ZSH_THEME="robbyrussell"
