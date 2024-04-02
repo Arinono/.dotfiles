@@ -7,5 +7,6 @@ M.conform = require("lazy_configs.conform")
 M.tokyonight = require("lazy_configs.tokyonight")
 M.mini = require("lazy_configs.mini")
 M.treesitter = require("lazy_configs.treesitter")
+M.harpoon = require("lazy_configs.harpoon")
 
 return M
