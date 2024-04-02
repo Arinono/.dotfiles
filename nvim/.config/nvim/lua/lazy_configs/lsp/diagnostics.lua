@@ -1,6 +1,6 @@
-vim.diagnostic.config {
+vim.diagnostic.config({
   virtual_text = {
-    source = 'if_many',
+    source = "if_many",
   },
   signs = true,
   update_in_insert = false,
@@ -9,6 +9,6 @@ vim.diagnostic.config {
     reverse = true,
   },
   float = {
-    source = 'always',
+    source = "always",
   },
-}
+})

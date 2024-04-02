@@ -2,9 +2,9 @@ local lua = {
   settings = {
     Lua = {
       completion = {
-        callSnippet = 'Replace',
+        callSnippet = "Replace",
       },
-      diagnostics = { disable = { 'missing-fields' } },
+      diagnostics = { disable = { "missing-fields" } },
       telemetry = { enable = false },
     },
   },
@@ -13,17 +13,17 @@ local lua = {
 local htmx = {}
 
 local volar = {
-  filetypes = { 'vue' },
+  filetypes = { "vue" },
 }
 
 local ts = {
-  filetypes = { 'typescript', 'javascript', 'vue' },
+  filetypes = { "typescript", "javascript", "vue" },
   init_options = {
     plugins = {
       {
-        name = '@vue/typescript-plugin',
-        location = '/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin',
-        languages = { 'vue' },
+        name = "@vue/typescript-plugin",
+        location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+        languages = { "vue" },
       },
     },
   },

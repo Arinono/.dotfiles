@@ -2,12 +2,12 @@ local M = {}
 
 M.keys = {
   {
-    '<leader>f',
+    "<leader>f",
     function()
-      require('conform').format { async = true, lsp_fallback = true }
+      require("conform").format({ async = true, lsp_fallback = true })
     end,
-    mode = '',
-    desc = '[F]ormat buffer',
+    mode = "",
+    desc = "[F]ormat buffer",
   },
 }
 
@@ -20,10 +20,10 @@ M.disabled = {
 }
 
 M.formatters = {
-  lua = { 'stylua' },
-  js = { 'prettier' },
-  ts = { 'prettier' },
-  vue = { 'prettier' },
+  lua = { "stylua" },
+  js = { "prettier" },
+  ts = { "prettier" },
+  vue = { "prettier" },
 }
 
 return M

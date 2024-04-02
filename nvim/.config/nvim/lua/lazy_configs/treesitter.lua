@@ -1,14 +1,14 @@
 local M = {}
 
 M.installed = {
-  'vim',
-  'c',
-  'bash',
-  'lua',
-  'rust',
-  'toml',
-  'javascript',
-  'typescript',
+  "vim",
+  "c",
+  "bash",
+  "lua",
+  "rust",
+  "toml",
+  "javascript",
+  "typescript",
 }
 
 M.context = {
@@ -17,21 +17,21 @@ M.context = {
   max_lines = 0,
   patterns = {
     default = {
-      'class',
-      'function',
-      'method',
-      'for',
-      'if',
+      "class",
+      "function",
+      "method",
+      "for",
+      "if",
     },
 
     rust = {
-      'impl_item',
+      "impl_item",
     },
 
     typescript = {
-      'class_declaration',
-      'abstract_class_declaration',
-      'else_clause',
+      "class_declaration",
+      "abstract_class_declaration",
+      "else_clause",
     },
   },
 }
