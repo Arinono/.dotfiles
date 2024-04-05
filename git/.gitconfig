@@ -29,9 +29,9 @@
   cam = commit --amend
   cams = commit --amend --no-verify
   came = commit --amend --no-edit
-	cames = commit --amend --no-edit --no-verify
-	sth=stash
-	sthp=stash pop
+  cames = commit --amend --no-edit --no-verify
+  sth=stash
+  sthp=stash pop
   br = branch
   co = checkout
   df = diff
@@ -44,11 +44,13 @@
   wr = worktree remove
   wrf = worktree remove -f
   wl = worktree list
-	staash = stash --all
+  staash = stash --all
 [commit]
 	gpgsign = true
 [pull]
 	rebase = true
+[rebase]
+	updateRefs = true
 [push]
   autoSetupRemote = true
 [url "ssh://git@github.com:"]
