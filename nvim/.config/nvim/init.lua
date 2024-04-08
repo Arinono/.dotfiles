@@ -62,6 +62,9 @@ require("lazy").setup({
     "ThePrimeagen/harpoon",
     branch = "harpoon2",
     dependencies = { "nvim-lua/plenary.nvim" },
+    opts = {
+      save_on_toggle = true,
+    },
     config = function()
       lazy_configs.harpoon.config()
     end,
@@ -256,6 +259,7 @@ require("lazy").setup({
       lazy_configs.mini.config()
     end,
   },
+
   { -- Highlight, edit, and navigate code
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
@@ -274,10 +278,20 @@ require("lazy").setup({
     dependencies = {
       "nvim-treesitter/nvim-treesitter-context",
       opts = lazy_configs.treesitter.context,
+      "nvim-treesitter/playground",
     },
     config = function(_, opts)
       ---@diagnostic disable-next-line: missing-fields
       require("nvim-treesitter.configs").setup(opts)
+
+      vim.treesitter.language.register("markdown", { "mdx" })
+    end,
+  },
+
+  {
+    "github/copilot.vim",
+    config = function()
+      lazy_configs.copilot.config()
     end,
   },
 

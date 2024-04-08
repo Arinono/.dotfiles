@@ -9,6 +9,7 @@ M.installed = {
   "toml",
   "javascript",
   "typescript",
+  "markdown",
 }
 
 M.context = {
