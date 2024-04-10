@@ -28,7 +28,7 @@ function M.config()
   harpoon:setup({})
 
   map("<leader>hg", function()
-    harpoon:list():append()
+    harpoon:list():add()
   end, "Re[G]ister")
 
   map("<C-e>", function()

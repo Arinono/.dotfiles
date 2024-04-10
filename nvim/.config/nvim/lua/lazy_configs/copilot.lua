@@ -6,7 +6,7 @@ function M.config()
 
   vim.keymap.set(
     "i",
-    "<leader>\\",
+    "<C-\\>",
     'copilot#Accept("<CR>")',
     { silent = true, expr = true, noremap = true, replace_keycodes = false }
   )
