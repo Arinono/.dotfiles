@@ -42,6 +42,7 @@ switch() {
 
 print_vmrss() {
   total=0
+  unset arr
   declare -a arr
   arr=("$1" 0)
 
@@ -83,6 +84,37 @@ vmrss() {
 
 git-contrib() {
   git shortlog -sne --all
+}
+
+system-updates() {
+  declare -a commands
+  commands=(
+    "brew update"
+    "n latest"
+    "rustup update"
+    "pnpm add -g pnpm"
+    "~/.local/bin/update-nix-profiles"
+  )
+  parallel ::: "${commands[@]}"
+
+  commands=(
+    "brew upgrade"
+    "n lts"
+    "pnpm up -g"
+    "~/.local/bin/update-all-crates"
+  )
+  parallel ::: "${commands[@]}"
+
+  commands=(
+    "brew upgrade --cask"
+    "n 18"
+  )
+  parallel ::: "${commands[@]}"
+
+  brew cleanup
+  (omz update)
+  ntfy
+
 }
 
 switch "personal"
