@@ -54,6 +54,9 @@ vim.opt.incsearch = true
 vim.opt.wrap = false
 vim.opt.cursorline = true
 
+-- mainly for md and obsidian support
+vim.opt.conceallevel = 2
+
 vim.opt.colorcolumn = { 80, 100 }
 vim.opt.termguicolors = true
 vim.keymap.set({ "n", "v" }, "<Space>", "<Nop>", { silent = true })

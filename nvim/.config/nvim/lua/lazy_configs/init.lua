@@ -9,5 +9,6 @@ M.mini = require("lazy_configs.mini")
 M.treesitter = require("lazy_configs.treesitter")
 M.harpoon = require("lazy_configs.harpoon")
 M.copilot = require("lazy_configs.copilot")
+M.obsidian = require("lazy_configs.obsidian")
 
 return M
