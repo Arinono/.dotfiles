@@ -21,10 +21,7 @@ fn main() -> Result<()> {
         .preview(None)
         .build()?;
 
-    let output = Command::new("git")
-        .arg("worktree")
-        .arg("list")
-        .output()?;
+    let output = Command::new("git").arg("worktree").arg("list").output()?;
 
     let output_str = String::from_utf8_lossy(&output.stdout);
     let worktrees = output_str.lines().collect::<Vec<&str>>();
