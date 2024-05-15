@@ -29,6 +29,16 @@ local ts = {
   },
 }
 
+local ra = {
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        features = "all",
+      },
+    },
+  },
+}
+
 local M = {}
 
 M.servers = {
@@ -36,6 +46,7 @@ M.servers = {
   htmx = htmx,
   tsserver = ts,
   volar = volar,
+  rust_analyzer = ra,
 }
 
 return M

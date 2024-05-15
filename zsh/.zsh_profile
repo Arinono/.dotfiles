@@ -93,7 +93,7 @@ system-updates() {
     "n latest"
     "rustup update"
     "pnpm add -g pnpm"
-    "~/.local/bin/update-nix-profiles"
+    "~/.local/bin/upgrade-nix-profiles"
   )
   parallel ::: "${commands[@]}"
 
@@ -114,7 +114,6 @@ system-updates() {
   brew cleanup
   (omz update)
   ntfy
-
 }
 
 switch "personal"

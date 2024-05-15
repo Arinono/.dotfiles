@@ -313,6 +313,15 @@ require("lazy").setup({
     opts = lazy_configs.obsidian.opts,
   },
 
+  {
+    "brenoprata10/nvim-highlight-colors",
+    opts = {
+      enable_tailwind = true,
+    },
+  },
+
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } },
+
   { import = "custom.plugins" },
 }, {
   ui = {
