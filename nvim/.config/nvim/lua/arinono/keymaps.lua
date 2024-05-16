@@ -38,9 +38,6 @@ vim.keymap.set("i", "<C-c>", "<esc>")
 vim.keymap.set("n", "<leader>t", ":tabnew<cr>", { desc = "New tab" })
 vim.keymap.set("n", "Q", "<nop>")
 
--- Files
-vim.keymap.set("n", "<leader>e", "<cmd>Ex<cr>", { desc = "File Explorer" })
-
 -- Edition
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
