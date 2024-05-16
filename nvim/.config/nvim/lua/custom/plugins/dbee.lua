@@ -7,6 +7,7 @@ return {
   config = function()
     local source = require("dbee.sources")
     require("dbee").setup({
+      default_connection = "wtg",
       sources = {
         source.FileSource:new(vim.fn.stdpath("cache") .. "/dbee/persistence.json"),
       },
