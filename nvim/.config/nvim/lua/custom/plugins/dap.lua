@@ -1,4 +1,5 @@
 return {
+  { "mxsdev/nvim-dap-vscode-js", requires = { "mfussenegger/nvim-dap" } },
   {
     "mfussenegger/nvim-dap",
     dependencies = {
@@ -14,7 +15,6 @@ return {
       require("dapui").setup()
 
       require("nvim-dap-virtual-text").setup({
-        -- This just tries to mitigate the chance that I leak tokens here. Probably won't stop it from happening...
         display_callback = function(variable)
           local name = string.lower(variable.name)
           local value = string.lower(variable.value)
@@ -35,25 +35,81 @@ return {
         end,
       })
 
-      -- local elixir_ls_debugger = vim.fn.exepath "elixir-ls-debugger"
-      -- if elixir_ls_debugger ~= "" then
-      --   dap.adapters.mix_task = {
-      --     type = "executable",
-      --     command = elixir_ls_debugger,
-      --   }
-      --
-      --   dap.configurations.elixir = {
-      --     {
-      --       type = "mix_task",
-      --       name = "phoenix server",
-      --       task = "phx.server",
-      --       request = "launch",
-      --       projectDir = "${workspaceFolder}",
-      --       exitAfterTaskReturns = false,
-      --       debugAutoInterpretAllModules = false,
-      --     },
-      --   }
-      -- end
+      require("dap-vscode-js").setup({
+        debugger_path = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter",
+        debugger_cmd = { "js-debug-adapter" },
+        adapters = { "pwa-node", "pwa-chrome", "pwa-msedge", "node-terminal", "pwa-extensionHost" },
+      })
+
+      local custom_adapter = "pwa-node-custom"
+      for _, language in ipairs({ "typescript", "javascript" }) do
+        dap.configurations[language] = {
+          {
+            name = "Launch",
+            type = "node-terminal",
+            request = "launch",
+            program = "${file}",
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            sourceMaps = true,
+            skipFiles = { "<node_internals>/**" },
+            protocol = "inspector",
+            console = "integratedTerminal",
+          },
+          {
+            name = "Attach to node process",
+            type = "pwa-node",
+            request = "attach",
+            rootPath = "${workspaceFolder}",
+            processId = require("dap.utils").pick_process,
+          },
+          {
+            name = "Debug Main Process (Electron)",
+            type = "pwa-node",
+            request = "launch",
+            program = "${workspaceFolder}/node_modules/.bin/electron",
+            args = {
+              "${workspaceFolder}/dist/index.js",
+            },
+            outFiles = {
+              "${workspaceFolder}/dist/*.js",
+            },
+            resolveSourceMapLocations = {
+              "${workspaceFolder}/dist/**/*.js",
+              "${workspaceFolder}/dist/*.js",
+            },
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            sourceMaps = true,
+            skipFiles = { "<node_internals>/**" },
+            protocol = "inspector",
+            console = "integratedTerminal",
+          },
+          {
+            name = "Compile & Debug Main Process (Electron)",
+            type = custom_adapter,
+            request = "launch",
+            preLaunchTask = "npm run build-ts",
+            program = "${workspaceFolder}/node_modules/.bin/electron",
+            args = {
+              "${workspaceFolder}/dist/index.js",
+            },
+            outFiles = {
+              "${workspaceFolder}/dist/*.js",
+            },
+            resolveSourceMapLocations = {
+              "${workspaceFolder}/dist/**/*.js",
+              "${workspaceFolder}/dist/*.js",
+            },
+            rootPath = "${workspaceFolder}",
+            cwd = "${workspaceFolder}",
+            sourceMaps = true,
+            skipFiles = { "<node_internals>/**" },
+            protocol = "inspector",
+            console = "integratedTerminal",
+          },
+        }
+      end
 
       vim.keymap.set("n", "<space>b", dap.toggle_breakpoint)
       vim.keymap.set("n", "<space>gb", dap.run_to_cursor)

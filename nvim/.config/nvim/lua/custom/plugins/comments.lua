@@ -1,5 +1,5 @@
 return {
-  "numToStr/Comment.nvim",
+  { "numToStr/Comment.nvim", opts = {} },
   {
     "folke/todo-comments.nvim",
     event = "VimEnter",
