@@ -84,7 +84,10 @@ local lua = {
       completion = {
         callSnippet = "Replace",
       },
-      diagnostics = { disable = { "missing-fields" } },
+      diagnostics = {
+        disable = { "missing-fields", "lowercase-global" },
+        globals = { "vim", "obslua" },
+      },
       telemetry = { enable = false },
     },
   },
