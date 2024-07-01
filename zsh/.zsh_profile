@@ -116,6 +116,18 @@ system-updates() {
   ntfy
 }
 
+ngrokd() {
+  if [[ -z $1 ]]; then
+    echo "Usage: ngrokd <proto>"
+    return
+  fi
+  if [[ -z $2 ]]; then
+    echo "Usage: ngrokd <proto> <port>"
+    return
+  fi
+  ngrok $1 --domain="$(echo $NGROK_DOMAIN)" $2
+}
+
 switch "personal"
 
 source $HOME/.nix-profile/share/nix-direnv/direnvrc
