@@ -28,6 +28,7 @@ prependPath $HOMEBREW_PREFIX/bin
 prependPath $HOMEBREW_PREFIX/sbin
 prependPath $HOME/.go/bin
 prependPath $HOME/.cargo/bin
+prependPath $HOME/.local/bin
 
 # ohmyz.sh
 ZSH_THEME="robbyrussell"
