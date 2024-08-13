@@ -11,7 +11,7 @@ echo "Cleaning"
 
 for i in $(find "$HOME" -maxdepth 1 -type l);
 do
-    found=$(readlink -e "$i")
+    found=$(readlink "$i")
     if [ -z "$found" ]
     then
         echo "Unable to find $i"
@@ -34,7 +34,8 @@ stow stow \
   nix \
   yabai \
   skhd \
-  gh-dash
+  gh-dash \
+  wezterm
 
 echo "Linking personal todo"
 [[ -d ~/.personal ]] || mkdir ~/.personal
