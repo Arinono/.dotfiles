@@ -31,7 +31,7 @@ local function setup_diagnostics()
       reverse = true,
     },
     float = {
-      source = "always",
+      source = true,
     },
   })
 end
@@ -125,7 +125,7 @@ local ra = {
 local servers = {
   lua_ls = lua,
   htmx = htmx,
-  tsserver = ts,
+  ts_ls = ts,
   volar = volar,
   rust_analyzer = ra,
 }
