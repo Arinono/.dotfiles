@@ -35,7 +35,8 @@ stow stow \
   yabai \
   skhd \
   gh-dash \
-  wezterm
+  wezterm \
+  ghostty
 
 echo "Linking personal todo"
 [[ -d ~/.personal ]] || mkdir ~/.personal

@@ -133,4 +133,4 @@ switch "personal"
 source $HOME/.nix-profile/share/nix-direnv/direnvrc
 eval "$(direnv hook zsh)"
 
-ta || tn
+#ta || tn

@@ -29,6 +29,7 @@ prependPath $HOMEBREW_PREFIX/sbin
 prependPath $HOME/.go/bin
 prependPath $HOME/.cargo/bin
 prependPath $HOME/.local/bin
+appendPath /Applications/Ghostty.app/Contents/MacOS
 
 # ohmyz.sh
 ZSH_THEME="robbyrussell"

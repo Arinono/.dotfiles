@@ -1,0 +1,13 @@
+font-family = Dank Mono
+#font-style = bold
+font-thicken = true
+cursor-color = ffffff
+cursor-opacity = 1
+cursor-style = block
+cursor-style-blink = true
+font-size = 14
+window-decoration = false
+theme = tokyonight-storm
+auto-update = download
+confirm-close-surface = false
+
