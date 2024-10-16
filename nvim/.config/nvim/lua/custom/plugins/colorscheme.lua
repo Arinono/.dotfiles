@@ -31,6 +31,8 @@ return {
       vim.cmd.colorscheme("tokyonight-storm")
     end,
   },
+  { "catppuccin/nvim", name = "catppuccin", priority = 500 },
+  { "ellisonleao/gruvbox.nvim", name = "gruvbox", priority = 500 },
   {
     "brenoprata10/nvim-highlight-colors",
     opts = {
