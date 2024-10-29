@@ -45,6 +45,12 @@
   wrf = worktree remove -f
   wl = worktree list
   staash = stash --all
+	next = stack next
+	prev = stack previous
+	reword = stack reword
+	amend = stack amend
+	sync = stack sync
+	run = stack run
 [commit]
 	gpgsign = true
 [pull]
