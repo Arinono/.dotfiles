@@ -43,12 +43,6 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("x", "<leader>p", '"_dP')
 vim.keymap.set("n", "J", "mzJ`z")
 
--- With surrond now ?
--- vim.keymap.set('n', "<leader>'", "ciw'<C-r>\"'<esc>")
--- vim.keymap.set('n', '<leader><leader>"', 'ciw"<C-r>""<esc>')
--- vim.keymap.set('n', "<leader>;'", "di'hPl2x")
--- vim.keymap.set('n', '<leader>;"', 'di"hPl2x')
-
 -- Navigation
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
