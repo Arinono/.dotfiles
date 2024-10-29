@@ -66,3 +66,20 @@ vim.keymap.set("n", "<leader>Y", '"+Y')
 -- Commands
 vim.keymap.set("n", "<leader>x", "<cmd>!chmod +x %<CR>", { silent = true })
 vim.keymap.set("n", "<leader>nox", "<cmd>!chmod -x %<CR>", { silent = true })
+
+-- Snippets
+vim.keymap.set(
+  "n",
+  "<leader>ok",
+  "oconst keys = Object.keys as <T>(obj: T) => Array<keyof T>;<esc>"
+)
+vim.keymap.set(
+  "n",
+  "<leader>ov",
+  "oconst values = Object.values as <T>(obj: T) => Array<T[keyof T]>;<esc>"
+)
+vim.keymap.set(
+  "n",
+  "<leader>oe",
+  "oconst entries = Object.entries as <T>(obj: T) => Array<[keyof T, T[keyof T]]>;<esc>"
+)
