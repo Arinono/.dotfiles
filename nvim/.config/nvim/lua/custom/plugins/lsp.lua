@@ -45,21 +45,29 @@ end
 local function register_keymaps(event)
   local map = _map(event)
 
-  map("gd", require("telescope.builtin").lsp_definitions, "[G]oto [D]efinition")
+  map("gd", function()
+    require("telescope.builtin").lsp_definitions({ show_pine = false })
+  end, "[G]oto [D]efinition")
 
-  map("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+  map("gr", function()
+    require("telescope.builtin").lsp_references({ show_line = false })
+  end, "[G]oto [R]eferences")
 
-  map("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+  map("gI", function()
+    require("telescope.builtin").lsp_implementations({ show_line = false })
+  end, "[G]oto [I]mplementation")
 
-  map("<leader>D", require("telescope.builtin").lsp_type_definitions, "Type [D]efinition")
+  map("<leader>D", function()
+    require("telescope.builtin").lsp_type_definitions({ show_line = false })
+  end, "Type [D]efinition")
 
-  map("<leader>ds", require("telescope.builtin").lsp_document_symbols, "[D]ocument [S]ymbols")
+  map("<leader>ds", function()
+    require("telescope.builtin").lsp_document_symbols({ show_line = false })
+  end, "[D]ocument [S]ymbols")
 
-  map(
-    "<leader>ws",
-    require("telescope.builtin").lsp_dynamic_workspace_symbols,
-    "[W]orkspace [S]ymbols"
-  )
+  map("<leader>ws", function()
+    require("telescope.builtin").lsp_dynamic_workspace_symbols({ show_line = false })
+  end, "[W]orkspace [S]ymbols")
 
   map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 
