@@ -75,7 +75,6 @@ vmrss() {
     p=$(ps -eo pid,user,comm | tail -n +2 | fzf | awk '{print $1}')
   fi
 
-
   while true; do
     print_vmrss $p
     sleep 0.5
