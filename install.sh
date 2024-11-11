@@ -25,7 +25,7 @@ do
 done
 
 echo "Stowing dotfiles"
-stow stow \
+stow -v stow \
   zsh \
   tmux \
   nvim \
