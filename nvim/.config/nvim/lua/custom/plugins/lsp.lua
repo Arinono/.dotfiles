@@ -89,6 +89,9 @@ end
 local lua = {
   settings = {
     Lua = {
+      format = {
+        enable = true,
+      },
       completion = {
         callSnippet = "Replace",
       },
@@ -129,6 +132,8 @@ local ra = {
     },
   },
 }
+
+local nix = {}
 
 local servers = {
   lua_ls = lua,

@@ -15,6 +15,7 @@ local disabled = {
   js = true,
   ts = true,
   vue = true,
+  nix = false,
 }
 
 local formatters = {
@@ -22,6 +23,7 @@ local formatters = {
   js = { "prettier" },
   ts = { "prettier" },
   vue = { "prettier" },
+  nix = { "alejandra" },
 }
 
 return {
