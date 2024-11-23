@@ -3,7 +3,15 @@
 if [[ $# -eq 1 ]]; then
   selected=$1
 else
-  directories=$(find ~/workspace/wtg ~/workspace/private ~/workspace/baremetal ~/workspace/repros ~/workspace -mindepth 1 -maxdepth 1 -type d)
+  directories=$(find \
+   ~/workspace/wtg \
+   ~/workspace/wtg/platform.git \
+   ~/workspace/wtg/teleport.git \
+   ~/workspace/private \
+   ~/workspace/baremetal \
+   ~/workspace/repros \
+   ~/workspace \
+   -mindepth 1 -maxdepth 1 -type d)
   manual_directories=$(echo "$HOME/.dotfiles" | tr ' ' '\n')
   selected=$(printf "%s\n%s" "$manual_directories" "$directories" | fzf)
 fi
