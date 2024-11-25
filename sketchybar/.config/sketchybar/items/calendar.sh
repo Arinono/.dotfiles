@@ -3,7 +3,7 @@
 sketchybar --add item     calendar right               \
            --set calendar icon=cal                     \
                           icon.color=$BLACK            \
-                          icon.font="$ICON_FONT:Black:12.0" \
+                          icon.font="$ICON_FONT:Regular:12.0" \
                           icon.padding_left=5          \
                           icon.padding_right=5         \
                           icon.drawing=off             \

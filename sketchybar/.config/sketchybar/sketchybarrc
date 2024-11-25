@@ -7,7 +7,7 @@ ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are config
 PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
 FONT="Dank Mono" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
-ICON_FONT="MesloLGLNF-Regular"
+ICON_FONT="MesloLGL Nerd Font"
 SPACE_CLICK_SCRIPT="yabai -m space --focus \$SID 2>/dev/null" # The script that is run for clicking on space components
 
 PADDINGS=4 # All paddings use this value (icon, label, background)
@@ -17,6 +17,7 @@ POPUP_CORNER_RADIUS=11
 
 SHADOW=off
 
+sketchybar --load-font $ICON_FONT
 # Setting up the general bar appearance and default values
 sketchybar --bar     height=50                                         \
                      color=$BAR_COLOR                                  \
@@ -31,7 +32,7 @@ sketchybar --bar     height=50                                         \
                      blur_radius=20                                    \
                                                                        \
            --default updates=when_shown                                \
-                     icon.font="$ICON_FONT:Bold:14.0"                       \
+                     icon.font="$ICON_FONT:Regular:14.0"                       \
                      icon.color=$ICON_COLOR                            \
                      icon.padding_left=$PADDINGS                       \
                      icon.padding_right=$PADDINGS                      \
@@ -55,7 +56,7 @@ source "$ITEM_DIR/spaces.sh"
 # source "$ITEM_DIR/spotify.sh"
 
 # Right
-source "$ITEM_DIR/calendar.sh"
+# source "$ITEM_DIR/calendar.sh"
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update

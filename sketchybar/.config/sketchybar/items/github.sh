@@ -2,7 +2,7 @@
 
 sketchybar --add       item            github.bell right                  \
            --set       github.bell     update_freq=180                    \
-                                       icon.font="$ICON_FONT:Bold:15.0"        \
+                                       icon.font="$ICON_FONT:Regular:15.0"        \
                                        icon=$BELL                         \
                                        icon.color=$BLUE                   \
                                        label=$LOADING                     \
