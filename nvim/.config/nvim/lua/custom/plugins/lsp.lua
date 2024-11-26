@@ -135,12 +135,19 @@ local ra = {
 
 local nix = {}
 
+local typos_lsp = {
+  init_options = {
+    diagnosticSeverity = "Hint",
+  },
+}
+
 local servers = {
   lua_ls = lua,
   htmx = htmx,
   ts_ls = ts,
   volar = volar,
   rust_analyzer = ra,
+  typos_lsp = typos_lsp,
 }
 
 return {
