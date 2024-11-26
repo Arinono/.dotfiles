@@ -49,7 +49,6 @@ sketchybar --bar     height=50                                         \
                      popup.background.shadow.drawing=$SHADOW
 
 # Left
-source "$ITEM_DIR/apple.sh"
 source "$ITEM_DIR/spaces.sh"
 
 # Center
