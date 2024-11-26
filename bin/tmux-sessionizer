@@ -21,6 +21,14 @@ if [[ -z $selected ]]; then
 fi
 
 selected_name=$(basename "$selected" | tr . _)
+# dir_segments=$(dirname "$selected")
+# last_segment=$(echo "${dir_segments##/*}" | tr . _)
+# if [[ $last_segment  == "platform.git" ]]; then
+#   selected_name=$(echo "amp-${selected_name}")
+# elif [[ $last_segment == "teleport.git" ]]; then
+#   selected_name=$(echo "tp-${selected_name}")
+# fi
+
 tmux_running=$(pgrep tmux)
 
 if [[ -z $TMUX ]] && [[ -z $tmux_running ]]; then
@@ -33,4 +41,3 @@ if ! tmux has-session -t="$selected_name" 2> /dev/null; then
 fi
 
 tmux switch-client -t "$selected_name"
-
