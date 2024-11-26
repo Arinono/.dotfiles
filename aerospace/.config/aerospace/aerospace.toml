@@ -36,7 +36,7 @@ inner.vertical =   10
 outer.left =       10
 outer.bottom =     10
 outer.top =        10
-outer.right =      70
+outer.right =      50
 
 [mode.main.binding]
 alt-ctrl-shift-f = 'fullscreen'
