@@ -1,17 +1,17 @@
-local function highlight_word(event)
-  local client = vim.lsp.get_client_by_id(event.data.client_id)
-  if client and client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-      buffer = event.buf,
-      callback = vim.lsp.buf.document_highlight,
-    })
-
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      buffer = event.buf,
-      callback = vim.lsp.buf.clear_references,
-    })
-  end
-end
+-- local function highlight_word(event)
+--   local client = vim.lsp.get_client_by_id(event.data.client_id)
+--   if client and client.server_capabilities.documentHighlightProvider then
+--     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+--       buffer = event.buf,
+--       callback = vim.lsp.buf.document_highlight,
+--     })
+--
+--     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+--       buffer = event.buf,
+--       callback = vim.lsp.buf.clear_references,
+--     })
+--   end
+-- end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
@@ -86,70 +86,6 @@ local function register_keymaps(event)
   end, "[Q]uick [F]ix")
 end
 
-local lua = {
-  settings = {
-    Lua = {
-      format = {
-        enable = true,
-      },
-      completion = {
-        callSnippet = "Replace",
-      },
-      diagnostics = {
-        disable = { "missing-fields", "lowercase-global" },
-        globals = { "vim", "obslua" },
-      },
-      telemetry = { enable = false },
-    },
-  },
-}
-
-local htmx = {}
-
-local volar = {
-  filetypes = { "vue" },
-}
-
-local ts = {
-  filetypes = { "typescript", "javascript", "vue" },
-  init_options = {
-    plugins = {
-      {
-        name = "@vue/typescript-plugin",
-        location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
-        languages = { "vue" },
-      },
-    },
-  },
-}
-
-local ra = {
-  settings = {
-    ["rust-analyzer"] = {
-      cargo = {
-        features = "all",
-      },
-    },
-  },
-}
-
-local nix = {}
-
-local typos_lsp = {
-  init_options = {
-    diagnosticSeverity = "Hint",
-  },
-}
-
-local servers = {
-  lua_ls = lua,
-  htmx = htmx,
-  ts_ls = ts,
-  volar = volar,
-  rust_analyzer = ra,
-  typos_lsp = typos_lsp,
-}
-
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
@@ -162,6 +98,10 @@ return {
     { "folke/neodev.nvim", opts = {} },
   },
   config = function()
+    if vim.g.obsidian then
+      return
+    end
+
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -173,16 +113,79 @@ return {
 
     add_capability("force", require("cmp_nvim_lsp").default_capabilities())
 
+    local lspconfig = require("lspconfig")
+
+    local servers = {
+      lua_ls = {
+        settings = {
+          Lua = {
+            format = {
+              enable = true,
+            },
+            completion = {
+              callSnippet = "Replace",
+            },
+            diagnostics = {
+              disable = { "missing-fields", "lowercase-global" },
+              globals = { "vim", "obslua" },
+            },
+            telemetry = { enable = false },
+          },
+        },
+      },
+      htmx = {},
+      ts_ls = {
+        filetypes = { "typescript", "javascript", "vue" },
+        root_dir = lspconfig.util.root_pattern(".git"),
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+              languages = { "vue" },
+            },
+          },
+        },
+      },
+      volar = {
+        filetypes = { "vue" },
+      },
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              features = "all",
+            },
+          },
+        },
+      },
+      typos_lsp = {
+        init_options = {
+          diagnosticSeverity = "Hint",
+        },
+      },
+    }
+
+    local servers_to_install = vim.tbl_filter(function(key)
+      local t = servers[key]
+      if type(t) == "table" then
+        return not t.manual_install
+      else
+        return t
+      end
+    end, vim.tbl_keys(servers))
+
     require("mason").setup()
 
     setup_diagnostics()
 
     -- You can add other tools here that you want Mason to install
     -- for you, so that they are available from within Neovim.
-    local ensure_installed = vim.tbl_keys(servers or {})
-    vim.list_extend(ensure_installed, {
+    local ensure_installed = {
       "stylua",
-    })
+      "lua_ls",
+    }
+    vim.list_extend(ensure_installed, servers_to_install)
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
@@ -195,7 +198,15 @@ return {
           -- certain features of an LSP (for example, turning off formatting for tsserver)
           server.capabilities =
             vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
-          require("lspconfig")[server_name].setup(server)
+
+          lspconfig[server_name].setup({
+            capabilities = server.capabilities,
+            -- on_attach = on_attach,
+            single_file_support = server.single_file_support,
+            root_dir = server.root_dir,
+            settings = server.settings,
+            filetypes = server.filetypes,
+          })
         end,
       },
     })
