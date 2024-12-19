@@ -201,7 +201,7 @@ return {
 
           lspconfig[server_name].setup({
             capabilities = server.capabilities,
-            -- on_attach = on_attach,
+            on_attach = server.on_attach,
             single_file_support = server.single_file_support,
             root_dir = server.root_dir,
             settings = server.settings,
