@@ -9,3 +9,6 @@ build-nix:
 
 install:
   nix profile install .#git-worktree-clean
+
+upgrade:
+  nix profile upgrade git_worktree_clean

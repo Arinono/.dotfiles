@@ -49,7 +49,9 @@ fn main() -> Result<()> {
         .map(|item| item.to_owned())
         .collect::<Vec<String>>();
 
-    let pb = ProgressBar::new(selected.len() as u64);
+    let len = selected.len() as u64;
+    let pb = ProgressBar::new(len);
+    println!("Deleting {} worktrees", len);
     pb.set_position(0);
     selected.par_iter().for_each(|item| {
         let worktree = item.split_whitespace().collect::<Vec<&str>>();
