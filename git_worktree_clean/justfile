@@ -4,5 +4,8 @@ run:
 build:
   cargo build --release
 
-install: build
-  ln -s $(pwd)/target/release/git_worktree_clean ~/.local/bin/git_worktree_clean
+build-nix:
+  nix build .#git-worktree-clean
+
+install:
+  nix profile install .#git-worktree-clean

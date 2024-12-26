@@ -50,6 +50,7 @@ fn main() -> Result<()> {
         .collect::<Vec<String>>();
 
     let pb = ProgressBar::new(selected.len() as u64);
+    pb.set_position(0);
     selected.par_iter().for_each(|item| {
         let worktree = item.split_whitespace().collect::<Vec<&str>>();
         let worktree = worktree[0];
