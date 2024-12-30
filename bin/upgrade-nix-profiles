@@ -7,5 +7,5 @@ packages=$(nix profile list | rg 'Name' | awk '{print $2}' | sed -r "s/\x1B\[([0
 echo "=== Upgrade nix profiles"
 for package in $packages; do
   echo "upgrade $package"
-  nix profile upgrade $package
+  nix -L profile upgrade $package
 done
