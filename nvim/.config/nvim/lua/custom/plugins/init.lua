@@ -4,4 +4,11 @@
 -- See the kickstart.nvim README for more information
 return {
   "tpope/vim-sleuth",
+  {
+    "ruifm/gitlinker.nvim",
+    requires = "nvim-lua/plenary.nvim",
+    config = function()
+      require("gitlinker").setup()
+    end,
+  },
 }
