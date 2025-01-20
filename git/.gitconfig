@@ -70,3 +70,5 @@
 	repo = /Users/arinono/workspace/wtg/platform.git/main
 [rerere]
 	enabled = true
+[init]
+	defaultBranch = main

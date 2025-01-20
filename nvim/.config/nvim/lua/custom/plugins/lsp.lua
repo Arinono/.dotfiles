@@ -97,6 +97,9 @@ return {
 
     { "folke/neodev.nvim", opts = {} },
   },
+  otps = {
+    inlay_hints = { enabled = false },
+  },
   config = function()
     if vim.g.obsidian then
       return

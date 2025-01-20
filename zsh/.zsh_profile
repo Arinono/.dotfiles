@@ -85,6 +85,16 @@ git-contrib() {
   git shortlog -sne --all
 }
 
+key() {
+  len=$1
+
+  if [[ -z $len ]]; then
+    len=32
+  fi
+
+  head -c "$len" /dev/urandom | xxd -p -c "$len"
+}
+
 system-updates() {
   declare -a commands
   commands=(
@@ -125,6 +135,23 @@ ngrokd() {
     return
   fi
   ngrok $1 --domain="$(echo $NGROK_DOMAIN)" $2
+}
+
+remind() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: remind <time> <message>"
+    return 1
+  fi
+
+  if [[ -z "$2" ]]; then
+    echo "Usage: remind <time> <message>"
+    return 1
+  fi
+
+  timer "$1" && terminal-notifier -sender com.apple.terminal \
+    -message "$2" \
+    -title "Reminder" \
+    -sound Crystal
 }
 
 switch "personal"
