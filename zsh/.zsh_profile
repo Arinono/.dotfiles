@@ -148,7 +148,7 @@ remind() {
     return 1
   fi
 
-  timer "$1" && terminal-notifier -sender com.apple.terminal \
+  timer "$1" --name "$2" && terminal-notifier -sender com.apple.terminal \
     -message "$2" \
     -title "Reminder" \
     -sound Crystal
