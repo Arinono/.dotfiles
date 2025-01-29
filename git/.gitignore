@@ -3,3 +3,5 @@
 Thumbs.db
 .bundle
 .pnpm-debug.log
+/result
+/target

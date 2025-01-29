@@ -15,7 +15,7 @@
 	interactive = auto
 	status = auto
 [credential]
-	helper = cache --timeout=900
+	helper = cache --timeout=300
 [difftool]
 	prompt = false
 [diff]
