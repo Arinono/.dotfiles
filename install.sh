@@ -38,6 +38,7 @@ stow -v stow \
   wezterm \
   ghostty \
   aerospace \
+  ctop \
   sketchybar
 
 echo "Linking personal todo"
