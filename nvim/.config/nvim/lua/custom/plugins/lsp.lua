@@ -140,6 +140,7 @@ return {
       ts_ls = {
         filetypes = { "typescript", "javascript", "vue" },
         root_dir = lspconfig.util.root_pattern(".git"),
+        -- cmd = { "/Users/arinono/workspace/typescript-go/built/local/tsgo", "lsp", "--stdio" },
         init_options = {
           plugins = {
             {
@@ -209,6 +210,7 @@ return {
             root_dir = server.root_dir,
             settings = server.settings,
             filetypes = server.filetypes,
+            cmd = server.cmd,
           })
         end,
       },
