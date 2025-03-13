@@ -1,4 +1,4 @@
-vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", { desc = "[S]hout[O]ut" })
+vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", { desc = "[S]hout [O]ut" })
 
 -- Diagnostic keymaps
 vim.keymap.set(
@@ -42,6 +42,9 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 vim.keymap.set("x", "<leader>p", '"_dP')
 vim.keymap.set("n", "J", "mzJ`z")
+vim.keymap.set("v", "{", "{j")
+vim.keymap.set("v", "}", "}k")
+vim.keymap.set("n", "<leader>V", "{jV}k", { desc = "[V]isual line paragraph" })
 
 -- Navigation
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
