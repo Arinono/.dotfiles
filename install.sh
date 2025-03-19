@@ -39,7 +39,8 @@ stow -v stow \
   ghostty \
   aerospace \
   ctop \
-  sketchybar
+  sketchybar \
+  starship
 
 echo "Linking personal todo"
 [[ -d ~/.personal ]] || mkdir ~/.personal
