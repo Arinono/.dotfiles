@@ -40,7 +40,8 @@ stow -v stow \
   aerospace \
   ctop \
   sketchybar \
-  starship
+  starship \
+  nix-darwin
 
 echo "Linking personal todo"
 [[ -d ~/.personal ]] || mkdir ~/.personal
