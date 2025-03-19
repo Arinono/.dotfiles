@@ -180,6 +180,10 @@ dummy_file () {
   echo "Created $(pwd)/$name with size ${size}MB"
 }
 
+ci() {
+  __zoxide_zi
+}
+
 switch "personal"
 
 source $HOME/.nix-profile/share/nix-direnv/direnvrc
