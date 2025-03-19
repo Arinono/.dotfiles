@@ -85,8 +85,8 @@
       ];
 
       # Auto upgrade nix package and the daemon service.
-      services.nix-daemon.enable = true;
       nix = {
+        enable = true;
         package = pkgs.nix;
 
         # Necessary for using flakes on this system.
@@ -126,6 +126,7 @@
       # Used for backwards compatibility, please read the changelog before changing.
       # $ darwin-rebuild changelog
       system.stateVersion = 5;
+      ids.gids.nixbld = 30000;
 
 
       # The platform the configuration will be used on.
