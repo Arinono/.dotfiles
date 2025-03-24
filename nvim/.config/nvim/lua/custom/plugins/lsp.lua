@@ -28,7 +28,7 @@ local function register_keymaps()
   vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
   vim.keymap.set("n", "gI", builtin.lsp_implementations, { buffer = 0 })
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 
   vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, { buffer = 0 })
   vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { buffer = 0 })
@@ -121,16 +121,6 @@ return {
           ".git"
         ),
         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
-        -- Ensure only one server responds to requests
-        handlers = {
-          ["textDocument/definition"] = function(_, result, ctx, config)
-            if result and #result > 0 then
-              -- Only return the first result to avoid duplicates
-              return { result[1] }
-            end
-            return result
-          end,
-        },
       },
       htmx = {},
       rust_analyzer = {
@@ -193,13 +183,6 @@ return {
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
-    local common_on_attach = function(client, bufnr)
-      -- Enable hover explicitly for this buffer
-      vim.keymap.set("n", "K", function()
-        vim.lsp.buf.hover()
-      end, { buffer = bufnr, desc = "LSP: Hover Documentation" })
-    end
-
     require("mason-lspconfig").setup({
       handlers = {
         function(server_name)
@@ -210,19 +193,9 @@ return {
           server.capabilities =
             vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
-          local final_on_attach
-          if server.on_attach then
-            final_on_attach = function(client, bufnr)
-              common_on_attach(client, bufnr)
-              server.on_attach(client, bufnr)
-            end
-          else
-            final_on_attach = common_on_attach
-          end
-
           lspconfig[server_name].setup({
             capabilities = server.capabilities,
-            on_attach = final_on_attach,
+            on_attach = server.on_attach,
             single_file_support = server.single_file_support,
             root_dir = server.root_dir,
             settings = server.settings,
@@ -233,15 +206,5 @@ return {
         end,
       },
     })
-
-    -- Modify the definition handler to prevent duplicate results
-    local orig_definition = vim.lsp.handlers["textDocument/definition"]
-    vim.lsp.handlers["textDocument/definition"] = function(err, result, ctx, config)
-      if result and type(result) == "table" and #result > 1 then
-        -- Only keep the first result
-        result = { result[1] }
-      end
-      return orig_definition(err, result, ctx, config)
-    end
   end,
 }
