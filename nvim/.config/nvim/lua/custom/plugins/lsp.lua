@@ -82,7 +82,7 @@ return {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
         register_keymaps()
-        highlight_word(event)
+        -- highlight_word(event)
       end,
     })
 
