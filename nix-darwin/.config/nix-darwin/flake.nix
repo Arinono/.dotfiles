@@ -30,6 +30,7 @@
             pkgs.minio
             pkgs.minio-client
             pkgs.neofetch
+            pkgs.neovim
             pkgs.rsync
             pkgs.terminal-notifier
             pkgs.timer
