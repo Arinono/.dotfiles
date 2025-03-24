@@ -1,18 +1,3 @@
--- local function highlight_word(event)
---   local client = vim.lsp.get_client_by_id(event.data.client_id)
---   if client and client.server_capabilities.documentHighlightProvider then
---     vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
---       buffer = event.buf,
---       callback = vim.lsp.buf.document_highlight,
---     })
---
---     vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
---       buffer = event.buf,
---       callback = vim.lsp.buf.clear_references,
---     })
---   end
--- end
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 
 local function add_capability(mode, cap)
@@ -36,54 +21,42 @@ local function setup_diagnostics()
   })
 end
 
-local _map = function(event)
-  return function(keys, func, desc)
-    vim.keymap.set("n", keys, func, { buffer = event.buf, desc = "LSP: " .. desc })
-  end
-end
+local function register_keymaps()
+  local builtin = require("telescope.builtin")
 
-local function register_keymaps(event)
-  local map = _map(event)
+  vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
+  vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
+  vim.keymap.set("n", "gI", builtin.lsp_implementations, { buffer = 0 })
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
+  -- vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
 
-  map("gd", function()
-    require("telescope.builtin").lsp_definitions({ show_pine = false })
-  end, "[G]oto [D]efinition")
-
-  map("gr", function()
-    require("telescope.builtin").lsp_references({ show_line = false })
-  end, "[G]oto [R]eferences")
-
-  map("gI", function()
-    require("telescope.builtin").lsp_implementations({ show_line = false })
-  end, "[G]oto [I]mplementation")
-
-  map("<leader>D", function()
-    require("telescope.builtin").lsp_type_definitions({ show_line = false })
-  end, "Type [D]efinition")
-
-  map("<leader>ds", function()
-    require("telescope.builtin").lsp_document_symbols({ show_line = false })
-  end, "[D]ocument [S]ymbols")
-
-  map("<leader>ws", function()
-    require("telescope.builtin").lsp_dynamic_workspace_symbols({ show_line = false })
-  end, "[W]orkspace [S]ymbols")
-
-  map("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
-
-  map("<leader>ca", vim.lsp.buf.code_action, "[C]ode [A]ction")
-
-  map("K", vim.lsp.buf.hover, "Hover Documentation")
-
-  map("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-
-  map("<leader>sh", vim.lsp.buf.signature_help, "[S]ignature [H]elp")
-
-  map("<leader>qf", function()
+  vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, { buffer = 0 })
+  vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { buffer = 0 })
+  vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, { buffer = 0 })
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = 0 })
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
+  vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, { buffer = 0 })
+  vim.keymap.set("n", "<leader>qf", function()
     vim.lsp.buf.code_action({
       apply = true,
     })
-  end, "[Q]uick [F]ix")
+  end, { buffer = 0 })
+end
+
+-- Function to highlight current word
+local function highlight_word(event)
+  local client = vim.lsp.get_client_by_id(event.data.client_id)
+  if client and client.server_capabilities.documentHighlightProvider then
+    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.document_highlight,
+    })
+
+    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
+      buffer = event.buf,
+      callback = vim.lsp.buf.clear_references,
+    })
+  end
 end
 
 return {
@@ -108,9 +81,8 @@ return {
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
-        register_keymaps(event)
-
-        -- lazy_configs.lsp.autocmds.highlight_word(event)
+        register_keymaps()
+        highlight_word(event)
       end,
     })
 
@@ -119,6 +91,62 @@ return {
     local lspconfig = require("lspconfig")
 
     local servers = {
+      volar = {
+        -- Volar will handle Vue files only
+        filetypes = { "vue" },
+        root_dir = lspconfig.util.root_pattern(
+          "package.json",
+          "vue.config.js",
+          "nuxt.config.js",
+          ".git"
+        ),
+        init_options = {
+          typescript = {
+            tsdk = vim.fn.expand(
+              "$HOME/.local/share/nvim/mason/packages/typescript-language-server/node_modules/typescript/lib"
+            ),
+          },
+          vue = {
+            hybridMode = false, -- Disable hybrid mode for full Volar TS support
+          },
+        },
+      },
+      -- TypeScript configuration using vtsls (modern TS server)
+      vtsls = {
+        single_file_support = true,
+        root_dir = lspconfig.util.root_pattern(
+          "package.json",
+          "tsconfig.json",
+          "jsconfig.json",
+          ".git"
+        ),
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
+        -- Ensure only one server responds to requests
+        handlers = {
+          ["textDocument/definition"] = function(_, result, ctx, config)
+            if result and #result > 0 then
+              -- Only return the first result to avoid duplicates
+              return { result[1] }
+            end
+            return result
+          end,
+        },
+      },
+      htmx = {},
+      rust_analyzer = {
+        settings = {
+          ["rust-analyzer"] = {
+            cargo = {
+              features = "all",
+            },
+          },
+        },
+      },
+      typos_lsp = {
+        init_options = {
+          diagnosticSeverity = "Hint",
+        },
+      },
       lua_ls = {
         settings = {
           Lua = {
@@ -134,38 +162,6 @@ return {
             },
             telemetry = { enable = false },
           },
-        },
-      },
-      htmx = {},
-      ts_ls = {
-        filetypes = { "typescript", "javascript", "vue" },
-        root_dir = lspconfig.util.root_pattern(".git"),
-        -- cmd = { "/Users/arinono/workspace/typescript-go/built/local/tsgo", "lsp", "--stdio" },
-        init_options = {
-          plugins = {
-            {
-              name = "@vue/typescript-plugin",
-              location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
-              languages = { "vue" },
-            },
-          },
-        },
-      },
-      volar = {
-        filetypes = { "vue" },
-      },
-      rust_analyzer = {
-        settings = {
-          ["rust-analyzer"] = {
-            cargo = {
-              features = "all",
-            },
-          },
-        },
-      },
-      typos_lsp = {
-        init_options = {
-          diagnosticSeverity = "Hint",
         },
       },
     }
@@ -188,10 +184,21 @@ return {
     local ensure_installed = {
       "stylua",
       "lua_ls",
+      "vue-language-server",
+      "vtsls",
+      "eslint-lsp",
+      "prettier",
     }
     vim.list_extend(ensure_installed, servers_to_install)
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
+
+    local common_on_attach = function(client, bufnr)
+      -- Enable hover explicitly for this buffer
+      vim.keymap.set("n", "K", function()
+        vim.lsp.buf.hover()
+      end, { buffer = bufnr, desc = "LSP: Hover Documentation" })
+    end
 
     require("mason-lspconfig").setup({
       handlers = {
@@ -203,17 +210,38 @@ return {
           server.capabilities =
             vim.tbl_deep_extend("force", {}, capabilities, server.capabilities or {})
 
+          local final_on_attach
+          if server.on_attach then
+            final_on_attach = function(client, bufnr)
+              common_on_attach(client, bufnr)
+              server.on_attach(client, bufnr)
+            end
+          else
+            final_on_attach = common_on_attach
+          end
+
           lspconfig[server_name].setup({
             capabilities = server.capabilities,
-            on_attach = server.on_attach,
+            on_attach = final_on_attach,
             single_file_support = server.single_file_support,
             root_dir = server.root_dir,
             settings = server.settings,
             filetypes = server.filetypes,
             cmd = server.cmd,
+            init_options = server.init_options,
           })
         end,
       },
     })
+
+    -- Modify the definition handler to prevent duplicate results
+    local orig_definition = vim.lsp.handlers["textDocument/definition"]
+    vim.lsp.handlers["textDocument/definition"] = function(err, result, ctx, config)
+      if result and type(result) == "table" and #result > 1 then
+        -- Only keep the first result
+        result = { result[1] }
+      end
+      return orig_definition(err, result, ctx, config)
+    end
   end,
 }
