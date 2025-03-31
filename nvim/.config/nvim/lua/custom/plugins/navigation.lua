@@ -89,7 +89,7 @@ return {
     config = function()
       require("telescope").setup({
         defaults = {
-          layout_stategy = "horizontal",
+          layout_strategy = "horizontal",
           layout_config = {
             horizontal = { width = 0.9 },
           },
@@ -119,7 +119,7 @@ return {
       local harpoon = require("harpoon")
       harpoon:setup({})
 
-      map("<leader>hg", function()
+      map("<leader>a", function()
         harpoon:list():add()
       end, "Re[G]ister")
 
@@ -131,19 +131,19 @@ return {
         harpoon.ui:toggle_quick_menu(harpoon:list())
       end, "Open harpoon window")
 
-      map("<leader>ha", function()
+      map("<C-h>", function()
         harpoon:list():select(1)
       end, "First")
 
-      map("<leader>hs", function()
+      map("<C-j>", function()
         harpoon:list():select(2)
       end, "Second")
 
-      map("<leader>hd", function()
+      map("<C-k>", function()
         harpoon:list():select(3)
       end, "Third")
 
-      map("<leader>hf", function()
+      map("<C-l>", function()
         harpoon:list():select(4)
       end, "Forth")
     end,
