@@ -1,0 +1,24 @@
+return {
+  --   "greggh/claude-code.nvim",
+  --   dependencies = {
+  --     "nvim-lua/plenary.nvim", -- Required for git operations
+  --   },
+  --   lazy = true,
+  --   config = function()
+  --     require("claude-code").setup({
+  --       window = {
+  --         split_ratio = 0.5,
+  --         position = "vsplit",
+  --         enter_insert = false,
+  --       },
+  --     })
+  --   end,
+  --   keys = {
+  --     {
+  --       "<leader>cc",
+  --       "<cmd>ClaudeCode<cr>",
+  --       mode = "n",
+  --       desc = "[C]laude [C]ode",
+  --     },
+  --   },
+}

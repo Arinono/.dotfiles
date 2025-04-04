@@ -41,6 +41,8 @@ local function register_keymaps()
       apply = true,
     })
   end, { buffer = 0 })
+
+  vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "[L]SP [R]estart" })
 end
 
 -- Function to highlight current word
