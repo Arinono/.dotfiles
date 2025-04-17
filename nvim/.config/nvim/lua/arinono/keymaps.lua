@@ -1,13 +1,14 @@
 vim.keymap.set("n", "<leader><leader>", "<cmd>so<CR>", { desc = "[S]hout [O]ut" })
 
 -- Diagnostic keymaps
-vim.keymap.set(
-  "n",
-  "[d",
-  vim.diagnostic.goto_prev,
-  { desc = "Go to previous [D]iagnostic message" }
-)
-vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Go to next [D]iagnostic message" })
+vim.keymap.set("n", "[d", function()
+  vim.diagnostic.goto_prev()
+  vim.cmd("normal! zz")
+end, { desc = "Go to previous [D]iagnostic message" })
+vim.keymap.set("n", "]d", function()
+  vim.diagnostic.goto_next()
+  vim.cmd("normal! zz")
+end, { desc = "Go to next [D]iagnostic message" })
 vim.keymap.set("n", "<leader>doo", function()
   vim.diagnostic.open_float()
 end, { desc = "Show diagnostic [E]rror messages" })

@@ -24,23 +24,24 @@ end
 local function register_keymaps()
   local builtin = require("telescope.builtin")
 
-  vim.keymap.set("n", "gd", builtin.lsp_definitions, { buffer = 0 })
-  vim.keymap.set("n", "gr", builtin.lsp_references, { buffer = 0 })
-  vim.keymap.set("n", "gI", builtin.lsp_implementations, { buffer = 0 })
-  vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { buffer = 0 })
-  vim.keymap.set("n", "K", vim.lsp.buf.hover, { buffer = 0 })
+  vim.keymap.set("n", "gd", builtin.lsp_definitions)
+  vim.keymap.set("n", "gr", builtin.lsp_references)
+  vim.keymap.set("n", "gI", builtin.lsp_implementations)
+  vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
+  -- vim.keymap.set("n", "K", vim.lsp.buf.hover)
+  vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>")
 
-  vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions, { buffer = 0 })
-  vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols, { buffer = 0 })
-  vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, { buffer = 0 })
-  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, { buffer = 0 })
-  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { buffer = 0 })
-  vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help, { buffer = 0 })
+  vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions)
+  vim.keymap.set("n", "<leader>ds", builtin.lsp_document_symbols)
+  vim.keymap.set("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols)
+  vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename)
+  vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action)
+  vim.keymap.set("n", "<leader>sh", vim.lsp.buf.signature_help)
   vim.keymap.set("n", "<leader>qf", function()
     vim.lsp.buf.code_action({
       apply = true,
     })
-  end, { buffer = 0 })
+  end)
 
   vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "[L]SP [R]estart" })
 end
@@ -64,6 +65,7 @@ end
 return {
   "neovim/nvim-lspconfig",
   dependencies = {
+    "nvimdev/lspsaga.nvim",
     "williamboman/mason.nvim",
     "williamboman/mason-lspconfig.nvim",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
@@ -84,6 +86,7 @@ return {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
         register_keymaps()
+        require("lspsaga").setup({})
         -- highlight_word(event)
       end,
     })
@@ -113,7 +116,6 @@ return {
           },
         },
       },
-      -- TypeScript configuration using vtsls (modern TS server)
       vtsls = {
         single_file_support = true,
         root_dir = lspconfig.util.root_pattern(
@@ -124,6 +126,20 @@ return {
         ),
         filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact" },
       },
+      -- ts_ls = {
+      --   filetypes = { "typescript", "javascript", "vue" },
+      --   root_dir = lspconfig.util.root_pattern(".git"),
+      --   -- cmd = { "/Users/arinono/workspace/typescript-go/built/local/tsgo", "lsp", "--stdio" },
+      --   init_options = {
+      --     plugins = {
+      --       {
+      --         name = "@vue/typescript-plugin",
+      --         location = "/Users/arinono/.local/share/nvim/mason/packages/vue-language-server/node_modules/@vue/language-server/node_modules/@vue/typescript-plugin",
+      --         languages = { "vue" },
+      --       },
+      --     },
+      --   },
+      -- },
       htmx = {},
       rust_analyzer = {
         settings = {
@@ -175,9 +191,6 @@ return {
     -- for you, so that they are available from within Neovim.
     local ensure_installed = {
       "stylua",
-      "lua_ls",
-      "vue-language-server",
-      "vtsls",
       "eslint-lsp",
       "prettier",
     }
