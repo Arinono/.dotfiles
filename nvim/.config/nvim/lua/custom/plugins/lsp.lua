@@ -198,6 +198,9 @@ return {
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
+    -- Installed via nix profile for now
+    lspconfig.nil_ls.setup({})
+
     require("mason-lspconfig").setup({
       handlers = {
         function(server_name)
