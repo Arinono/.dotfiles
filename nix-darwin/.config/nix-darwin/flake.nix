@@ -126,16 +126,58 @@
         };
       in
         pkgs.lib.mkForce ''
-		echo "setting up /Applications..." >&2
-		rm -rf /Applications/Nix\ Apps
-		mkdir -p /Applications/Nix\ Apps
-		find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
-		while read -r src; do
-			app_name=$(basename "$src")
-			echo "copying $src" >&2
-			${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
-		done
+          echo "setting up /Applications..." >&2
+          rm -rf /Applications/Nix\ Apps
+          mkdir -p /Applications/Nix\ Apps
+          find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+          while read -r src; do
+          	app_name=$(basename "$src")
+          	echo "copying $src" >&2
+          	${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+          done
         '';
+
+      system.defaults = {
+        NSGlobalDomain = {
+          AppleInterfaceStyle = "Dark";
+          AppleMeasurementUnits = "Centimeters";
+          AppleMetricUnits = 1;
+          AppleShowAllExtensions = true;
+          AppleTemperatureUnit = "Celsius";
+          InitialKeyRepeat = 20;
+          KeyRepeat = 2;
+          NSAutomaticCapitalizationEnabled = false;
+          NSAutomaticDashSubstitutionEnabled = false;
+          NSAutomaticPeriodSubstitutionEnabled = false;
+          NSAutomaticQuoteSubstitutionEnabled = false;
+          NSAutomaticSpellingCorrectionEnabled = false;
+          NSNavPanelExpandedStateForSaveMode = true;
+          NSTableViewDefaultSizeMode = 2;
+          NSWindowShouldDragOnGesture = true;
+          _HIHideMenuBar = true;
+          "com.apple.sound.beep.feedback" = 0;
+          "com.apple.sound.beep.volume" = 0.40;
+          "com.apple.springing.delay" = 0.5;
+          "com.apple.springing.enabled" = true;
+          "com.apple.swipescrolldirection" = true;
+          "com.apple.trackpad.forceClick" = true;
+          "com.apple.trackpad.scaling" = 0.6875;
+        };
+        CustomSystemPreferences = {
+          NSGlobalDomain = {
+            AppleLanguages = ["en-FR"];
+            AppleLocale = "en_FR";
+            AppleReduceDesktopTinting = true;
+            AppleShowScrollBars = "Automatic";
+            NSAutomaticTextCompletionEnabled = true;
+            NSNavPanelFileLastListModeForOpenModeKey = 2;
+            NSNavPanelFileListModeForOpenMode2 = 1;
+            "com.apple.sound.beep.flash" = 0;
+            "com.apple.sound.uiaudio.enabled" = 1;
+            CGDisableCursorLocationMagnification = 1;
+          };
+        };
+      };
 
       nix = {
         enable = true;
