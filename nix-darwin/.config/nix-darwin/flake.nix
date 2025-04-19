@@ -39,6 +39,8 @@
       config,
       ...
     }: {
+      nixpkgs.config.allowUnfree = true;
+
       users.users.arinono = {
         name = username;
         home = "/Users/${username}";
@@ -46,6 +48,8 @@
 
       environment.systemPackages = [
         pkgs.aerospace
+	pkgs.keycastr
+
         pkgs.alejandra
         pkgs.btop
         pkgs.curl
@@ -71,6 +75,12 @@
         pkgs.turso-cli
         pkgs.vhs
         pkgs.wget
+
+	pkgs.arc-browser
+	pkgs.brave
+	pkgs.obsidian
+	pkgs.spotify
+	# pkgs.vlc Not on aarch64-darwin
 
         pkgs.bat
         pkgs.cargo-generate
@@ -100,8 +110,16 @@
         taps = [];
 
         casks = [
-          "shottr"
+	  "alfred"
+	  "balenaetcher"
+	  "discord"
+	  "font-meslo-lg-nerd-font"
+	  "istat-menus"
+	  "scroll-reverser"
+	  "signal"
           "docker"
+          "shottr"
+	  "vlc"
         ];
 
         brews = [];
