@@ -48,7 +48,7 @@
 
       environment.systemPackages = [
         pkgs.aerospace
-	pkgs.keycastr
+        pkgs.keycastr
 
         pkgs.alejandra
         pkgs.btop
@@ -76,11 +76,12 @@
         pkgs.vhs
         pkgs.wget
 
-	pkgs.arc-browser
-	pkgs.brave
-	pkgs.obsidian
-	pkgs.spotify
-	# pkgs.vlc Not on aarch64-darwin
+        pkgs.arc-browser
+        pkgs.brave
+        # pkgs.ghostty - Broken on darwin
+        pkgs.obsidian
+        pkgs.spotify
+        # pkgs.vlc - Not on aarch64-darwin
 
         pkgs.bat
         pkgs.cargo-generate
@@ -110,16 +111,17 @@
         taps = [];
 
         casks = [
-	  "alfred"
-	  "balenaetcher"
-	  "discord"
-	  "font-meslo-lg-nerd-font"
-	  "istat-menus"
-	  "scroll-reverser"
-	  "signal"
+          "ghostty"
+          "alfred"
+          "balenaetcher"
+          "discord"
           "docker"
+          "font-meslo-lg-nerd-font"
+          "istat-menus"
+          "scroll-reverser"
           "shottr"
-	  "vlc"
+          "signal"
+          "vlc"
         ];
 
         brews = [];
@@ -190,6 +192,47 @@
           ShowMountedServersOnDesktop = true;
           ShowRemovableMediaOnDesktop = false;
           _FXShowPosixPathInTitle = true;
+        };
+        trackpad = {
+          ActuationStrength = 1;
+          Clicking = false;
+          Dragging = false;
+          FirstClickThreshold = 1;
+        };
+        dock = {
+          autohide = true;
+          autohide-delay = 0.0;
+          autohide-time-modifier = 0.25;
+          expose-animation-duration = 0.0;
+          expose-group-apps = true;
+          orientation = "right";
+          mineffect = "scale";
+          launchanim = false;
+          tilesize = 32;
+          magnification = false;
+          minimize-to-application = true;
+          mru-spaces = false;
+          persistent-apps = [
+            {
+              app = "/Applications/Ghostty.app";
+            }
+            {
+              app = "${pkgs.spotify}/Applications/Spotify.app";
+            }
+            {
+              app = "${pkgs.arc-browser}/Applications/Arc.app";
+            }
+          ];
+          persistent-others = [
+            "/Users/${username}/Downloads"
+          ];
+          show-recents = false;
+          showhidden = true;
+          slow-motion-allowed = false;
+          wvous-bl-corner = 1;
+          wvous-br-corner = 1;
+          wvous-tl-corner = 1;
+          wvous-tr-corner = 1;
         };
         CustomSystemPreferences = {
           NSGlobalDomain = {
