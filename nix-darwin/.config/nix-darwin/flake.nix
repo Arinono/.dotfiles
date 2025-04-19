@@ -45,6 +45,7 @@
       };
 
       environment.systemPackages = [
+        pkgs.aerospace
         pkgs.alejandra
         pkgs.btop
         pkgs.curl
@@ -60,13 +61,15 @@
         pkgs.minio-client
         pkgs.neofetch
         pkgs.neovim
+        pkgs.ngrok
         pkgs.rsync
+        pkgs.sqld
         pkgs.terminal-notifier
         pkgs.timer
         pkgs.tmux
         pkgs.tree
+        pkgs.turso-cli
         pkgs.vhs
-        pkgs.vim
         pkgs.wget
 
         pkgs.bat
@@ -83,7 +86,6 @@
         pkgs.oha
         pkgs.ripgrep
         pkgs.sccache
-        pkgs.sshx
         pkgs.tealdeer
         pkgs.tokei
         pkgs.trunk
@@ -95,22 +97,14 @@
       homebrew = {
         enable = true;
 
-        taps = [
-          "libsql/sqld"
-          "tursodatabase/tap"
-          "twitchdev/twitch"
-          "nikitabobko/tap"
-          "felixkratz/formulae"
-        ];
+        taps = [];
 
         casks = [
-          "ngrok"
           "shottr"
-          # "docker"
-          #"aerospace"
+          "docker"
         ];
 
-        brews = ["sqld" "turso" "twitch-cli" "sketchybar"];
+        brews = [];
 
         masApps = {
           # Tailscale = 1475387142;
@@ -163,6 +157,22 @@
           "com.apple.trackpad.forceClick" = true;
           "com.apple.trackpad.scaling" = 0.6875;
         };
+        loginwindow = {
+          GuestEnabled = false;
+        };
+        finder = {
+          AppleShowAllFiles = true;
+          AppleShowAllExtensions = true;
+          FXDefaultSearchScope = "SCcf";
+          FXPreferredViewStyle = "clmv";
+          NewWindowTarget = "Other";
+          NewWindowTargetPath = "file:///Users/${username}/Downloads";
+          ShowExternalHardDrivesOnDesktop = true;
+          ShowHardDrivesOnDesktop = true;
+          ShowMountedServersOnDesktop = true;
+          ShowRemovableMediaOnDesktop = false;
+          _FXShowPosixPathInTitle = true;
+        };
         CustomSystemPreferences = {
           NSGlobalDomain = {
             AppleLanguages = ["en-FR"];
@@ -175,6 +185,22 @@
             "com.apple.sound.beep.flash" = 0;
             "com.apple.sound.uiaudio.enabled" = 1;
             CGDisableCursorLocationMagnification = 1;
+          };
+          finder = {
+            DisableAllAnimations = true;
+            FK_ArrangeBy = "Date Added";
+            FK_SidebarWidth = 150;
+            FXArrangeGroupViewBy = "Name";
+            FXLastSearchScope = "SCcf";
+            FXPreferredGroupBy = "Name";
+            FXPreferredSearchViewStyle = "Nlsv";
+            RecentsArrangeGroupViewBy = "Date Last Opened";
+            ShowSidebar = true;
+            SidebarDevicesSectionDisclosedState = true;
+            SidebarPlacesSectionDisclosedState = true;
+            SidebarShowingSignedIntoiCloud = true;
+            SidebarTagsSectionDisclosedState = false;
+            SidebariCloudDriveSectionDisclosedState = true;
           };
         };
       };
