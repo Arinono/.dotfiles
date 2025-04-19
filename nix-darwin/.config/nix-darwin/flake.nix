@@ -6,6 +6,9 @@
     nixpkgs-stable.url = "github:NixOS/nixpkgs/nixpkgs-24.11-darwin";
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
+
+    home-manager.url = "github:nix-community/home-manager/release-24.11";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -13,14 +16,37 @@
     nix-darwin,
     nixpkgs,
     nixpkgs-stable,
+    home-manager,
   }: let
-    configuration = {pkgs, ...}: {
-      # List packages installed in system profile. To search by name, run:
-      # $ nix-env -qaP | grep wget
+    systems = ["aarch64-darwin" "x86_64-linux"];
+    system = "aarch64-darwin";
+    pkgs = nixpkgs.legacyPackages.${system};
+    username = "arinono";
+
+    installBrew = with pkgs;
+      pkgs.writeShellApplication {
+        name = "install-homebrew";
+        runtimeInputs = [bash curl];
+
+        text = ''
+          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        '';
+      };
+
+    configuration = {
+      pkgs,
+      lib,
+      config,
+      ...
+    }: {
+      users.users.arinono = {
+        name = username;
+        home = "/Users/${username}";
+      };
+
       environment.systemPackages = [
-        pkgs.asciinema
+        pkgs.alejandra
         pkgs.btop
-        pkgs.bun
         pkgs.curl
         pkgs.direnv
         pkgs.ffmpeg
@@ -28,7 +54,6 @@
         pkgs.gh
         pkgs.glow
         pkgs.hexedit
-        pkgs.htop
         pkgs.iperf
         pkgs.jq
         pkgs.minio
@@ -67,32 +92,60 @@
         pkgs.zoxide
       ];
 
-      homebrew.enable = true;
-      homebrew.taps = [
-        "libsql/sqld"
-        "tursodatabase/tap"
-        "twitchdev/twitch"
-        "nikitabobko/tap"
-        "felixkratz/formulae"
-      ];
-      homebrew.casks = [
-        "ngrok"
-        "shottr"
-        # "docker"
-        "aerospace"
-      ];
-      homebrew.brews = ["sqld" "turso" "twitch-cli" "sketchybar"];
+      homebrew = {
+        enable = true;
 
-      # Auto upgrade nix package and the daemon service.
+        taps = [
+          "libsql/sqld"
+          "tursodatabase/tap"
+          "twitchdev/twitch"
+          "nikitabobko/tap"
+          "felixkratz/formulae"
+        ];
+
+        casks = [
+          "ngrok"
+          "shottr"
+          # "docker"
+          #"aerospace"
+        ];
+
+        brews = ["sqld" "turso" "twitch-cli" "sketchybar"];
+
+        masApps = {
+          # Tailscale = 1475387142;
+          # Wireguard = 1451685025;
+        };
+      };
+
+      system.activationScripts.applications.text = let
+        env = pkgs.buildEnv {
+          name = "system-applications";
+          paths = config.environment.systemPackages;
+          pathsToLink = "/Applications";
+        };
+      in
+        pkgs.lib.mkForce ''
+		echo "setting up /Applications..." >&2
+		rm -rf /Applications/Nix\ Apps
+		mkdir -p /Applications/Nix\ Apps
+		find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
+		while read -r src; do
+			app_name=$(basename "$src")
+			echo "copying $src" >&2
+			${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+		done
+        '';
+
       nix = {
         enable = true;
         package = pkgs.nix;
 
-        # Necessary for using flakes on this system.
         settings.experimental-features = "nix-command flakes";
         settings.trusted-users = ["arinono" "@admin"];
         settings.max-jobs = "auto";
         settings.builders-use-substitutes = true;
+
         # settings.builders = [
         #   "aatrox aarch64-linux /var/root/.ssh/remotebuild 4 1 ; ahri x86_64-linux /var/root/.ssh/remotebuild 4 1"
         # ];
@@ -138,30 +191,34 @@
         # };
       };
 
-      # Enable alternative shell support in nix-darwin.
-      # programs.fish.enable = true;
       programs.zsh.enable = true;
 
-      # Set Git commit hash for darwin-version.
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
-      # Used for backwards compatibility, please read the changelog before changing.
-      # $ darwin-rebuild changelog
       system.stateVersion = 5;
       # ids.gids.nixbld = 30000;
 
-      # The platform the configuration will be used on.
-      nixpkgs.hostPlatform = "aarch64-darwin";
+      nixpkgs.hostPlatform = system;
     };
-  in {
-    # Build darwin flake using:
-    # $ darwin-rebuild build --flake .#lux
-    darwinConfigurations."lux" =
-      nix-darwin.lib.darwinSystem {modules = [configuration];};
 
-    # Expose the package set, including overlays, for convenience.
+    forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
+  in {
+    darwinConfigurations."lux" = nix-darwin.lib.darwinSystem {
+      modules = [
+        configuration
+        home-manager.darwinModules.home-manager
+        {
+          home-manager.useGlobalPkgs = true;
+          home-manager.useUserPackages = true;
+          # home-manager.users.arinono = import ./home.nix;
+        }
+      ];
+    };
+
     darwinPackages = self.darwinConfigurations."lux".pkgs;
 
-    formatter.aarch64-darwin = nixpkgs.legacyPackages.aarch64-darwin.nixfmt;
+    packages.aarch64-darwin.installBrew = installBrew;
+
+    formatter = forAllSystems ({pkgs}: pkgs.alejandra);
   };
 }
