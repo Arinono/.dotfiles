@@ -21,7 +21,10 @@
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
+
+    # move to fn param later
     username = "arinono";
+    hostname = "lulu";
 
     installBrew = with pkgs;
       pkgs.writeShellApplication {
@@ -30,6 +33,19 @@
 
         text = ''
           /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        '';
+      };
+
+    setHostname = {hostname}: let
+    in
+      pkgs.writeShellApplication {
+        name = "set-hostname";
+
+        text = ''
+          sudo scutil --set HostName ${hostname}
+          sudo scutil --set LocalHostName ${hostname}
+          sudo scutil --set ComputerName ${hostname}
+          dscacheutil -flushcache
         '';
       };
 
@@ -152,6 +168,39 @@
         '';
 
       system.defaults = {
+        hitoolbox.AppleFnUsageType = "Do Nothing";
+
+        menuExtraClock = {
+          FlashDateSeparators = false;
+          IsAnalog = false;
+          Show24Hour = true;
+          ShowAMPM = false;
+          ShowDate = 0;
+          ShowDayOfMonth = true;
+          ShowDayOfWeek = true;
+          ShowSeconds = false;
+        };
+
+        screencapture = {
+          disable-shadow = true;
+          include-date = true;
+          location = "/Users/${username}/Downloads";
+          show-thumbnail = true;
+          target = "file";
+          type = "jpg";
+        };
+
+        screensaver = {
+          askForPassword = true;
+          askForPasswordDelay = 0;
+        };
+
+        smb = {
+          NetBIOSName = hostname;
+        };
+
+        spaces.spans-displays = false;
+
         NSGlobalDomain = {
           AppleInterfaceStyle = "Dark";
           AppleMeasurementUnits = "Centimeters";
@@ -177,9 +226,11 @@
           "com.apple.trackpad.forceClick" = true;
           "com.apple.trackpad.scaling" = 0.6875;
         };
+
         loginwindow = {
           GuestEnabled = false;
         };
+
         finder = {
           AppleShowAllFiles = true;
           AppleShowAllExtensions = true;
@@ -193,12 +244,14 @@
           ShowRemovableMediaOnDesktop = false;
           _FXShowPosixPathInTitle = true;
         };
+
         trackpad = {
           ActuationStrength = 1;
           Clicking = false;
           Dragging = false;
           FirstClickThreshold = 1;
         };
+
         dock = {
           autohide = true;
           autohide-delay = 0.0;
@@ -234,6 +287,7 @@
           wvous-tl-corner = 1;
           wvous-tr-corner = 1;
         };
+
         CustomSystemPreferences = {
           NSGlobalDomain = {
             AppleLanguages = ["en-FR"];
@@ -247,6 +301,7 @@
             "com.apple.sound.uiaudio.enabled" = 1;
             CGDisableCursorLocationMagnification = 1;
           };
+
           finder = {
             DisableAllAnimations = true;
             FK_ArrangeBy = "Date Added";
@@ -358,23 +413,27 @@
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
-  in {
-    darwinConfigurations."lux" = nix-darwin.lib.darwinSystem {
-      modules = [
-        configuration
-        home-manager.darwinModules.home-manager
-        {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          # home-manager.users.arinono = import ./home.nix;
-        }
-      ];
+  in
+    with hostname; {
+      darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
+        modules = [
+          configuration
+          home-manager.darwinModules.home-manager
+          {
+            home-manager.useGlobalPkgs = true;
+            home-manager.useUserPackages = true;
+            # home-manager.users.arinono = import ./home.nix;
+          }
+        ];
+      };
+
+      darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
+
+      packages.aarch64-darwin.installBrew = installBrew;
+      packages.aarch64-darwin.setHostname = setHostname {
+        hostname = "${hostname}";
+      };
+
+      formatter = forAllSystems ({pkgs}: pkgs.alejandra);
     };
-
-    darwinPackages = self.darwinConfigurations."lux".pkgs;
-
-    packages.aarch64-darwin.installBrew = installBrew;
-
-    formatter = forAllSystems ({pkgs}: pkgs.alejandra);
-  };
 }
