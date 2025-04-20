@@ -319,7 +319,15 @@
             SidebariCloudDriveSectionDisclosedState = true;
           };
         };
+
         CustomUserPreferences = {
+          "com.apple.Accessibility" = {
+            KeyRepeatDelay = 0.5;
+            KeyRepeatEnabled = 1;
+            KeyRepeatInterval = 0.033;
+            ReduceMotionEnabled = 1;
+          };
+
           "cc.ffitch.shottr" = {
             KeyboardShortcuts_area = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":21}";
             KeyboardShortcuts_fullscreen = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":20}";
