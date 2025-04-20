@@ -46,63 +46,63 @@
         home = "/Users/${username}";
       };
 
-      environment.systemPackages = [
-        pkgs.aerospace
-        pkgs.keycastr
+      environment.systemPackages = with pkgs; [
+        aerospace
+        keycastr
 
-        pkgs.alejandra
-        pkgs.btop
-        pkgs.curl
-        pkgs.direnv
-        pkgs.ffmpeg
-        pkgs.flyctl
-        pkgs.gh
-        pkgs.glow
-        pkgs.hexedit
-        pkgs.iperf
-        pkgs.jq
-        pkgs.minio
-        pkgs.minio-client
-        pkgs.neofetch
-        pkgs.neovim
-        pkgs.ngrok
-        pkgs.rsync
-        pkgs.sqld
-        pkgs.terminal-notifier
-        pkgs.timer
-        pkgs.tmux
-        pkgs.tree
-        pkgs.turso-cli
-        pkgs.vhs
-        pkgs.wget
+        alejandra
+        btop
+        curl
+        direnv
+        ffmpeg
+        flyctl
+        gh
+        glow
+        hexedit
+        iperf
+        jq
+        minio
+        minio-client
+        neofetch
+        neovim
+        ngrok
+        rsync
+        sqld
+        terminal-notifier
+        timer
+        tmux
+        tree
+        turso-cli
+        vhs
+        wget
 
-        pkgs.arc-browser
-        pkgs.brave
-        # pkgs.ghostty - Broken on darwin
-        pkgs.obsidian
-        pkgs.spotify
-        # pkgs.vlc - Not on aarch64-darwin
+        arc-browser
+        brave
+        # ghostty - Broken on darwin
+        obsidian
+        spotify
+        # vlc - Not on aarch64-darwin
 
-        pkgs.bat
-        pkgs.cargo-generate
-        pkgs.cargo-info
-        pkgs.cargo-modules
-        pkgs.dua
-        pkgs.dust
-        pkgs.eza
-        pkgs.fd
-        pkgs.hexyl
-        pkgs.just
-        pkgs.mdbook
-        pkgs.oha
-        pkgs.ripgrep
-        pkgs.sccache
-        pkgs.tealdeer
-        pkgs.tokei
-        pkgs.trunk
-        pkgs.wasm-pack
-        pkgs.websocat
-        pkgs.zoxide
+        bat
+        cargo-generate
+        cargo-info
+        cargo-modules
+        dua
+        dust
+        eza
+        fd
+        hexyl
+        just
+        mdbook
+        oha
+        ripgrep
+        sccache
+        tealdeer
+        tokei
+        trunk
+        wasm-pack
+        websocat
+        zoxide
       ];
 
       homebrew = {
@@ -262,6 +262,33 @@
             SidebarShowingSignedIntoiCloud = true;
             SidebarTagsSectionDisclosedState = false;
             SidebariCloudDriveSectionDisclosedState = true;
+          };
+        };
+        CustomUserPreferences = {
+          "cc.ffitch.shottr" = {
+            KeyboardShortcuts_area = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":21}";
+            KeyboardShortcuts_fullscreen = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":20}";
+            KeyboardShortcuts_window = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":23}";
+            afterGrabCopy = 1;
+            afterGrabSave = 1;
+            afterGrabShow = 1;
+            allowTelemetry = 0;
+            alwaysOnTop = 1;
+            areadCaptureMode = "preview";
+            cmdQAction = "quit";
+            colorFormat = "HEX";
+            copyOnEsc = 1;
+            saveOnEsc = 1;
+            defaultFolder = "/Users/${username}/Downloads";
+            downscaleOnSave = 0;
+            expandableCanvas = 1;
+            saveFormat = "PNG";
+            windowShadow = "trimmed";
+            showDockIcon = 1;
+            showIntro = 0;
+            showMenubarIcon = 1;
+            thumbnailClosing = "auto";
+            # token = "put license here later with secrets";
           };
         };
       };
