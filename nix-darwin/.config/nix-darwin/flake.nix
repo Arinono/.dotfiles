@@ -130,6 +130,8 @@
           "ghostty"
           "alfred"
           "balenaetcher"
+          "calibre"
+          "crystalfetch"
           "discord"
           "docker"
           "font-meslo-lg-nerd-font"
@@ -292,7 +294,7 @@
           "com.apple.airplay".showInMenuBarIfPresent = 0;
 
           NSGlobalDomain = {
-	    AppleInterfaceStyle = "Dark";
+            AppleInterfaceStyle = "Dark";
             AppleLanguages = ["en-FR"];
             AppleLocale = "en_FR";
             AppleReduceDesktopTinting = true;
@@ -362,11 +364,11 @@
           "com.bjango.istatmenus.menubar.7" = {
             License.License = "";
             Menu.Theme.Dark = "system";
-	    Menubar = {
-	    Global.ReducePadding = 0;
-	    Theme.Dark = "custom";
-	    };
-	    Sensors.Global.DetailLevel = 1;
+            Menubar = {
+              Global.ReducePadding = 0;
+              Theme.Dark = "custom";
+            };
+            Sensors.Global.DetailLevel = 1;
 
             Combined.Menu.Items = [
               "cpu-uptime"
@@ -410,6 +412,62 @@
                 ];
               };
             };
+          };
+
+          "com.generalarcade.flycut" = {
+            "ShortcutRecorder mainHotKey" = {
+              keyCode = 9;
+              modifierFlags = 1179648;
+            };
+            loadOnStartup = 1;
+            stickyBezel = 1;
+            store = {
+              displayLen = 40;
+              displayNum = 10;
+              favoritesRemeberNum = 40;
+              syncSettingsViaICloud = 0;
+            };
+          };
+
+          "com.pilotmoon.scroll-reverser" = {
+            HideIcon = 1;
+            InvertScrollingOn = 1;
+            ReverseTrackpad = 0;
+            ReverseX = 1;
+          };
+
+          "com.rogueamoeba.soundsource" = {
+            dontAskLaunchAtLogin = 1;
+            hasRemovedHideAtLogin = 1;
+            keyboardVolume = 1;
+          };
+
+          "company.thebrowser.Browser" = {
+            arcMaxAutoOptInEnabled = 0;
+            arc_quitAlwaysKeepsWindows = 1;
+            currentAppIconName = "candy";
+            meetArcMaxBannerDismissed = 1;
+          };
+
+          "io.github.keycastr" = {
+            "default.allKeys" = 1;
+            "default.allModifierdKeys" = 0;
+            "default.commandKeysOnly" = 0;
+            "default.fadeDelay" = 2.94;
+            "default.fontSize" = 72;
+            "default.keysstrokeDelay" = 1;
+            displayIcon = 1;
+            "mouse.displayOption" = 1;
+            selectedVisualizer = "Default";
+            "svelte.displayAll" = 0;
+          };
+
+          "io.tailscale.ipn.macos" = {
+            TailscaleStartOnLogin = 1;
+          };
+
+          "org.videolan.vlc" = {
+            DisplayTimeAsTimeRemaining = "YES";
           };
         };
       };
