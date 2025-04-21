@@ -8,7 +8,7 @@
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
     home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
   };
 
   outputs = inputs @ {
@@ -74,6 +74,7 @@
         flyctl
         gh
         glow
+        go
         hexedit
         iperf
         jq
@@ -526,8 +527,6 @@
         # };
       };
 
-      programs.zsh.enable = true;
-
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
       system.stateVersion = 5;
@@ -546,7 +545,7 @@
           {
             home-manager.useGlobalPkgs = true;
             home-manager.useUserPackages = true;
-            # home-manager.users.arinono = import ./home.nix;
+            home-manager.users.arinono = import ./home.nix;
           }
         ];
       };
