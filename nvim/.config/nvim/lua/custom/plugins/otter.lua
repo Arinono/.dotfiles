@@ -7,7 +7,7 @@ return {
       "nvim-treesitter/nvim-treesitter",
     },
     config = function()
-      require("otter").activate({ "javascript", "rust" }, true, true, nil)
+      require("custom.otter")
     end,
   },
 }

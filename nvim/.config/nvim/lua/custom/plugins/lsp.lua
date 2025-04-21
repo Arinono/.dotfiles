@@ -183,7 +183,9 @@ return {
       end
     end, vim.tbl_keys(servers))
 
-    require("mason").setup()
+    require("mason").setup({
+      PATH = "prepend",
+    })
 
     setup_diagnostics()
 

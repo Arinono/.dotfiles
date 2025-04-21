@@ -36,8 +36,7 @@
         '';
       };
 
-    setHostname = {hostname}: let
-    in
+    setHostname = {hostname}:
       pkgs.writeShellApplication {
         name = "set-hostname";
 
@@ -68,6 +67,7 @@
 
         alejandra
         btop
+        cargo
         curl
         direnv
         ffmpeg
@@ -83,7 +83,10 @@
         neofetch
         neovim
         ngrok
+        nil
+        nodejs
         rsync
+        rustc
         sqld
         terminal-notifier
         timer
@@ -425,7 +428,7 @@
             store = {
               displayLen = 40;
               displayNum = 10;
-              favoritesRemeberNum = 40;
+              favoritesRememberNum = 40;
               syncSettingsViaICloud = 0;
             };
           };
@@ -535,28 +538,34 @@
       nixpkgs.hostPlatform = system;
     };
 
-    forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
-  in
-    with hostname; {
-      darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
-        modules = [
-          configuration
-          home-manager.darwinModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = true;
-            home-manager.users.arinono = import ./home.nix;
-          }
-        ];
-      };
-
-      darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
-
-      packages.aarch64-darwin.installBrew = installBrew;
-      packages.aarch64-darwin.setHostname = setHostname {
-        hostname = "${hostname}";
-      };
-
-      formatter = forAllSystems ({pkgs}: pkgs.alejandra);
+    homeManagerArgs = {
+      inherit username hostname;
     };
+
+    forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
+  in {
+    darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
+      modules = [
+        configuration
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.${username} = import ./home.nix;
+            extraSpecialArgs = homeManagerArgs;
+          };
+        }
+      ];
+    };
+
+    darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
+
+    packages.aarch64-darwin.installBrew = installBrew;
+    packages.aarch64-darwin.setHostname = setHostname {
+      hostname = "${hostname}";
+    };
+
+    formatter = forAllSystems ({pkgs}: pkgs.alejandra);
+  };
 }
