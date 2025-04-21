@@ -32,7 +32,7 @@
         runtimeInputs = [bash curl];
 
         text = ''
-          /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+          bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         '';
       };
 
@@ -72,6 +72,7 @@
         direnv
         ffmpeg
         flyctl
+        fzf
         gh
         glow
         go
@@ -174,7 +175,9 @@
         '';
 
       system.defaults = {
-        hitoolbox.AppleFnUsageType = "Do Nothing";
+        hitoolbox = {
+          AppleFnUsageType = "Do Nothing";
+        };
 
         menuExtraClock = {
           FlashDateSeparators = false;
@@ -296,6 +299,10 @@
 
         CustomSystemPreferences = {
           "com.apple.airplay".showInMenuBarIfPresent = 0;
+
+          hitoolbox = {
+            AppleDictationAutoEnable = 0;
+          };
 
           NSGlobalDomain = {
             AppleInterfaceStyle = "Dark";
@@ -552,7 +559,7 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${username} = import ./home.nix;
+            users.${username} = import ./home;
             extraSpecialArgs = homeManagerArgs;
           };
         }

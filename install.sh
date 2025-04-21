@@ -31,7 +31,6 @@ stow -v stow \
   nvim \
   git \
   htop \
-  nix \
   yabai \
   skhd \
   gh-dash \
