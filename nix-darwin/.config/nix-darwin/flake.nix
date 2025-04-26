@@ -25,6 +25,8 @@
     # move to fn param later
     username = "arinono";
     hostname = "lulu";
+    fullname = "Aurelien Arino";
+    email = "dev@arino.io";
 
     installBrew = with pkgs;
       pkgs.writeShellApplication {
@@ -144,6 +146,7 @@
           "scroll-reverser"
           "shottr"
           "signal"
+          "soundsource"
           "vlc"
         ];
 
@@ -451,6 +454,10 @@
             dontAskLaunchAtLogin = 1;
             hasRemovedHideAtLogin = 1;
             keyboardVolume = 1;
+            registrationInfo = {
+              Code = "";
+              Name = fullname;
+            };
           };
 
           "company.thebrowser.Browser" = {

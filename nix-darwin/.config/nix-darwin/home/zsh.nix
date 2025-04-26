@@ -9,30 +9,13 @@
   inherit username;
   editor = "nvim";
 
-  git-contrib = pkgs.writeShellApplication {
-    name = "git-contrib";
-    runtimeInputs = [pkgs.git];
-
-    text = ''
-      git shortlog -sne --all
-    '';
-  };
-
-  key = pkgs.writeShellApplication {
-    name = "key";
-    runtimeInputs = [pkgs.tinyxxd];
-
-    text = ''
-      set +o nounset
-      len=$1
-
-      if [[ -z $len ]]; then
-        len=32
-      fi
-
-      head -c "$len" /dev/urandom | tinyxxd -p -c "$len"
-    '';
-  };
+  git_contrib = import ./bin/git_contrib.nix {inherit pkgs;};
+  key = import ./bin/key.nix {inherit pkgs;};
+  ngrokd = import ./bin/ngrokd.nix {inherit pkgs;};
+  remind = import ./bin/remind.nix {inherit pkgs;};
+  portscan = import ./bin/portscan.nix {inherit pkgs;};
+  dummy_file = import ./bin/dummy_file.nix {inherit pkgs;};
+  vmrss = import ./bin/vmrss.nix {inherit pkgs;};
 in {
   programs = {
     zsh = {
@@ -41,6 +24,7 @@ in {
       sessionVariables = {
         EDITOR = editor;
         VISUAL = editor;
+        NGROK_DOMAIN = "alive-ant-pure.ngrok-free.app";
         TERM = "xterm-256color";
       };
 
@@ -67,13 +51,13 @@ in {
 
   home = {
     packages = [
-      key
-      git-contrib
+      key.sh
+      git_contrib.sh
+      ngrokd.sh
+      remind.sh
+      portscan.sh
+      dummy_file.sh
+      vmrss.sh
     ];
   };
-
-  # home.file = {
-  #   ".zshrc".source = mkOutOfStoreSymlink "/Users/${username}/.dotfiles/zsh/.zshrc";
-  #   ".zsh_profile".source = mkOutOfStoreSymlink "/Users/${username}/.dotfiles/zsh/.zsh_profile";
-  # };
 }
