@@ -76,6 +76,8 @@
         flyctl
         fzf
         gh
+        git
+        git-crypt
         glow
         go
         hexedit
@@ -552,8 +554,11 @@
       nixpkgs.hostPlatform = system;
     };
 
+    isDarwin = true;
     homeManagerArgs = {
-      inherit username hostname;
+      # NOTE: change isDarwin to use provided function value when setting
+      # up the machines
+      inherit username hostname fullname email isDarwin;
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});

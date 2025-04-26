@@ -1,0 +1,114 @@
+{
+  pkgs,
+  fullname,
+  email,
+  isDarwin,
+  ...
+}: let
+  browser =
+    if isDarwin
+    then "arc"
+    else "brave";
+  # then pkgs.arc-browser
+  # else pkgs.brave;
+in
+  with pkgs; {
+    home.file = {
+      ".gitconfig".text =
+        /*
+        toml
+        */
+        ''
+          [user]
+            name = $fullname
+            email = $email
+          [gpg]
+            program = ${gnupg}/bin/gpg
+          [web]
+            browser = $browser
+          [core]
+            editor = ${neovim}/bin/nvim
+            excludesFile = ~/.gitignore
+            ignorecase = false
+          [color]
+            branch = auto
+            diff = auto
+            interactive = auto
+            status = auto
+          [credentials]
+            helper = cache --timeout=300
+          [difftool]
+            prompt = false
+          [diff]
+            tool = nvimdiff
+          [difftool "nvimdiff"]
+            cmd = "${neovim}/bin/nvim -d \"$LOCAL\" \"$REMOTE\""
+          [commit]
+            gpgsign = false # true
+          [pull]
+            rebase = true
+          [rebase]
+            updateRefs = true
+          [push]
+            autoSetupRemote = true
+          [url "ssh://git@github.com:"]
+            insteadOf = "https://github.com"
+          [rerere]
+            enabled = true
+          [init]
+            defaultBranch = main
+          [filter "lfs"]
+            clean = ${git-lfs}/bin/git-lfs clean -- %f
+            smudge = ${git-lfs}/bin/git-lfs smudge -- %f
+            process = ${git-lfs}/bin/git-lfs filter-process
+            required = true
+          [filter "git-crypt"]
+            smudge = ${git-crypt}/bin/git-crypt smudge
+            clean = ${git-crypt}/bin/git-crypt clean
+            required = true
+          [diff "git-crypt"]
+            textconv = ${git-crypt}/bin/git-crypt diff
+          [alias]
+            apa = add --patch
+            st = status
+            ci = commit
+            cim = commit -m
+            cam = commit --amend
+            cams = commit --amend --no-verify
+            game = commit --amend --no-edit
+            cames = commit --amend --no-edit --no-verify
+            sta = stash push
+            staa = stash push --all
+            stp = stash pop
+            ba = branch -a
+            bd = branch -d
+            bD = branch -D
+            co = checkout
+            d = diff
+            ds = diff --staged
+            l = log --graph --decorate --pretty=oneline --abbrev-commit
+            lol = log --graph --decorate --pretty=oneline --abbrev-commit
+            lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+            wa = worktree add
+            wl = worktree list
+            wr = worktree remove
+            wrf = worktree remove -f
+            next = stack next
+            prev = stack previous
+            reword = stack reword
+            amend = stack amend
+            sync = stack sync
+            run = stack run
+        '';
+
+      ".gitignore".text = ''
+        *.DS_Store
+        *.LSOverride
+        Thumbs.db
+        .bundle
+        .pnpm-debug.log
+        /result
+        /target
+      '';
+    };
+  }
