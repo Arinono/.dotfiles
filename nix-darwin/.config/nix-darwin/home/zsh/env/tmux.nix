@@ -3,6 +3,22 @@
   home,
   ...
 }: {
+  kill_session = pkgs.writeShellApplication {
+    name = "kill_session";
+    runtimeInputs = [pkgs.tmux pkgs.toybox];
+
+    text = ''
+      current=$(tmux display-message -p '#S')
+      nbSession=$(tmux list-session | wc -l)
+
+      if [[ "$nbSession" -gt 1 ]]; then
+        tmux switch-client -l
+      fi
+
+      tmux kill-session -t "$current"
+    '';
+  };
+
   variables = {
     TMUX_CONFIG = "${home}/.tmux.conf";
   };

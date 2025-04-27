@@ -120,6 +120,7 @@ in {
       docker.denter
       git.gsync
       git.git_current_branch
+      tmux.kill_session
     ];
   };
 }
