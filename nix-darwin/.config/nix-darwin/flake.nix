@@ -7,8 +7,8 @@
     nix-darwin.url = "github:nix-darwin/nix-darwin";
     nix-darwin.inputs.nixpkgs.follows = "nixpkgs";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.11";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs-stable";
+    home-manager.url = "github:nix-community/home-manager";
+    home-manager.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = inputs @ {
@@ -25,6 +25,7 @@
     # move to fn param later
     username = "arinono";
     hostname = "lulu";
+    home = "/Users/${username}";
     fullname = "Aurelien Arino";
     email = "dev@arino.io";
 
@@ -59,8 +60,8 @@
       nixpkgs.config.allowUnfree = true;
 
       users.users.arinono = {
+        inherit home;
         name = username;
-        home = "/Users/${username}";
       };
 
       environment.systemPackages = with pkgs; [
@@ -108,6 +109,7 @@
         rustc
         sccache
         sqld
+        tailscale
         tealdeer
         terminal-notifier
         timer
@@ -132,6 +134,12 @@
 
       homebrew = {
         enable = true;
+
+        onActivation = {
+          autoUpdate = true;
+          upgrade = true;
+          cleanup = "zap";
+        };
 
         taps = [];
 
@@ -198,7 +206,7 @@
         screencapture = {
           disable-shadow = true;
           include-date = true;
-          location = "/Users/${username}/Downloads";
+          location = "${home}/Downloads";
           show-thumbnail = true;
           target = "file";
           type = "jpg";
@@ -251,7 +259,7 @@
           FXDefaultSearchScope = "SCcf";
           FXPreferredViewStyle = "clmv";
           NewWindowTarget = "Other";
-          NewWindowTargetPath = "file:///Users/${username}/Downloads";
+          NewWindowTargetPath = "file://${home}/Downloads";
           ShowExternalHardDrivesOnDesktop = true;
           ShowHardDrivesOnDesktop = true;
           ShowMountedServersOnDesktop = true;
@@ -291,7 +299,7 @@
             }
           ];
           persistent-others = [
-            "/Users/${username}/Downloads"
+            "${home}/Downloads"
           ];
           show-recents = false;
           showhidden = true;
@@ -363,7 +371,7 @@
             colorFormat = "HEX";
             copyOnEsc = 1;
             saveOnEsc = 1;
-            defaultFolder = "/Users/${username}/Downloads";
+            defaultFolder = "${home}/Downloads";
             downscaleOnSave = 0;
             expandableCanvas = 1;
             saveFormat = "PNG";
@@ -558,7 +566,7 @@
     homeManagerArgs = {
       # NOTE: change isDarwin to use provided function value when setting
       # up the machines
-      inherit username hostname fullname email isDarwin;
+      inherit username hostname fullname email isDarwin home;
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});

@@ -3,21 +3,26 @@
   pkgs,
   lib,
   username,
+  home,
+  isDarwin,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  inherit username;
   editor = "nvim";
 
   # Envs
   default = import ./env {inherit editor;};
   ngrok = import ./env/ngrok.nix {};
-  cargo = import ./env/cargo.nix {inherit pkgs;};
-  android_studio = import ./env/android_studio.nix {inherit username;};
-  dart = import ./env/dart.nix {inherit username pkgs;};
+  cargo = import ./env/cargo.nix {inherit pkgs home;};
+  android_studio = import ./env/android_studio.nix {inherit home;};
+  dart = import ./env/dart.nix {inherit home pkgs;};
   direnv = import ./env/direnv.nix {};
   docker = import ./env/docker.nix {inherit pkgs;};
   git = import ./env/git.nix {inherit pkgs;};
+  go = import ./env/go.nix {inherit home;};
+  node = import ./env/node.nix {inherit pkgs home;};
+  tailscale = import ./env/tailscale.nix {inherit home isDarwin;};
+  tmux = import ./env/tmux.nix {inherit pkgs home;};
 
   # Scripts
   git_contrib = import ../bin/git_contrib.nix {inherit pkgs;};
@@ -27,6 +32,21 @@
   portscan = import ../bin/portscan.nix {inherit pkgs;};
   dummy_file = import ../bin/dummy_file.nix {inherit pkgs;};
   vmrss = import ../bin/vmrss.nix {inherit pkgs;};
+  ntfy = import ../bin/ntfy.nix {inherit pkgs;};
+
+  nsh = pkgs.writeShellApplication {
+    name = "nsh";
+    runtimeInputs = [];
+
+    text = ''
+      if [[ -z "$1" ]]; then
+        echo "Usage: nsh <nix-package>"
+        return 1
+      fi
+
+      nix shell "nixpkgs#$1"
+    '';
+  };
 in {
   programs = {
     zsh = {
@@ -42,9 +62,21 @@ in {
         expireDuplicatesFirst = true;
       };
 
-      sessionVariables = default.variables // ngrok.variables // cargo.variables // direnv.variables;
+      sessionVariables =
+        default.variables
+        // ngrok.variables
+        // cargo.variables
+        // direnv.variables
+        // go.variables
+        // tmux.variables;
 
-      shellAliases = default.aliases // docker.aliases // git.aliases;
+      shellAliases =
+        default.aliases
+        // docker.aliases
+        // git.aliases
+        // node.aliases
+        // tailscale.aliases
+        // tmux.aliases;
     };
 
     direnv = {
@@ -66,11 +98,15 @@ in {
   home = {
     sessionPath =
       [
-        "/Users/${username}/.local/bin"
+        "${home}/.local/bin"
       ]
-      ++ cargo.path ++ android_studio.path ++ dart.path;
+      ++ cargo.path
+      ++ android_studio.path
+      ++ dart.path
+      ++ node.path;
 
     packages = [
+      nsh
       key.sh
       git_contrib.sh
       ngrokd.sh
@@ -78,6 +114,7 @@ in {
       portscan.sh
       dummy_file.sh
       vmrss.sh
+      ntfy.sh
       docker.denter
       git.gsync
       git.git_current_branch

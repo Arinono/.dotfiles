@@ -1,5 +1,5 @@
 {
-  username,
+  home,
   pkgs,
   ...
 }: {
@@ -8,6 +8,6 @@
   };
 
   path = [
-    "/Users/${username}/.pub-cache/bin"
+    "${home}/.pub-cache/bin"
   ];
 }

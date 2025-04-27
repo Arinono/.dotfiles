@@ -1,10 +1,13 @@
-{pkgs, ...}:
-with pkgs; {
+{
+  pkgs,
+  home,
+  ...
+}: {
   path = [
-    "$HOME/.cargo/bin"
+    "${home}/.cargo/bin"
   ];
 
-  variables = {
+  variables = with pkgs; {
     CARGO_NET_GIT_FETCH_WITH_CLI = true;
     RUST_WRAPPER = "sccache";
     WASM_PACK_PATH = wasm-pack;

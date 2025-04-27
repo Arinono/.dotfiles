@@ -1,5 +1,6 @@
-{username, ...}: {
+{home, ...}: {
   path = [
-    "/Users/${username}/Library/Android/sdk/emulator"
+    # Fix darwin
+    "${home}/Library/Android/sdk/emulator"
   ];
 }

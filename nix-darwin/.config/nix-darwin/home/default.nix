@@ -5,16 +5,17 @@
   username,
   fullname,
   email,
+  home,
   isDarwin,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  inherit username email fullname isDarwin;
+  inherit username email fullname isDarwin home;
 in {
   programs.home-manager.enable = true;
   home = {
     inherit username;
-    homeDirectory = "/Users/${username}";
+    homeDirectory = home;
     preferXdgDirectories = true;
 
     stateVersion = "24.11";
@@ -27,5 +28,5 @@ in {
 
   fonts.fontconfig.enable = true;
   xdg.enable = true;
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink "/Users/${username}/.dotfiles/nvim/.config/nvim";
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim/.config/nvim";
 }
