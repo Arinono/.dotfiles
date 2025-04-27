@@ -33,6 +33,7 @@
   dummy_file = import ../bin/dummy_file.nix {inherit pkgs;};
   vmrss = import ../bin/vmrss.nix {inherit pkgs;};
   ntfy = import ../bin/ntfy.nix {inherit pkgs;};
+  convert = import ../bin/convert.nix {inherit pkgs;};
 
   nsh = pkgs.writeShellApplication {
     name = "nsh";
@@ -115,6 +116,7 @@ in {
       dummy_file.sh
       vmrss.sh
       ntfy.sh
+      convert.sh
       docker.denter
       git.gsync
       git.git_current_branch
