@@ -15,11 +15,13 @@ in {
   home = {
     inherit username;
     homeDirectory = "/Users/${username}";
+    preferXdgDirectories = true;
+
     stateVersion = "24.11";
   };
 
   imports = [
-    ./zsh.nix
+    ./zsh
     ./gitconfig.nix
   ];
 

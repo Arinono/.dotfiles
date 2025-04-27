@@ -75,7 +75,7 @@ in
             cim = commit -m
             cam = commit --amend
             cams = commit --amend --no-verify
-            game = commit --amend --no-edit
+            came = commit --amend --no-edit
             cames = commit --amend --no-edit --no-verify
             sta = stash push
             staa = stash push --all
@@ -86,9 +86,9 @@ in
             co = checkout
             d = diff
             ds = diff --staged
-            l = log --graph --decorate --pretty=oneline --abbrev-commit
-            lol = log --graph --decorate --pretty=oneline --abbrev-commit
-            lola = log --graph --decorate --pretty=oneline --abbrev-commit --all --date=local
+            l = lol
+            lol = log --graph --pretty="%Cred%h%Creset - %C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset"
+            lola = log --graph --pretty="%Cred%h%Creset - %C(auto)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset" --all
             wa = worktree add
             wl = worktree list
             wr = worktree remove

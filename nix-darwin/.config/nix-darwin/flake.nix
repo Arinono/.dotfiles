@@ -65,13 +65,21 @@
 
       environment.systemPackages = with pkgs; [
         aerospace
-        keycastr
-
         alejandra
+        bat
         btop
         cargo
+        cargo-generate
+        cargo-info
+        cargo-modules
         curl
+        dart
+        devbox
         direnv
+        dua
+        dust
+        eza
+        fd
         ffmpeg
         flyctl
         fzf
@@ -81,8 +89,12 @@
         glow
         go
         hexedit
+        hexyl
         iperf
         jq
+        just
+        keycastr
+        mdbook
         minio
         minio-client
         neofetch
@@ -90,16 +102,25 @@
         ngrok
         nil
         nodejs
+        oha
+        ripgrep
         rsync
         rustc
+        sccache
         sqld
+        tealdeer
         terminal-notifier
         timer
         tmux
+        tokei
         tree
+        trunk
         turso-cli
         vhs
+        wasm-pack
+        websocat
         wget
+        zoxide
 
         arc-browser
         brave
@@ -107,27 +128,6 @@
         obsidian
         spotify
         # vlc - Not on aarch64-darwin
-
-        bat
-        cargo-generate
-        cargo-info
-        cargo-modules
-        dua
-        dust
-        eza
-        fd
-        hexyl
-        just
-        mdbook
-        oha
-        ripgrep
-        sccache
-        tealdeer
-        tokei
-        trunk
-        wasm-pack
-        websocat
-        zoxide
       ];
 
       homebrew = {
@@ -136,7 +136,6 @@
         taps = [];
 
         casks = [
-          "ghostty"
           "alfred"
           "balenaetcher"
           "calibre"
@@ -144,6 +143,7 @@
           "discord"
           "docker"
           "font-meslo-lg-nerd-font"
+          "ghostty"
           "istat-menus"
           "scroll-reverser"
           "shottr"
