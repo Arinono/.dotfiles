@@ -34,6 +34,7 @@
   vmrss = import ../bin/vmrss.nix {inherit pkgs;};
   ntfy = import ../bin/ntfy.nix {inherit pkgs;};
   convert = import ../bin/convert.nix {inherit pkgs;};
+  tmclean = import ../bin/tmclean.nix {inherit pkgs;};
 
   nsh = pkgs.writeShellApplication {
     name = "nsh";
@@ -117,10 +118,12 @@ in {
       vmrss.sh
       ntfy.sh
       convert.sh
+      tmclean.sh
       docker.denter
       git.gsync
       git.git_current_branch
       tmux.kill_session
+      tmux.tmux_sessionizer
     ];
   };
 }
