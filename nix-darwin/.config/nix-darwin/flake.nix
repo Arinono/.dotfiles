@@ -110,7 +110,7 @@
         sccache
         sqld
         tailscale
-        tealdeer
+        # tealdeer
         terminal-notifier
         timer
         tmux

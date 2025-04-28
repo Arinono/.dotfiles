@@ -71,6 +71,7 @@
     gfo = "${git}/bin/git fetch origin";
     ggsup = "${git}/bin/git branch --set-upstream-to=origin/$(git_current_branch)";
     gpsup = "${git}/bin/git push --set-upstream origin $(git_current_branch)";
+    gpf = "${git}/bin/git push --force-with-lease --force-if-includes";
     grb = "${git}/bin/git rebase";
     grba = "${git}/bin/git rebase --abort";
     grbc = "${git}/bin/git rebase --continue";

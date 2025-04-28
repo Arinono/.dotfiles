@@ -13,6 +13,7 @@
   inherit username email fullname isDarwin home;
 in {
   programs.home-manager.enable = true;
+
   home = {
     inherit username;
     homeDirectory = home;
@@ -21,10 +22,15 @@ in {
     stateVersion = "24.11";
   };
 
+  programs.tealdeer = {
+    enable = true;
+    enableAutoUpdates = true;
+  };
+
   imports = [
     ./zsh
     ./gitconfig.nix
-    # ./aerospace.nix
+    ./aerospace.nix
   ];
 
   fonts.fontconfig.enable = true;
