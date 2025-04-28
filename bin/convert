@@ -25,11 +25,16 @@ if [ -z "$selected_format" ]; then
 fi
 
 if [[ "$selected_format" == "gif" ]]; then
-  ffmpeg -i "$file" -r 10 -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.gif"
+  ffmpeg -i "$file" -r 10 \
+    -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.gif"
 elif [[ "$selected_format" == "discord_sticker" ]]; then
-  ffmpeg -i "$file" -plays 0 -vf "setpts=PTS-STARTPTS, scale=320:320:force_original_aspect_ratio=decrease" "$dir/$name.apng" && mv "$dir/$name.apng" "$dir/$name.png"
+  ffmpeg -i "$file" -plays 0 \
+    -vf "setpts=PTS-STARTPTS, scale=320:320:force_original_aspect_ratio=decrease" \
+    "$dir/$name.apng" && mv "$dir/$name.apng" "$dir/$name.png"
 elif [[ "$selected_format" == "mp4s" ]]; then
-  ffmpeg -i "$file" -r 30 -vcodec h264 -acodec aac -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.mp4"
+  ffmpeg -i "$file" -r 30 -vcodec h264 -acodec aac \
+    -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.mp4"
 elif [[ "$selected_format" == "mp4ns" ]]; then
-  ffmpeg -i "$file" -r 30 -vcodec h264 -an -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.mp4"
+  ffmpeg -i "$file" -r 30 -vcodec h264 -an \
+    -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.mp4"
 fi
