@@ -1,17 +1,13 @@
 {
-  config,
   pkgs,
-  lib,
-  username,
   home,
   isDarwin,
   ...
 }: let
-  inherit (config.lib.file) mkOutOfStoreSymlink;
   editor = "nvim";
 
   # Envs
-  default = import ./env {inherit editor;};
+  default = import ./env {inherit editor pkgs isDarwin;};
   ngrok = import ./env/ngrok.nix {};
   cargo = import ./env/cargo.nix {inherit pkgs home;};
   android_studio = import ./env/android_studio.nix {inherit home;};
@@ -25,16 +21,17 @@
   tmux = import ./env/tmux.nix {inherit pkgs home;};
 
   # Scripts
-  git_contrib = import ../bin/git_contrib.nix {inherit pkgs;};
-  key = import ../bin/key.nix {inherit pkgs;};
-  ngrokd = import ../bin/ngrokd.nix {inherit pkgs;};
-  remind = import ../bin/remind.nix {inherit pkgs;};
-  portscan = import ../bin/portscan.nix {inherit pkgs;};
-  dummy_file = import ../bin/dummy_file.nix {inherit pkgs;};
-  vmrss = import ../bin/vmrss.nix {inherit pkgs;};
-  ntfy = import ../bin/ntfy.nix {inherit pkgs;};
-  convert = import ../bin/convert.nix {inherit pkgs;};
-  tmclean = import ../bin/tmclean.nix {inherit pkgs;};
+  git_contrib = import ./bin/git_contrib.nix {inherit pkgs;};
+  key = import ./bin/key.nix {inherit pkgs;};
+  ngrokd = import ./bin/ngrokd.nix {inherit pkgs;};
+  remind = import ./bin/remind.nix {inherit pkgs;};
+  portscan = import ./bin/portscan.nix {inherit pkgs;};
+  dummy_file = import ./bin/dummy_file.nix {inherit pkgs;};
+  vmrss = import ./bin/vmrss.nix {inherit pkgs;};
+  ntfy = import ./bin/ntfy.nix {inherit pkgs;};
+  convert = import ./bin/convert.nix {inherit pkgs;};
+  tmclean = import ./bin/tmclean.nix {inherit pkgs;};
+  update_all_crates = import ./bin/update_all_crates.nix {inherit pkgs;};
 
   nsh = pkgs.writeShellApplication {
     name = "nsh";
@@ -119,11 +116,13 @@ in {
       ntfy.sh
       convert.sh
       tmclean.sh
+      update_all_crates.sh
       docker.denter
       git.gsync
       git.git_current_branch
       tmux.kill_session
       tmux.tmux_sessionizer
+      tmux.tmux_worktree_panizer
     ];
   };
 }

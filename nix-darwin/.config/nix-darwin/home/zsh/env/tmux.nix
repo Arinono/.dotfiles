@@ -61,6 +61,33 @@
     '';
   };
 
+  tmux_worktree_panizer = pkgs.writeShellApplication {
+    name = "tmux_worktree_panizer";
+    runtimeInputs = [pkgs.tmux pkgs.toybox pkgs.fzf pkgs.git];
+
+    text = ''
+      set +o nounset
+
+      if [[ -d ".git" ]]; then
+        exit 0
+      fi
+
+      selected="$1"
+      if [[ -z "$selected" ]]; then
+        worktrees=$(git worktree list)
+        selected=$(printf "%s" "$worktrees" | fzf | awk '{print $1}')
+      fi
+
+      if [[ -z "$selected" ]]; then
+        exit 1
+      fi
+
+      selected_name=$(basename "$selected" | tr . _)
+
+      tmux neww -n "$selected_name" -c "$selected"
+    '';
+  };
+
   variables = {
     TMUX_CONFIG = "${home}/.tmux.conf";
   };

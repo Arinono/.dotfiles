@@ -1,4 +1,6 @@
-{pkgs, ...}: {
+{pkgs, ...}: let
+  screen = "$${TERM/#tmux/screen}";
+in {
   denter = pkgs.writeShellApplication {
     name = "denter";
     runtimeInputs = [pkgs.docker];
@@ -17,6 +19,6 @@
     doc = "${docker}/bin/docker";
     dcc = "${docker}/bin/docker compose";
     # Not tested
-    ctop = "TERM=\"$${TERM/#tmux/screen}\" ${ctop}/bin/ctop";
+    ctop = "TERM=\"${screen}\" ${ctop}/bin/ctop";
   };
 }

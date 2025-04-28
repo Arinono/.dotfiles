@@ -24,6 +24,7 @@ in {
   imports = [
     ./zsh
     ./gitconfig.nix
+    # ./aerospace.nix
   ];
 
   fonts.fontconfig.enable = true;

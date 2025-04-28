@@ -9,8 +9,6 @@
     if isDarwin
     then "arc"
     else "brave";
-  # then pkgs.arc-browser
-  # else pkgs.brave;
 in
   with pkgs; {
     home.file = {
@@ -20,12 +18,12 @@ in
         */
         ''
           [user]
-            name = $fullname
-            email = $email
+            name = ${fullname}
+            email = ${email}
           [gpg]
             program = ${gnupg}/bin/gpg
           [web]
-            browser = $browser
+            browser = ${browser}
           [core]
             editor = ${neovim}/bin/nvim
             excludesFile = ~/.gitignore
