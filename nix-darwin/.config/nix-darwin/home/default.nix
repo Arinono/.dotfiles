@@ -12,7 +12,10 @@
   inherit (config.lib.file) mkOutOfStoreSymlink;
   inherit username email fullname isDarwin home;
 in {
-  programs.home-manager.enable = true;
+  programs.home-manager = {
+    enable = true;
+    backupFileExtension = "backup";
+  };
 
   home = {
     inherit username;
@@ -31,6 +34,9 @@ in {
     ./zsh
     ./gitconfig.nix
     ./aerospace.nix
+    ./ctop.nix
+    ./btop.nix
+    ./fonts.nix
   ];
 
   fonts.fontconfig.enable = true;
