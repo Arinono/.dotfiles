@@ -38,6 +38,7 @@ in {
     ./btop.nix
     ./fonts.nix
     ./gh-dash.nix
+    ./ghostty.nix
   ];
 
   fonts.fontconfig.enable = true;
