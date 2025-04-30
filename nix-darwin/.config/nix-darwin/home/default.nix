@@ -37,6 +37,7 @@ in {
     ./ctop.nix
     ./btop.nix
     ./fonts.nix
+    ./gh-dash.nix
   ];
 
   fonts.fontconfig.enable = true;
