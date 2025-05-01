@@ -3,6 +3,7 @@
   home,
   isDarwin,
   username,
+  wtg,
   ...
 }: let
   editor = "nvim";
@@ -68,7 +69,8 @@ in {
         // cargo.variables
         // direnv.variables
         // go.variables
-        // tmux.variables;
+        // tmux.variables
+        // wtg.env;
 
       shellAliases =
         default.aliases

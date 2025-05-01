@@ -9,6 +9,11 @@
 
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
+
+    # wtg = {
+    #   url = "../../../wtg";
+    #   flake = false;
+    # };
   };
 
   outputs = inputs @ {
@@ -21,6 +26,8 @@
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
+
+    wtg = import ../../../wtg/flake.nix {};
 
     # move to fn param later
     username = "arinono";
@@ -567,7 +574,7 @@
     homeManagerArgs = {
       # NOTE: change isDarwin to use provided function value when setting
       # up the machines
-      inherit username hostname fullname email isDarwin home;
+      inherit username hostname fullname email isDarwin home wtg;
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});

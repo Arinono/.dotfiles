@@ -1,6 +1,0 @@
-#!/usr/bin/env bash
-list=`tmutil listlocalsnapshotdates | tail -n +2 | tr '\n' ' ' | sed 's/ $//'`
-
-for s in $list; do
-  tmutil deletelocalsnapshots $s
-done
