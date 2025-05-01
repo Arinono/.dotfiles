@@ -40,6 +40,7 @@ in {
     ./gh-dash.nix
     ./ghostty.nix
     ./tmux.nix
+    ./wezterm.nix
   ];
 
   fonts.fontconfig.enable = true;
