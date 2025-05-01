@@ -39,9 +39,17 @@ in {
     ./fonts.nix
     ./gh-dash.nix
     ./ghostty.nix
+    ./tmux.nix
   ];
 
   fonts.fontconfig.enable = true;
   xdg.enable = true;
   xdg.configFile.nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim/.config/nvim";
+  home.file.stow-ignore = {
+    target = ".stow-global-ignore";
+    text = ''
+      Dockerfile.*
+      docker-compose.*
+    '';
+  };
 }

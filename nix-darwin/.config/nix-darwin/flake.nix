@@ -591,7 +591,7 @@
 
     packages.aarch64-darwin.installBrew = installBrew;
     packages.aarch64-darwin.setHostname = setHostname {
-      hostname = "${hostname}";
+      inherit hostname;
     };
 
     formatter = forAllSystems ({pkgs}: pkgs.alejandra);
