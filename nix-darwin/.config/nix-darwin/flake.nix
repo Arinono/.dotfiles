@@ -65,6 +65,7 @@
       };
 
       environment.systemPackages = with pkgs; [
+        # tealdeer
         aerospace
         alejandra
         bat
@@ -91,6 +92,7 @@
         go
         hexedit
         hexyl
+        htop
         iperf
         jq
         just
@@ -110,7 +112,6 @@
         sccache
         sqld
         tailscale
-        # tealdeer
         terminal-notifier
         timer
         tmux

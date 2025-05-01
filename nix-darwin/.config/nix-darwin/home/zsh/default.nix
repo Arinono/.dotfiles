@@ -2,6 +2,7 @@
   pkgs,
   home,
   isDarwin,
+  username,
   ...
 }: let
   editor = "nvim";
