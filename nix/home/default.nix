@@ -40,6 +40,7 @@ in {
     ./tealdeer.nix
     ./tmux.nix
     ./wezterm.nix
+    ./zoxide.nix
   ];
 
   home.file = {

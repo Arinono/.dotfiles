@@ -135,7 +135,7 @@
         wasm-pack
         websocat
         wget
-        zoxide
+        # zoxide
 
         arc-browser
         brave
