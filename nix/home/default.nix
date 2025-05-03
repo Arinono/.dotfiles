@@ -31,7 +31,7 @@ in {
     ./zsh
     ./gitconfig.nix
     ./aerospace.nix
-    ./carapace.nix
+    # ./carapace.nix
     ./ctop.nix
     ./btop.nix
     ./fonts.nix
@@ -66,5 +66,6 @@ in {
   fonts.fontconfig.enable = true;
 
   xdg.enable = true;
-  xdg.configFile.nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim/.config/nvim";
+  xdg.configFile.nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim";
+  xdg.configFile.sketchybar.source = mkOutOfStoreSymlink "${home}/.dotfiles/sketchybar";
 }

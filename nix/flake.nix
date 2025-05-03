@@ -77,7 +77,6 @@
       };
 
       environment.systemPackages = with pkgs; [
-        # tealdeer
         aerospace
         alejandra
         bat
@@ -122,6 +121,7 @@
         rsync
         rustc
         sccache
+        sketchybar
         sqld
         tailscale
         terminal-notifier
@@ -135,7 +135,6 @@
         wasm-pack
         websocat
         wget
-        # zoxide
 
         arc-browser
         brave
