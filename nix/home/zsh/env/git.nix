@@ -39,6 +39,23 @@
     '';
   };
 
+  git_main_branch = pkgs.writeShellApplication {
+    name = "git_main_branch";
+    runtimeInputs = [pkgs.git];
+
+    text = ''
+      git rev-parse --git-dir &> /dev/null || return
+      for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
+        if git show-ref -q --verify "$ref"; then
+          echo ''${ref:t}
+          return 0
+        fi
+      done
+      echo master
+      return 1
+    '';
+  };
+
   aliases = with pkgs; {
     gs = "${git}/bin/git status";
     gp = "${git}/bin/git pull --rebase";
@@ -64,6 +81,7 @@
     gbsr = "${git}/bin/git bisect reset";
     gbss = "${git}/bin/git bisect start";
     gcb = "${git}/bin/git checkout -b";
+    gcm = "${git}/bin/git checkout $(git_branch_main)";
     gco = "${git}/bin/git checkout";
     gd = "${git}/bin/git diff";
     gds = "${git}/bin/git diff --staged";

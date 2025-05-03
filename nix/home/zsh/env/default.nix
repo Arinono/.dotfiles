@@ -2,6 +2,7 @@
   editor,
   isDarwin,
   pkgs,
+  home,
   ...
 }: let
   browser =
@@ -24,5 +25,6 @@ in {
     TERM = "xterm-256color";
     LC_ALL = "en_US.UTF-8";
     BROWSER = browser;
+    WORKSPACE = "${home}/workspace";
   };
 }

@@ -7,10 +7,11 @@
   email,
   home,
   isDarwin,
+  wtg,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  inherit username email fullname isDarwin home;
+  inherit username email fullname isDarwin home wtg;
 in {
   programs.home-manager = {
     enable = true;

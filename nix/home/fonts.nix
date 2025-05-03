@@ -6,7 +6,7 @@
 in {
   home.file = {
     "${target}" = {
-      source = ../../../../fonts;
+      source = ../../fonts;
       recursive = true;
     };
   };

@@ -9,7 +9,7 @@
   editor = "nvim";
 
   # Envs
-  default = import ./env {inherit editor pkgs isDarwin;};
+  default = import ./env {inherit editor pkgs isDarwin home;};
   ngrok = import ./env/ngrok.nix {};
   cargo = import ./env/cargo.nix {inherit pkgs home;};
   android_studio = import ./env/android_studio.nix {inherit home;};
@@ -54,7 +54,10 @@ in {
       enable = true;
 
       enableCompletion = true;
-      autosuggestion.enable = true;
+      autosuggestion = {
+        enable = true;
+        highlight = "fg=#737993";
+      };
       syntaxHighlighting.enable = true;
 
       history = {
@@ -70,7 +73,7 @@ in {
         // direnv.variables
         // go.variables
         // tmux.variables
-        // wtg.env;
+        // wtg.variables;
 
       shellAliases =
         default.aliases

@@ -10,10 +10,10 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    # wtg = {
-    #   url = "../../../wtg";
-    #   flake = false;
-    # };
+    wtg = {
+      url = "git+ssh://git@github.com/arinono/.dotfiles-wtg";
+      flake = true;
+    };
   };
 
   outputs = inputs @ {
@@ -22,12 +22,11 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
+    wtg,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
-
-    wtg = import ../../../wtg/flake.nix {};
 
     # move to fn param later
     username = "arinono";
@@ -237,7 +236,7 @@
           AppleMetricUnits = 1;
           AppleShowAllExtensions = true;
           AppleTemperatureUnit = "Celsius";
-          InitialKeyRepeat = 20;
+          InitialKeyRepeat = 12;
           KeyRepeat = 2;
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
@@ -249,7 +248,7 @@
           NSWindowShouldDragOnGesture = true;
           _HIHideMenuBar = true;
           "com.apple.sound.beep.feedback" = 0;
-          "com.apple.sound.beep.volume" = 0.40;
+          "com.apple.sound.beep.volume" = 0.0;
           "com.apple.springing.delay" = 0.5;
           "com.apple.springing.enabled" = true;
           "com.apple.swipescrolldirection" = true;

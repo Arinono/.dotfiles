@@ -9,9 +9,29 @@
     historyLimit = 100000;
     mouse = true;
     focusEvents = true;
+    keyMode = "vi";
     plugins = with pkgs; [
-      tmuxPlugins.dracula
+      {
+        plugin = tmuxPlugins.dracula;
+        extraConfig = ''
+          set -g @dracula-plugins "time"
+          set -g @dracula-show-powerline true
+          set -g @dracula-show-flags true
+          set -g @dracula-show-left-icon session
+          set -g @dracula-day-month true
+          set -g @dracula-show-timezone false
+          set -g @dracula-military-time true
+        '';
+      }
       tmuxPlugins.resurrect
+      {
+        plugin = tmuxPlugins.continuum;
+        extraConfig = ''
+          set -g @continuum-restore 'on'
+          set -g @continuum-boot 'on'
+          set -g @continuum-save-interval '10'
+        '';
+      }
     ];
     extraConfig = ''
       set -g pane-base-index 1
@@ -43,16 +63,6 @@
       bind g run-shell "tmux neww ~/.local/bin/tmux-worktree-panizer"
       bind K run-shell "~/.local/bin/kill-session"
       bind F run-shell "tmux neww ~/.local/bin/convert"
-
-      set -g @plugin 'dracula/tmux'
-
-      set -g @dracula-plugins "time"
-      set -g @dracula-show-powerline true
-      set -g @dracula-show-flags true
-      set -g @dracula-show-left-icon session
-      set -g @dracula-day-month true
-      set -g @dracula-show-timezone false
-      set -g @dracula-military-time true
     '';
   };
 }
