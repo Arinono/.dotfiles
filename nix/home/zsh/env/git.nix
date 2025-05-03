@@ -39,20 +39,22 @@
     '';
   };
 
-  git_main_branch = pkgs.writeShellApplication {
-    name = "git_main_branch";
+  git_branch_main = pkgs.writeShellApplication {
+    name = "git_branch_main";
     runtimeInputs = [pkgs.git];
 
     text = ''
+      set +o nounset
+
       git rev-parse --git-dir &> /dev/null || return
       for ref in refs/{heads,remotes/{origin,upstream}}/{main,trunk,mainline,default,stable,master}; do
         if git show-ref -q --verify "$ref"; then
-          echo ''${ref:t}
-          return 0
+          echo "''${ref:t}"
+          exit 0
         fi
       done
       echo master
-      return 1
+      exit 1
     '';
   };
 

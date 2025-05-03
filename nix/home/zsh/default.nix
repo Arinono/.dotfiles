@@ -126,6 +126,7 @@ in {
       docker.denter
       git.gsync
       git.git_current_branch
+      git.git_branch_main
       tmux.kill_session
       tmux.tmux_sessionizer
       tmux.tmux_worktree_panizer
