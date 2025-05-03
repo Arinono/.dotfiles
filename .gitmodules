@@ -1,6 +1,0 @@
-[submodule "personal"]
-	path = personal
-	url = git@github.com:Arinono/.dotfiles-personal.git
-[submodule "wtg"]
-	path = wtg
-	url = git@github.com:Arinono/.dotfiles-wtg.git
