@@ -72,7 +72,7 @@
     gap = "${git}/bin/git apply";
     gapa = "${git}/bin/git add -p";
     gb = "${git}/bin/git branch";
-    gbD = "${git}/bin/git branch --delete ---force";
+    gbD = "${git}/bin/git branch --delete --force";
     gbd = "${git}/bin/git branch --delete";
     gba = "${git}/bin/git branch --all";
     gbs = "${git}/bin/git bisect";
