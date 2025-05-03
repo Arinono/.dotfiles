@@ -8,6 +8,7 @@
   home,
   isDarwin,
   wtg,
+  personal,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
@@ -44,14 +45,28 @@ in {
     ./wezterm.nix
   ];
 
+  home.file = {
+    stow-ignore = {
+      target = ".stow-global-ignore";
+      text = ''
+        Dockerfile.*
+        docker-compose.*
+      '';
+    };
+
+    npmrc = {
+      target = ".npmrc";
+      text = personal.npm.rc;
+    };
+
+    sshconfig = {
+      target = ".ssh/config";
+      text = personal.ssh.config;
+    };
+  };
+
   fonts.fontconfig.enable = true;
+
   xdg.enable = true;
   xdg.configFile.nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim/.config/nvim";
-  home.file.stow-ignore = {
-    target = ".stow-global-ignore";
-    text = ''
-      Dockerfile.*
-      docker-compose.*
-    '';
-  };
 }
