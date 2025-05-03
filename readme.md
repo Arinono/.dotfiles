@@ -9,6 +9,16 @@
 sh <(curl -L https://nixos.org/nix/install)
 ```
 
+### Clone the repo
+```bash
+git clone https://github.com/arinono/.dotfiles ~/.dotfiles
+cd ~/.dotfiles
+nix shell nixpkgs#git-crypt
+# Copy the key over
+git crypt unlock ~/.ssh/git_crypt_dotfiles
+# Then finish pulling
+```
+
 ### Install homebrew
 [link](https://brew.sh/)
 ```bash
@@ -24,11 +34,6 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/in
 
 For now, change the information here:
 https://github.com//arinono/.dotfiles/blob/9f9c060cd20ed8d83c08fbbf9fdbb02d197720f4/nix/flake.nix#L43-L48
-
-#### todo/document
-
-- [ ] git crypt
-- [ ] private inputs fallbacks ?
 
 ```bash
 # 1st run
