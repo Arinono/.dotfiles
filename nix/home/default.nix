@@ -36,6 +36,7 @@ in {
     ./zsh
     ./gitconfig.nix
     ./aerospace.nix
+    ./carapace.nix
     ./ctop.nix
     ./btop.nix
     ./fonts.nix
