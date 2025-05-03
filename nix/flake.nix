@@ -14,6 +14,11 @@
       url = "git+ssh://git@github.com/arinono/.dotfiles-wtg";
       flake = true;
     };
+
+    personal = {
+      url = "git+ssh://git@github.com/arinono/.dotfiles-personal";
+      flake = true;
+    };
   };
 
   outputs = inputs @ {
@@ -23,6 +28,7 @@
     nixpkgs-stable,
     home-manager,
     wtg,
+    personal,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
@@ -573,7 +579,7 @@
     homeManagerArgs = {
       # NOTE: change isDarwin to use provided function value when setting
       # up the machines
-      inherit username hostname fullname email isDarwin home wtg;
+      inherit username hostname fullname email isDarwin home wtg personal;
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});

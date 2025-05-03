@@ -72,12 +72,28 @@
         "type": "github"
       }
     },
+    "personal": {
+      "locked": {
+        "lastModified": 1746279232,
+        "narHash": "sha256-KkW3/VC4B+ECsglc4opxD1G0YclNjGuPJBZ3McYHw5o=",
+        "ref": "refs/heads/master",
+        "rev": "97082977fcb3d38cbbaa2b68fb787bd78846dd29",
+        "revCount": 100,
+        "type": "git",
+        "url": "ssh://git@github.com/arinono/.dotfiles-personal"
+      },
+      "original": {
+        "type": "git",
+        "url": "ssh://git@github.com/arinono/.dotfiles-personal"
+      }
+    },
     "root": {
       "inputs": {
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs",
         "nixpkgs-stable": "nixpkgs-stable",
+        "personal": "personal",
         "wtg": "wtg"
       }
     },
