@@ -19,6 +19,11 @@
       url = "git+ssh://git@github.com/arinono/.dotfiles-personal";
       flake = true;
     };
+
+    git_worktree_clean = {
+      url = ../git_worktree_clean;
+      flake = true;
+    };
   };
 
   outputs = inputs @ {
@@ -29,6 +34,7 @@
     home-manager,
     wtg,
     personal,
+    git_worktree_clean,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
@@ -99,6 +105,7 @@
         gh
         git
         git-crypt
+        inputs.git_worktree_clean.packages.${pkgs.system}.default
         glow
         go
         hexedit
