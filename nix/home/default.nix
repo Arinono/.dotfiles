@@ -27,11 +27,6 @@ in {
     stateVersion = "24.11";
   };
 
-  programs.tealdeer = {
-    enable = true;
-    enableAutoUpdates = true;
-  };
-
   imports = [
     ./zsh
     ./gitconfig.nix
@@ -42,6 +37,7 @@ in {
     ./fonts.nix
     ./gh-dash.nix
     ./ghostty.nix
+    ./tealdeer.nix
     ./tmux.nix
     ./wezterm.nix
   ];
