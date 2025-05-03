@@ -139,30 +139,13 @@
         "type": "github"
       }
     },
-    "personal": {
-      "locked": {
-        "lastModified": 1746279232,
-        "narHash": "sha256-KkW3/VC4B+ECsglc4opxD1G0YclNjGuPJBZ3McYHw5o=",
-        "ref": "refs/heads/master",
-        "rev": "97082977fcb3d38cbbaa2b68fb787bd78846dd29",
-        "revCount": 100,
-        "type": "git",
-        "url": "ssh://git@github.com/arinono/.dotfiles-personal"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/arinono/.dotfiles-personal"
-      }
-    },
     "root": {
       "inputs": {
         "git_worktree_clean": "git_worktree_clean",
         "home-manager": "home-manager",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_3",
-        "nixpkgs-stable": "nixpkgs-stable",
-        "personal": "personal",
-        "wtg": "wtg"
+        "nixpkgs-stable": "nixpkgs-stable"
       }
     },
     "systems": {
@@ -196,21 +179,6 @@
         "owner": "numtide",
         "repo": "flake-utils",
         "type": "github"
-      }
-    },
-    "wtg": {
-      "locked": {
-        "lastModified": 1746279020,
-        "narHash": "sha256-vPu8dSK6v1Rkihf3Fv5Gcn8uYMRpTyYXJaetuATIAiI=",
-        "ref": "refs/heads/master",
-        "rev": "c8fbaf90f9bd214e22e1cd308a485483c2417f0d",
-        "revCount": 41,
-        "type": "git",
-        "url": "ssh://git@github.com/arinono/.dotfiles-wtg"
-      },
-      "original": {
-        "type": "git",
-        "url": "ssh://git@github.com/arinono/.dotfiles-wtg"
       }
     }
   },

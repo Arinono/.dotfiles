@@ -1,8 +1,7 @@
 {
   pkgs,
-  fullname,
-  email,
   isDarwin,
+  params,
   ...
 }: let
   browser =
@@ -18,8 +17,8 @@ in
         */
         ''
           [user]
-            name = ${fullname}
-            email = ${email}
+            name = ${params.fullname}
+            email = ${params.email}
           [gpg]
             program = ${gnupg}/bin/gpg
           [web]

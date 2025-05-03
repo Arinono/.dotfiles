@@ -1,12 +1,13 @@
 {
   pkgs,
-  home,
   isDarwin,
   username,
-  wtg,
+  params,
+  secrets,
   ...
 }: let
   editor = "nvim";
+  home = params.home;
 
   # Envs
   default = import ./env {inherit editor pkgs isDarwin home;};
@@ -73,7 +74,7 @@ in {
         // direnv.variables
         // go.variables
         // tmux.variables
-        // wtg.variables;
+        // secrets.wtg.variables;
 
       shellAliases =
         default.aliases

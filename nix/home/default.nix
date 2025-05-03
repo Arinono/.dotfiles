@@ -2,17 +2,15 @@
   config,
   pkgs,
   lib,
-  username,
-  fullname,
-  email,
-  home,
   isDarwin,
-  wtg,
-  personal,
+  params,
+  secrets,
   ...
 }: let
   inherit (config.lib.file) mkOutOfStoreSymlink;
-  inherit username email fullname isDarwin home wtg;
+  inherit params secrets;
+  username = params.username;
+  home = params.home;
 in {
   programs.home-manager = {
     enable = true;
@@ -54,12 +52,12 @@ in {
 
     npmrc = {
       target = ".npmrc";
-      text = personal.npm.rc;
+      text = secrets.npm.rc;
     };
 
     sshconfig = {
       target = ".ssh/config";
-      text = personal.ssh.config;
+      text = secrets.ssh.config;
     };
   };
 

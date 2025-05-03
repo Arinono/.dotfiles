@@ -10,18 +10,8 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    wtg = {
-      url = "git+ssh://git@github.com/arinono/.dotfiles-wtg";
-      flake = true;
-    };
-
-    personal = {
-      url = "git+ssh://git@github.com/arinono/.dotfiles-personal";
-      flake = true;
-    };
-
     git_worktree_clean = {
-      url = ../git_worktree_clean;
+      url = "path:../git_worktree_clean";
       flake = true;
     };
   };
@@ -32,22 +22,22 @@
     nixpkgs,
     nixpkgs-stable,
     home-manager,
-    wtg,
-    personal,
     git_worktree_clean,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
 
-    licenses = import ./secrets/licenses.nix;
+    secrets = import ./secrets {};
 
     # move to fn param later
-    username = "arinono";
-    hostname = "lulu";
-    home = "/Users/${username}";
-    fullname = "Aurelien Arino";
-    email = "dev@arino.io";
+    params = rec {
+      username = "arinono";
+      hostname = "lux";
+      home = "/Users/${username}";
+      fullname = "Aurelien Arino";
+      email = "dev@arino.io";
+    };
 
     installBrew = with pkgs;
       pkgs.writeShellApplication {
@@ -80,8 +70,8 @@
       nixpkgs.config.allowUnfree = true;
 
       users.users.arinono = {
-        inherit home;
-        name = username;
+        home = params.home;
+        name = params.username;
       };
 
       environment.systemPackages = with pkgs; [
@@ -227,7 +217,7 @@
         screencapture = {
           disable-shadow = true;
           include-date = true;
-          location = "${home}/Downloads";
+          location = "${params.home}/Downloads";
           show-thumbnail = true;
           target = "file";
           type = "jpg";
@@ -239,7 +229,7 @@
         };
 
         smb = {
-          NetBIOSName = hostname;
+          NetBIOSName = params.hostname;
         };
 
         spaces.spans-displays = false;
@@ -250,7 +240,7 @@
           AppleMetricUnits = 1;
           AppleShowAllExtensions = true;
           AppleTemperatureUnit = "Celsius";
-          InitialKeyRepeat = 12;
+          InitialKeyRepeat = 20;
           KeyRepeat = 2;
           NSAutomaticCapitalizationEnabled = false;
           NSAutomaticDashSubstitutionEnabled = false;
@@ -280,7 +270,7 @@
           FXDefaultSearchScope = "SCcf";
           FXPreferredViewStyle = "clmv";
           NewWindowTarget = "Other";
-          NewWindowTargetPath = "file://${home}/Downloads";
+          NewWindowTargetPath = "file://${params.home}/Downloads";
           ShowExternalHardDrivesOnDesktop = true;
           ShowHardDrivesOnDesktop = true;
           ShowMountedServersOnDesktop = true;
@@ -320,7 +310,7 @@
             }
           ];
           persistent-others = [
-            "${home}/Downloads"
+            "${params.home}/Downloads"
           ];
           show-recents = false;
           showhidden = true;
@@ -392,7 +382,7 @@
             colorFormat = "HEX";
             copyOnEsc = 1;
             saveOnEsc = 1;
-            defaultFolder = "${home}/Downloads";
+            defaultFolder = "${params.home}/Downloads";
             downscaleOnSave = 0;
             expandableCanvas = 1;
             saveFormat = "PNG";
@@ -401,13 +391,13 @@
             showIntro = 0;
             showMenubarIcon = 1;
             thumbnailClosing = "auto";
-            token = licenses.shottr;
+            token = secrets.licenses.shottr;
           };
 
           "com.apple.TextEdit".RichText = 0;
 
           "com.bjango.istatmenus.menubar.7" = {
-            License.License = licenses.istatmenus.version7;
+            License.License = secrets.licenses.istatmenus.version7;
             Menu.Theme.Dark = "system";
             Menubar = {
               Global.ReducePadding = 0;
@@ -486,8 +476,8 @@
             hasRemovedHideAtLogin = 1;
             keyboardVolume = 1;
             registrationInfo = {
-              Code = licenses.soundsource.version5.code;
-              Name = licenses.soundsource.version5.name;
+              Code = secrets.licenses.soundsource.version5.code;
+              Name = secrets.licenses.soundsource.version5.name;
             };
           };
 
@@ -578,7 +568,7 @@
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
       system.stateVersion = 5;
-      # ids.gids.nixbld = 30000;
+      ids.gids.nixbld = 30000;
 
       nixpkgs.hostPlatform = system;
     };
@@ -587,12 +577,12 @@
     homeManagerArgs = {
       # NOTE: change isDarwin to use provided function value when setting
       # up the machines
-      inherit username hostname fullname email isDarwin home wtg personal;
+      inherit isDarwin params secrets;
     };
 
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
   in {
-    darwinConfigurations."${hostname}" = nix-darwin.lib.darwinSystem {
+    darwinConfigurations."${params.hostname}" = nix-darwin.lib.darwinSystem {
       modules = [
         configuration
         home-manager.darwinModules.home-manager
@@ -600,18 +590,18 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.${username} = import ./home;
+            users.${params.username} = import ./home;
             extraSpecialArgs = homeManagerArgs;
           };
         }
       ];
     };
 
-    darwinPackages = self.darwinConfigurations."${hostname}".pkgs;
+    darwinPackages = self.darwinConfigurations."${params.hostname}".pkgs;
 
     packages.aarch64-darwin.installBrew = installBrew;
     packages.aarch64-darwin.setHostname = setHostname {
-      inherit hostname;
+      hostname = params.hostname;
     };
 
     formatter = forAllSystems ({pkgs}: pkgs.alejandra);
