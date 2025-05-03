@@ -40,6 +40,8 @@
     system = "aarch64-darwin";
     pkgs = nixpkgs.legacyPackages.${system};
 
+    licenses = import ./secrets/licenses.nix;
+
     # move to fn param later
     username = "arinono";
     hostname = "lulu";
@@ -399,13 +401,13 @@
             showIntro = 0;
             showMenubarIcon = 1;
             thumbnailClosing = "auto";
-            token = "";
+            token = licenses.shottr;
           };
 
           "com.apple.TextEdit".RichText = 0;
 
           "com.bjango.istatmenus.menubar.7" = {
-            License.License = "";
+            License.License = licenses.istatmenus.version7;
             Menu.Theme.Dark = "system";
             Menubar = {
               Global.ReducePadding = 0;
@@ -484,8 +486,8 @@
             hasRemovedHideAtLogin = 1;
             keyboardVolume = 1;
             registrationInfo = {
-              Code = "";
-              Name = fullname;
+              Code = licenses.soundsource.version5.code;
+              Name = licenses.soundsource.version5.name;
             };
           };
 
