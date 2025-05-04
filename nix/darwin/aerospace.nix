@@ -1,18 +1,16 @@
 {pkgs, ...}: {
-  programs.aerospace = with pkgs; {
+  services.aerospace = with pkgs; {
     enable = true;
 
-    userSettings = {
-      # after-startup-command = ["exec-and-forget ${sketchybar}/bin/sketchybar"];
-      #
-      # exec-on-workspace-change = [
-      #   "/bin/bash"
-      #   "-c"
-      #   "${sketchybar}/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
-      #   "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"
-      # ];
+    settings = {
+      exec-on-workspace-change = [
+        "/bin/bash"
+        "-c"
+        "${sketchybar}/bin/sketchybar --update"
+      ];
 
-      start-at-login = true;
+      # Used as a service, so no need for this home manager option
+      # start-at-login = true;
 
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
@@ -53,15 +51,14 @@
 
       gaps = {
         inner = {
-          horizontal = 0;
-          vertical = 0;
+          horizontal = 8;
+          vertical = 8;
         };
         outer = {
-          left = 0;
-          bottom = 0;
-          top = 0;
-          # right = 31;
-          right = 0;
+          left = 4;
+          bottom = 4;
+          top = 4;
+          right = 4;
         };
       };
 

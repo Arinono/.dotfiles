@@ -28,7 +28,6 @@ in {
   imports = [
     ./zsh
     ./gitconfig.nix
-    ./aerospace.nix
     # ./carapace.nix
     ./ctop.nix
     ./btop.nix

@@ -74,8 +74,12 @@
         name = params.username;
       };
 
+      imports = [
+        ./darwin/aerospace.nix
+        ./darwin/sketchybar.nix
+      ];
+
       environment.systemPackages = with pkgs; [
-        aerospace
         alejandra
         bat
         btop
@@ -120,7 +124,6 @@
         rsync
         rustc
         sccache
-        sketchybar
         sqld
         tailscale
         terminal-notifier
