@@ -1,4 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  home,
+  ...
+}: let
+  tmux = import ./zsh/env/tmux.nix {inherit pkgs home;};
+  convert = import ./zsh/bin/convert.nix {inherit pkgs;};
+in {
   programs.tmux = {
     enable = true;
 
@@ -59,10 +66,10 @@
       bind % split-window -h -c "#{pane_current_path}"
 
       bind C new-session -ds caffeinate "caffeinate -d"
-      bind f run-shell "tmux neww ~/.local/bin/tmux-sessionizer"
-      bind g run-shell "tmux neww ~/.local/bin/tmux-worktree-panizer"
-      bind K run-shell "~/.local/bin/kill-session"
-      bind F run-shell "tmux neww ~/.local/bin/convert"
+      bind f run-shell "tmux neww ${tmux.tmux_sessionizer}/bin/tmux_sessionizer"
+      bind g run-shell "tmux neww ${tmux.tmux_worktree_panizer}/bin/tmux_worktree_panizer"
+      bind K run-shell "${tmux.kill_session}/bin/kill_session"
+      bind F run-shell "tmux neww ${convert.sh}/bin/convert"
     '';
   };
 }
