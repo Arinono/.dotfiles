@@ -179,8 +179,8 @@
         brews = [];
 
         masApps = {
-          Tailscale = 1475387142;
-          Wireguard = 1451685025;
+          # Tailscale = 1475387142;
+          # Wireguard = 1451685025;
         };
       };
 
@@ -573,7 +573,6 @@
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
       system.stateVersion = 5;
-      ids.gids.nixbld = 30000;
 
       nixpkgs.hostPlatform = system;
     };
