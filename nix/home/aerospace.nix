@@ -1,15 +1,14 @@
-{...}: {
-  programs.aerospace = {
+{pkgs, ...}: {
+  programs.aerospace = with pkgs; {
     enable = true;
 
     userSettings = {
-      # after-startup-command = ["exec-and-forget" "sketchybar"];
-      after-startup-command = [];
-
+      # after-startup-command = ["exec-and-forget ${sketchybar}/bin/sketchybar"];
+      #
       # exec-on-workspace-change = [
       #   "/bin/bash"
       #   "-c"
-      #   "sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
+      #   "${sketchybar}/bin/sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"
       #   "exec-and-forget borders active_color=0xffe1e3e4 inactive_color=0xff494d64 width=5.0"
       # ];
 
@@ -19,7 +18,7 @@
       enable-normalization-opposite-orientation-for-nested-containers = true;
       accordion-padding = 100;
       default-root-container-layout = "tiles";
-      default-root-container-orientation = "vertical";
+      default-root-container-orientation = "horizontal";
       on-focused-monitor-changed = ["move-mouse monitor-lazy-center"];
       automatically-unhide-macos-hidden-apps = false;
 
@@ -52,14 +51,6 @@
 
       key-mapping.preset = "qwerty";
 
-      # [gaps]
-      # inner.horizontal = 10
-      # inner.vertical =   10
-      # outer.left =       10
-      # outer.bottom =     10
-      # outer.top =        10
-      # outer.right =      50
-
       gaps = {
         inner = {
           horizontal = 0;
@@ -69,7 +60,8 @@
           left = 0;
           bottom = 0;
           top = 0;
-          right = 31;
+          # right = 31;
+          right = 0;
         };
       };
 
@@ -139,12 +131,12 @@
       };
 
       mode.apps.binding = {
-        alt-a = "exec-and-forget open -a /Applications/Arc.app";
-        alt-o = "exec-and-forget open -a /Applications/Obsidian.app";
+        alt-a = "exec-and-forget open -a /Applications/Nix\ Apps/Arc.app";
+        alt-o = "exec-and-forget open -a /Applications/Nix\ Apps/Obsidian.app";
         alt-g = "exec-and-forget open -a /Applications/Ghostty.app";
-        alt-s = "exec-and-forget open -a /Applications/Spotify.app";
-        alt-d = "exec-and-forget open \"https://google.com\"";
-        alt-b = "exec-and-forget open -a /Applications/Brave\ Browser.app/";
+        alt-s = "exec-and-forget open -a /Applications/Nix\ Apps/Spotify.app";
+        alt-d = "exec-and-forget open -a /Applications/Discord.app";
+        alt-b = "exec-and-forget open -a /Applications/Nix\ Apps/Brave\ Browser.app/";
         esc = "mode main";
       };
     };

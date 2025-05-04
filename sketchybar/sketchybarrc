@@ -1,10 +1,10 @@
 #!/usr/bin/env sh
 
-source "$HOME/.config/sketchybar/colors.sh" # Loads all defined colors
-source "$HOME/.config/sketchybar/icons.sh" # Loads all defined icons
+source "$XDG_CONFIG_HOME/sketchybar/colors.sh" # Loads all defined colors
+source "$XDG_CONFIG_HOME/sketchybar/icons.sh" # Loads all defined icons
 
-ITEM_DIR="$HOME/.config/sketchybar/items" # Directory where the items are configured
-PLUGIN_DIR="$HOME/.config/sketchybar/plugins" # Directory where all the plugin scripts are stored
+ITEM_DIR="$XDG_CONFIG_HOME/sketchybar/items" # Directory where the items are configured
+PLUGIN_DIR="$XDG_CONFIG_HOME/sketchybar/plugins" # Directory where all the plugin scripts are stored
 
 FONT="Dank Mono" # Needs to have Regular, Bold, Semibold, Heavy and Black variants
 ICON_FONT="MesloLGL Nerd Font"
@@ -48,14 +48,7 @@ sketchybar --bar     height=30                                         \
                      popup.background.color=$POPUP_BACKGROUND_COLOR    \
                      popup.background.shadow.drawing=$SHADOW
 
-# Left
 source "$ITEM_DIR/spaces.sh"
-
-# Center
-# source "$ITEM_DIR/spotify.sh"
-
-# Right
-# source "$ITEM_DIR/calendar.sh"
 
 ############## FINALIZING THE SETUP ##############
 sketchybar --update

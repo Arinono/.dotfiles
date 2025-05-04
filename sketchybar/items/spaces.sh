@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 
+echo "register event spaces"
 sketchybar --add event aerospace_workspace_change
 RED=0xffed8796
 for sid in $(aerospace list-workspaces --all); do
@@ -21,7 +22,7 @@ for sid in $(aerospace list-workspaces --all); do
                               label.background.corner_radius=5              \
                               label.drawing=off                             \
         click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospacer.sh $sid"
+        script="$PLUGIN_DIR/aerospacer.sh $sid"
 done
 
 # sketchybar   --add item       separator left                          \

@@ -130,6 +130,7 @@
         tree
         trunk
         turso-cli
+        utm
         vhs
         wasm-pack
         websocat
@@ -162,6 +163,7 @@
           "discord"
           "docker"
           "font-meslo-lg-nerd-font"
+          "flycut"
           "ghostty"
           "istat-menus"
           "scroll-reverser"
