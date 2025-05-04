@@ -7,6 +7,8 @@
 [link](https://nixos.org/download/)
 ```bash
 sh <(curl -L https://nixos.org/nix/install)
+mkdir -p ~/.config/nix
+echo "experimental-features = nix-command flakes >> ~/.config/nix/nix.conf
 ```
 
 ### Clone the repo
@@ -16,13 +18,12 @@ cd ~/.dotfiles
 nix shell nixpkgs#git-crypt
 # Copy the key over
 git crypt unlock ~/.ssh/git_crypt_dotfiles
-# Then finish pulling
 ```
 
 ### Install homebrew
 [link](https://brew.sh/)
 ```bash
-# with nix (not tested yet)
+# with nix
 nix -L run ./nix#installBrew
 
 # regular
@@ -38,8 +39,7 @@ https://github.com//arinono/.dotfiles/blob/9f9c060cd20ed8d83c08fbbf9fdbb02d19772
 
 ```bash
 # 1st run
-nix --extra-experimental-features nix-command --extra-experimental flakes \
-    run nix-darwin/master#darwin-rebuild -- switch --flake ./nix#<your-hostname>
+nix run nix-darwin/master#darwin-rebuild -- switch --flake ./nix#<your-hostname>
 
 # later run
 darwin-rebuild switch --flake ./nix#<your-hostname>
