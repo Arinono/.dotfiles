@@ -14,6 +14,11 @@
       url = "path:../git_worktree_clean";
       flake = true;
     };
+
+    private_flakes = {
+      url = "git+ssh://git@github.com/arinono/private-flakes.git";
+      flake = true;
+    };
   };
 
   outputs = inputs @ {
@@ -23,6 +28,7 @@
     nixpkgs-stable,
     home-manager,
     git_worktree_clean,
+    private_flakes,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
@@ -100,73 +106,75 @@
         ./darwin/services/sketchybar.nix
       ];
 
-      environment.systemPackages = with pkgs; [
-        alejandra
-        bat
-        btop
-        cargo
-        cargo-generate
-        cargo-info
-        cargo-modules
-        curl
-        dart
-        devbox
-        direnv
-        dua
-        dust
-        eza
-        fd
-        ffmpeg
-        flyctl
-        fzf
-        gh
-        git
-        git-crypt
-        inputs.git_worktree_clean.packages.${pkgs.system}.default
-        glow
-        go
-        hexedit
-        hexyl
-        htop
-        iperf
-        jq
-        just
-        keycastr
-        mdbook
-        minio
-        minio-client
-        neofetch
-        neovim
-        ngrok
-        nil
-        nodejs
-        oha
-        ripgrep
-        rsync
-        rustc
-        sccache
-        sqld
-        tailscale
-        terminal-notifier
-        timer
-        tmux
-        tokei
-        tree
-        trunk
-        turso-cli
-        utm
-        vhs
-        wasm-pack
-        websocat
-        wget
+      environment.systemPackages = with pkgs;
+        [
+          alejandra
+          bat
+          btop
+          cargo
+          cargo-generate
+          cargo-info
+          cargo-modules
+          curl
+          dart
+          devbox
+          direnv
+          dua
+          dust
+          eza
+          fd
+          ffmpeg
+          flyctl
+          fzf
+          gh
+          git
+          git-crypt
+          inputs.git_worktree_clean.packages.${pkgs.system}.default
+          glow
+          go
+          hexedit
+          hexyl
+          htop
+          iperf
+          jq
+          just
+          keycastr
+          mdbook
+          minio
+          minio-client
+          neofetch
+          neovim
+          ngrok
+          nil
+          nodejs
+          oha
+          ripgrep
+          rsync
+          rustc
+          sccache
+          sqld
+          tailscale
+          terminal-notifier
+          timer
+          tmux
+          tokei
+          tree
+          trunk
+          turso-cli
+          utm
+          vhs
+          wasm-pack
+          websocat
+          wget
 
-        arc-browser
-        brave
-        # ghostty - Broken on darwin
-        obsidian
-        spotify
-        # vlc - Not on aarch64-darwin
-      ];
+          arc-browser
+          brave
+          # ghostty - Broken on darwin
+          obsidian
+          spotify
+          # vlc - Not on aarch64-darwin
+        ]
+        ++ private_flakes.bins;
 
       homebrew = {
         enable = true;
