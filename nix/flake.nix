@@ -46,7 +46,6 @@
       home = "/Users/${username}";
       fullname = "Aurelien Arino";
       email = "dev@arino.io";
-      legacyBld = false;
     };
 
     secrets = import ./secrets {inherit params;};
@@ -233,18 +232,36 @@
         '';
 
       system.defaults = with defaults;
-        general
-        // global
-        // dock_finder
-        // shottr
-        // istat_menus
-        // flycut
-        // scroll_reverser
-        // soundsource
-        // arc_browser
-        // keycastr
-        // tailscale
-        // vlc;
+        {
+          CustomSystemPreferences = with defaults;
+            general.CustomSystemPreferences
+            // global.CustomSystemPreferences
+            // dock_finder.CustomSystemPreferences;
+
+          CustomUserPreferences = with defaults;
+            arc_browser.CustomUserPreferences
+            // flycut.CustomUserPreferences
+            // istat_menus.CustomUserPreferences
+            // keycastr.CustomUserPreferences
+            // scroll_reverser.CustomUserPreferences
+            // shottr.CustomUserPreferences
+            // soundsource.CustomUserPreferences
+            // tailscale.CustomUserPreferences
+            // vlc.CustomUserPreferences;
+        }
+        // general.base
+        // global.base
+        // dock_finder.base;
+
+      # // shottr
+      # // istat_menus
+      # // flycut
+      # // scroll_reverser
+      # // soundsource
+      # // arc_browser
+      # // keycastr
+      # // tailscale
+      # // vlc;
 
       nix = {
         enable = true;
@@ -300,10 +317,7 @@
         # };
       };
 
-      ids.gids.nixbld =
-        if params.legacyBld
-        then 30000
-        else 350;
+      ids.gids.nixbld = 350;
 
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
