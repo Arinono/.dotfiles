@@ -41,7 +41,7 @@ in
           [difftool "nvimdiff"]
             cmd = "${neovim}/bin/nvim -d \"$LOCAL\" \"$REMOTE\""
           [commit]
-            gpgsign = false # true
+            gpgsign = true
           [pull]
             rebase = true
           [rebase]

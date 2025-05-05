@@ -33,7 +33,17 @@
       };
     };
 
-    secrets = import ./secrets {};
+    # move to fn param later
+    params = rec {
+      username = "arinono";
+      hostname = "lux";
+      home = "/Users/${username}";
+      fullname = "Aurelien Arino";
+      email = "dev@arino.io";
+      legacyBld = true;
+    };
+
+    secrets = import ./secrets {inherit params;};
 
     defaults = {
       general = import ./darwin/defaults/general.nix {inherit params;};
@@ -48,16 +58,6 @@
       keycastr = import ./darwin/defaults/keycastr.nix {};
       tailscale = import ./darwin/defaults/tailscale.nix {};
       vlc = import ./darwin/defaults/vlc.nix {};
-    };
-
-    # move to fn param later
-    params = rec {
-      username = "arinono";
-      hostname = "lux";
-      home = "/Users/${username}";
-      fullname = "Aurelien Arino";
-      email = "dev@arino.io";
-      legacyBld = true;
     };
 
     installBrew = with pkgs;
@@ -124,6 +124,7 @@
         git-crypt
         inputs.git_worktree_clean.packages.${pkgs.system}.default
         glow
+        gnupg
         go
         hexedit
         hexyl
@@ -141,6 +142,7 @@
         nil
         nodejs
         oha
+        pinentry-tty
         ripgrep
         rsync
         rustc

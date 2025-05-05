@@ -38,6 +38,8 @@ in {
     ./tmux.nix
     ./wezterm.nix
     ./zoxide.nix
+    ./ssh-import.nix
+    ./gpg-import.nix
   ];
 
   home.file = {
@@ -54,10 +56,7 @@ in {
       text = secrets.npm.rc;
     };
 
-    sshconfig = {
-      target = ".ssh/config";
-      text = secrets.ssh.config;
-    };
+    # SSH config is now managed by ssh-import.nix
   };
 
   fonts.fontconfig.enable = true;
