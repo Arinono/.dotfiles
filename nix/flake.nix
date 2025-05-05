@@ -40,7 +40,7 @@
       home = "/Users/${username}";
       fullname = "Aurelien Arino";
       email = "dev@arino.io";
-      legacyBld = true;
+      legacyBld = false;
     };
 
     secrets = import ./secrets {inherit params;};

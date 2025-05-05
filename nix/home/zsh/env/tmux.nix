@@ -93,7 +93,7 @@
   };
 
   aliases = with pkgs; {
-    tn = "${tmux}/bin/tmux new -s main";
+    tn = "${tmux}/bin/tmux new -ds downloads -c ~/Downloads";
     ta = "${tmux}/bin/tmux attach";
     td = "${tmux}/bin/tmux detach";
     ts = "${tmux}/bin/tmux new-session -s";

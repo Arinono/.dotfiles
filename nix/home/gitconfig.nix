@@ -48,13 +48,13 @@ in
             updateRefs = true
           [push]
             autoSetupRemote = true
-          [url "ssh://git@github.com:arinono/"]
+          [url "git@github.com:arinono"]
             insteadOf = "https://github.com/arinono"
-          [url "ssh://git@github.com:withthegrid/"]
+          [url "git@github.com:withthegrid"]
             insteadOf = "https://github.com/withthegrid"
           [url "git@github.com:arinono/"]
             insteadOf = "me:"
-          [url "git@github.com:wtg/"]
+          [url "git@github.com:withthegrid/"]
             insteadOf = "wtg:"
           [rerere]
             enabled = true
