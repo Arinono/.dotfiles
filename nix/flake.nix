@@ -124,7 +124,6 @@
         git-crypt
         inputs.git_worktree_clean.packages.${pkgs.system}.default
         glow
-        gnupg
         go
         hexedit
         hexyl
@@ -142,7 +141,6 @@
         nil
         nodejs
         oha
-        pinentry-tty
         ripgrep
         rsync
         rustc

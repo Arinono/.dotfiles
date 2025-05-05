@@ -33,4 +33,3 @@
   # Create ssh config file
   home.file.".ssh/config".text = secrets.ssh.config;
 }
-
