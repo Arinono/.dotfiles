@@ -26,9 +26,29 @@
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
-    pkgs = nixpkgs.legacyPackages.${system};
+    pkgs = import nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
 
     secrets = import ./secrets {};
+
+    defaults = {
+      general = import ./darwin/defaults/general.nix {inherit params;};
+      global = import ./darwin/defaults/global.nix {};
+      dock_finder = import ./darwin/defaults/dock_finder.nix {inherit pkgs params;};
+      shottr = import ./darwin/defaults/shottr.nix {inherit params secrets;};
+      istat_menus = import ./darwin/defaults/istat_menus.nix {inherit secrets;};
+      flycut = import ./darwin/defaults/flycut.nix {};
+      scroll_reverser = import ./darwin/defaults/scroll_reverser.nix {};
+      soundsource = import ./darwin/defaults/soundsource.nix {inherit secrets;};
+      arc_browser = import ./darwin/defaults/arc_browser.nix {};
+      keycastr = import ./darwin/defaults/keycastr.nix {};
+      tailscale = import ./darwin/defaults/tailscale.nix {};
+      vlc = import ./darwin/defaults/vlc.nix {};
+    };
 
     # move to fn param later
     params = rec {
@@ -37,6 +57,7 @@
       home = "/Users/${username}";
       fullname = "Aurelien Arino";
       email = "dev@arino.io";
+      legacyBld = true;
     };
 
     installBrew = with pkgs;
@@ -75,8 +96,8 @@
       };
 
       imports = [
-        ./darwin/aerospace.nix
-        ./darwin/sketchybar.nix
+        ./darwin/services/aerospace.nix
+        ./darwin/services/sketchybar.nix
       ];
 
       environment.systemPackages = with pkgs; [
@@ -203,318 +224,19 @@
           done
         '';
 
-      system.defaults = {
-        hitoolbox = {
-          AppleFnUsageType = "Do Nothing";
-        };
-
-        menuExtraClock = {
-          FlashDateSeparators = false;
-          IsAnalog = false;
-          Show24Hour = true;
-          ShowAMPM = false;
-          ShowDate = 0;
-          ShowDayOfMonth = true;
-          ShowDayOfWeek = true;
-          ShowSeconds = false;
-        };
-
-        screencapture = {
-          disable-shadow = true;
-          include-date = true;
-          location = "${params.home}/Downloads";
-          show-thumbnail = true;
-          target = "file";
-          type = "jpg";
-        };
-
-        screensaver = {
-          askForPassword = true;
-          askForPasswordDelay = 0;
-        };
-
-        smb = {
-          NetBIOSName = params.hostname;
-        };
-
-        spaces.spans-displays = false;
-
-        NSGlobalDomain = {
-          AppleInterfaceStyle = "Dark";
-          AppleMeasurementUnits = "Centimeters";
-          AppleMetricUnits = 1;
-          AppleShowAllExtensions = true;
-          AppleTemperatureUnit = "Celsius";
-          InitialKeyRepeat = 20;
-          KeyRepeat = 2;
-          NSAutomaticCapitalizationEnabled = false;
-          NSAutomaticDashSubstitutionEnabled = false;
-          NSAutomaticPeriodSubstitutionEnabled = false;
-          NSAutomaticQuoteSubstitutionEnabled = false;
-          NSAutomaticSpellingCorrectionEnabled = false;
-          NSNavPanelExpandedStateForSaveMode = true;
-          NSTableViewDefaultSizeMode = 2;
-          NSWindowShouldDragOnGesture = true;
-          _HIHideMenuBar = true;
-          "com.apple.sound.beep.feedback" = 0;
-          "com.apple.sound.beep.volume" = 0.0;
-          "com.apple.springing.delay" = 0.5;
-          "com.apple.springing.enabled" = true;
-          "com.apple.swipescrolldirection" = true;
-          "com.apple.trackpad.forceClick" = true;
-          "com.apple.trackpad.scaling" = 0.6875;
-        };
-
-        loginwindow = {
-          GuestEnabled = false;
-        };
-
-        finder = {
-          AppleShowAllFiles = true;
-          AppleShowAllExtensions = true;
-          FXDefaultSearchScope = "SCcf";
-          FXPreferredViewStyle = "clmv";
-          NewWindowTarget = "Other";
-          NewWindowTargetPath = "file://${params.home}/Downloads";
-          ShowExternalHardDrivesOnDesktop = true;
-          ShowHardDrivesOnDesktop = true;
-          ShowMountedServersOnDesktop = true;
-          ShowRemovableMediaOnDesktop = false;
-          _FXShowPosixPathInTitle = true;
-        };
-
-        trackpad = {
-          ActuationStrength = 1;
-          Clicking = false;
-          Dragging = false;
-          FirstClickThreshold = 1;
-        };
-
-        dock = {
-          autohide = true;
-          autohide-delay = 0.0;
-          autohide-time-modifier = 0.25;
-          expose-animation-duration = 0.0;
-          expose-group-apps = true;
-          orientation = "right";
-          mineffect = "scale";
-          launchanim = false;
-          tilesize = 32;
-          magnification = false;
-          minimize-to-application = true;
-          mru-spaces = false;
-          persistent-apps = [
-            {
-              app = "/Applications/Ghostty.app";
-            }
-            {
-              app = "${pkgs.spotify}/Applications/Spotify.app";
-            }
-            {
-              app = "${pkgs.arc-browser}/Applications/Arc.app";
-            }
-          ];
-          persistent-others = [
-            "${params.home}/Downloads"
-          ];
-          show-recents = false;
-          showhidden = true;
-          slow-motion-allowed = false;
-          wvous-bl-corner = 1;
-          wvous-br-corner = 1;
-          wvous-tl-corner = 1;
-          wvous-tr-corner = 1;
-        };
-
-        CustomSystemPreferences = {
-          "com.apple.airplay".showInMenuBarIfPresent = 0;
-
-          hitoolbox = {
-            AppleDictationAutoEnable = 0;
-          };
-
-          NSGlobalDomain = {
-            AppleInterfaceStyle = "Dark";
-            AppleLanguages = ["en-FR"];
-            AppleLocale = "en_FR";
-            AppleReduceDesktopTinting = true;
-            AppleShowScrollBars = "Automatic";
-            NSAutomaticTextCompletionEnabled = true;
-            NSNavPanelFileLastListModeForOpenModeKey = 2;
-            NSNavPanelFileListModeForOpenMode2 = 1;
-            "com.apple.sound.beep.flash" = 0;
-            "com.apple.sound.uiaudio.enabled" = 1;
-            CGDisableCursorLocationMagnification = 1;
-          };
-
-          finder = {
-            DisableAllAnimations = true;
-            FK_ArrangeBy = "Date Added";
-            FK_SidebarWidth = 150;
-            FXArrangeGroupViewBy = "Name";
-            FXLastSearchScope = "SCcf";
-            FXPreferredGroupBy = "Name";
-            FXPreferredSearchViewStyle = "Nlsv";
-            RecentsArrangeGroupViewBy = "Date Last Opened";
-            ShowSidebar = true;
-            SidebarDevicesSectionDisclosedState = true;
-            SidebarPlacesSectionDisclosedState = true;
-            SidebarShowingSignedIntoiCloud = true;
-            SidebarTagsSectionDisclosedState = false;
-            SidebariCloudDriveSectionDisclosedState = true;
-          };
-        };
-
-        CustomUserPreferences = {
-          "com.apple.Accessibility" = {
-            KeyRepeatDelay = 0.5;
-            KeyRepeatEnabled = 1;
-            KeyRepeatInterval = 0.033;
-            ReduceMotionEnabled = 1;
-          };
-
-          "cc.ffitch.shottr" = {
-            KeyboardShortcuts_area = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":21}";
-            KeyboardShortcuts_fullscreen = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":20}";
-            KeyboardShortcuts_window = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":23}";
-            afterGrabCopy = 1;
-            afterGrabSave = 1;
-            afterGrabShow = 1;
-            allowTelemetry = 0;
-            alwaysOnTop = 1;
-            areadCaptureMode = "preview";
-            cmdQAction = "quit";
-            colorFormat = "HEX";
-            copyOnEsc = 1;
-            saveOnEsc = 1;
-            defaultFolder = "${params.home}/Downloads";
-            downscaleOnSave = 0;
-            expandableCanvas = 1;
-            saveFormat = "PNG";
-            windowShadow = "trimmed";
-            showDockIcon = 1;
-            showIntro = 0;
-            showMenubarIcon = 1;
-            thumbnailClosing = "auto";
-            token = secrets.licenses.shottr;
-          };
-
-          "com.apple.TextEdit".RichText = 0;
-
-          "com.bjango.istatmenus.menubar.7" = {
-            License.License = secrets.licenses.istatmenus.version7;
-            Menu.Theme.Dark = "system";
-            Menubar = {
-              Global.ReducePadding = 0;
-              Theme.Dark = "custom";
-            };
-            Sensors.Global.DetailLevel = 1;
-
-            Combined.Menu.Items = [
-              "cpu-uptime"
-              "cpu-cpu"
-              "memory-overview"
-              "disks-physical"
-              "network-bandwidth"
-              "sensors-overview"
-              "battery-combined"
-              "battery-bluetooth"
-            ];
-
-            Profiles.Settings.default = {
-              Battery.Menubar.Enabled = 0;
-              CPU.Menubar.Enabled = 0;
-              Disks.Menubar.Enabled = 0;
-              Memory.Menubar.Enabled = 0;
-              Network.Menubar.Enabled = 0;
-              Sensors.Menubar.Enabled = 0;
-              Combined.Menubar = {
-                Enabled = 1;
-                Items = [
-                  {
-                    source = 1;
-                    subtype = 1;
-                    type = 3;
-                  }
-                  {
-                    source = 2;
-                    type = 3;
-                  }
-                  {
-                    source = 3;
-                    type = 3;
-                  }
-                  {
-                    source = 7;
-                    subtype = 6;
-                    type = 7;
-                  }
-                ];
-              };
-            };
-          };
-
-          "com.generalarcade.flycut" = {
-            "ShortcutRecorder mainHotKey" = {
-              keyCode = 9;
-              modifierFlags = 1179648;
-            };
-            loadOnStartup = 1;
-            stickyBezel = 1;
-            store = {
-              displayLen = 40;
-              displayNum = 10;
-              favoritesRememberNum = 40;
-              syncSettingsViaICloud = 0;
-            };
-          };
-
-          "com.pilotmoon.scroll-reverser" = {
-            HideIcon = 1;
-            InvertScrollingOn = 1;
-            ReverseTrackpad = 0;
-            ReverseX = 1;
-          };
-
-          "com.rogueamoeba.soundsource" = {
-            dontAskLaunchAtLogin = 1;
-            hasRemovedHideAtLogin = 1;
-            keyboardVolume = 1;
-            registrationInfo = {
-              Code = secrets.licenses.soundsource.version5.code;
-              Name = secrets.licenses.soundsource.version5.name;
-            };
-          };
-
-          "company.thebrowser.Browser" = {
-            arcMaxAutoOptInEnabled = 0;
-            arc_quitAlwaysKeepsWindows = 1;
-            currentAppIconName = "candy";
-            meetArcMaxBannerDismissed = 1;
-          };
-
-          "io.github.keycastr" = {
-            "default.allKeys" = 1;
-            "default.allModifierdKeys" = 0;
-            "default.commandKeysOnly" = 0;
-            "default.fadeDelay" = 2.94;
-            "default.fontSize" = 72;
-            "default.keysstrokeDelay" = 1;
-            displayIcon = 1;
-            "mouse.displayOption" = 1;
-            selectedVisualizer = "Default";
-            "svelte.displayAll" = 0;
-          };
-
-          "io.tailscale.ipn.macos" = {
-            TailscaleStartOnLogin = 1;
-          };
-
-          "org.videolan.vlc" = {
-            DisplayTimeAsTimeRemaining = "YES";
-          };
-        };
-      };
+      system.defaults = with defaults;
+        general
+        // global
+        // dock_finder
+        // shottr
+        // istat_menus
+        // flycut
+        // scroll_reverser
+        // soundsource
+        // arc_browser
+        // keycastr
+        // tailscale
+        // vlc;
 
       nix = {
         enable = true;
@@ -569,6 +291,11 @@
         #   };
         # };
       };
+
+      ids.gids.nixbld =
+        if params.legacyBld
+        then 30000
+        else 350;
 
       system.configurationRevision = self.rev or self.dirtyRev or null;
 
