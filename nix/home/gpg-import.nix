@@ -35,9 +35,13 @@
     fi
   '';
 
+  home.file.".gnupg/gpg-agent.conf".text = ''
+    pinentry-program ${pkgs.pinentry-tty}/bin/pinentry-tty
+  '';
+
   # Make sure gnupg is installed
   home.packages = with pkgs; [
     gnupg
-    pinentry-curses
+    pinentry-tty
   ];
 }

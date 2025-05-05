@@ -67,6 +67,10 @@ in {
         expireDuplicatesFirst = true;
       };
 
+      envExtra = ''
+        export GPG_TTY=$(tty)
+      '';
+
       sessionVariables =
         default.variables
         // ngrok.variables
