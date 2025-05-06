@@ -39,32 +39,6 @@
       };
     };
 
-    # move to fn param later
-    params = rec {
-      username = "arinono";
-      hostname = "lux";
-      home = "/Users/${username}";
-      fullname = "Aurelien Arino";
-      email = "dev@arino.io";
-    };
-
-    secrets = import ./secrets {inherit params;};
-
-    defaults = {
-      general = import ./darwin/defaults/general.nix {inherit params;};
-      global = import ./darwin/defaults/global.nix {};
-      dock_finder = import ./darwin/defaults/dock_finder.nix {inherit pkgs params;};
-      shottr = import ./darwin/defaults/shottr.nix {inherit params secrets;};
-      istat_menus = import ./darwin/defaults/istat_menus.nix {inherit secrets;};
-      flycut = import ./darwin/defaults/flycut.nix {};
-      scroll_reverser = import ./darwin/defaults/scroll_reverser.nix {};
-      soundsource = import ./darwin/defaults/soundsource.nix {inherit secrets;};
-      arc_browser = import ./darwin/defaults/arc_browser.nix {};
-      keycastr = import ./darwin/defaults/keycastr.nix {};
-      tailscale = import ./darwin/defaults/tailscale.nix {};
-      vlc = import ./darwin/defaults/vlc.nix {};
-    };
-
     installBrew = with pkgs;
       pkgs.writeShellApplication {
         name = "install-homebrew";
@@ -93,6 +67,7 @@
       '';
     };
 
+    darwin = import ./darwin {inherit nixpkgs;};
     configuration = {
       pkgs,
       lib,
@@ -232,9 +207,9 @@
           mkdir -p /Applications/Nix\ Apps
           find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
           while read -r src; do
-          	app_name=$(basename "$src")
-          	echo "copying $src" >&2
-          	${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+                  app_name=$(basename "$src")
+                  echo "copying $src" >&2
+                  ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
 
@@ -258,17 +233,16 @@
         }
         // general.base
         // global.base
-        // dock_finder.base;
-
-      # // shottr
-      # // istat_menus
-      # // flycut
-      # // scroll_reverser
-      # // soundsource
-      # // arc_browser
-      # // keycastr
-      # // tailscale
-      # // vlc;
+        // dock_finder.base
+      // shottr
+      // istat_menus
+      // flycut
+      // scroll_reverser
+      // soundsource
+      // arc_browser
+      // keycastr
+      // tailscale
+      // vlc;
 
       nix = {
         enable = true;
@@ -333,29 +307,24 @@
       nixpkgs.hostPlatform = system;
     };
 
-    isDarwin = true;
-    homeManagerArgs = {
-      # NOTE: change isDarwin to use provided function value when setting
-      # up the machines
-      inherit isDarwin params secrets;
-    };
-
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
   in {
-    darwinConfigurations."${params.hostname}" = nix-darwin.lib.darwinSystem {
-      modules = [
-        configuration
-        home-manager.darwinModules.home-manager
-        {
-          home-manager = {
-            useGlobalPkgs = true;
-            useUserPackages = true;
-            users.${params.username} = import ./home;
-            extraSpecialArgs = homeManagerArgs;
-          };
-        }
-      ];
-    };
+    # darwinConfigurations."${params.hostname}" = nix-darwin.lib.darwinSystem {
+    #   modules = [
+    #     configuration
+    #     home-manager.darwinModules.home-manager
+    #     {
+    #       home-manager = {
+    #         useGlobalPkgs = true;
+    #         useUserPackages = true;
+    #         users.${params.username} = import ./home;
+    #         extraSpecialArgs = homeManagerArgs;
+    #       };
+    #     }
+    #   ];
+    # };
+
+    darwin.mkDarwin "aarch64-darwin" "lux";
 
     darwinPackages = self.darwinConfigurations."${params.hostname}".pkgs;
 
