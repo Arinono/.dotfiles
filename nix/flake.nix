@@ -75,17 +75,23 @@
         '';
       };
 
-    setHostname = {hostname}:
-      pkgs.writeShellApplication {
-        name = "set-hostname";
+    setHostname = pkgs.writeShellApplication {
+      name = "set-hostname";
 
-        text = ''
-          sudo scutil --set HostName ${hostname}
-          sudo scutil --set LocalHostName ${hostname}
-          sudo scutil --set ComputerName ${hostname}
-          dscacheutil -flushcache
-        '';
-      };
+      text = ''
+        HOSTNAME=''${1:-$HOSTNAME}
+        if [ -z "$HOSTNAME" ]; then
+          echo "Error: No hostname provided"
+          echo "Usage: nix run .#setHostname -- <hostname> or HOSTNAME=<value> nix run .#setHostname"
+          exit 1
+        fi
+
+        sudo scutil --set HostName "$HOSTNAME"
+        sudo scutil --set LocalHostName "$HOSTNAME"
+        sudo scutil --set ComputerName "$HOSTNAME"
+        dscacheutil -flushcache
+      '';
+    };
 
     configuration = {
       pkgs,
@@ -354,9 +360,7 @@
     darwinPackages = self.darwinConfigurations."${params.hostname}".pkgs;
 
     packages.aarch64-darwin.installBrew = installBrew;
-    packages.aarch64-darwin.setHostname = setHostname {
-      hostname = params.hostname;
-    };
+    packages.aarch64-darwin.setHostname = setHostname;
 
     formatter = forAllSystems ({pkgs}: pkgs.alejandra);
   };
