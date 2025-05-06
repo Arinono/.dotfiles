@@ -173,7 +173,7 @@
           spotify
           # vlc - Not on aarch64-darwin
         ]
-        ++ private_flakes.bins;
+        ++ private_flakes.bins system;
 
       homebrew = {
         enable = true;
