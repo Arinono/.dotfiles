@@ -7,7 +7,9 @@
     "cc.ffitch.shottr" = {
       KeyboardShortcuts_area = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":21}";
       KeyboardShortcuts_fullscreen = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":20}";
-      KeyboardShortcuts_window = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":23}";
+      KeyboardShortcuts_anyWindow = "{\\\"carbonModifiers\\\":768,\\\"carbonKeyCode\\\":23}";
+      KeyboardShortcuts_ocr = "{\\\"carbonKeyCode\\\":31,\\\"carbonModifiers\\\":6400}";
+      KeyboardShortcuts_scrolling = "{\\\"carbonKeyCode\\\":26,\\\"carbonModifiers\\\":768}";
       afterGrabCopy = 1;
       afterGrabSave = 1;
       afterGrabShow = 1;
