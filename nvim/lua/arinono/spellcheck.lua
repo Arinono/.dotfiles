@@ -17,7 +17,7 @@ autocmd({ "BufEnter" }, {
       or filetype == "gitcommit"
     then
       vim.wo.spell = true
-      vim.bo.spelllang = "pt,en_us"
+      vim.bo.spelllang = "en,en_us"
     else
       vim.wo.spell = false
       vim.bo.spelllang = nil
