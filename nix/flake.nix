@@ -190,6 +190,7 @@
           "alfred"
           "balenaetcher"
           "calibre"
+          "cameracontroller"
           "crystalfetch"
           "discord"
           "docker"
