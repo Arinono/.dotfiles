@@ -232,9 +232,9 @@
           mkdir -p /Applications/Nix\ Apps
           find ${env}/Applications -maxdepth 1 -type l -exec readlink '{}' + |
           while read -r src; do
-          	app_name=$(basename "$src")
-          	echo "copying $src" >&2
-          	${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
+            app_name=$(basename "$src")
+            echo "copying $src" >&2
+            ${pkgs.mkalias}/bin/mkalias "$src" "/Applications/Nix Apps/$app_name"
           done
         '';
 
@@ -259,16 +259,6 @@
         // general.base
         // global.base
         // dock_finder.base;
-
-      # // shottr
-      # // istat_menus
-      # // flycut
-      # // scroll_reverser
-      # // soundsource
-      # // arc_browser
-      # // keycastr
-      # // tailscale
-      # // vlc;
 
       nix = {
         enable = true;
