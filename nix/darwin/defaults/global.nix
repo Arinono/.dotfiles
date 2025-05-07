@@ -50,6 +50,11 @@
       NSNavPanelFileListModeForOpenMode2 = 1;
       "com.apple.sound.beep.flash" = 0;
       "com.apple.sound.uiaudio.enabled" = 1;
+    };
+  };
+
+  CustomUserPreferences = {
+    NSGlobalDomain = {
       CGDisableCursorLocationMagnification = 1;
     };
   };
