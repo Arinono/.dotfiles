@@ -134,12 +134,12 @@
           gh
           git
           git-crypt
-          inputs.git_worktree_clean.packages.${pkgs.system}.default
           glow
           go
           hexedit
           hexyl
           htop
+          inputs.git_worktree_clean.packages.${pkgs.system}.default
           iperf
           jq
           just
@@ -153,6 +153,7 @@
           nil
           nodejs
           oha
+          pnpm
           ripgrep
           rsync
           rustc
