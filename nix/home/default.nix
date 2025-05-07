@@ -31,7 +31,6 @@ in {
     # ./carapace.nix
     ./ctop.nix
     ./btop.nix
-    ./fonts.nix
     ./gh-dash.nix
     ./ghostty.nix
     ./tealdeer.nix
