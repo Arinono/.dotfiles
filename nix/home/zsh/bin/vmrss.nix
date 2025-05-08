@@ -32,6 +32,9 @@
             arr+=("$child" $((space+2)))
           done
         done
+
+        echo "Total: $total MB"
+        echo ""
       }
 
       p=$1

@@ -93,6 +93,11 @@
       '';
     };
 
+    fonts = import ./darwin/modules/fonts.nix {
+      inherit pkgs;
+      username = params.username;
+    };
+
     configuration = {
       pkgs,
       lib,
@@ -109,6 +114,8 @@
       imports = [
         ./darwin/services/aerospace.nix
         ./darwin/services/sketchybar.nix
+
+        fonts
       ];
 
       environment.systemPackages = with pkgs;
@@ -201,7 +208,6 @@
           "crystalfetch"
           "discord"
           "docker"
-          "figma"
           "flycut"
           "font-meslo-lg-nerd-font"
           "ghostty"
