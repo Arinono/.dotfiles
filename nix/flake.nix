@@ -216,6 +216,7 @@
           "shottr"
           "signal"
           "soundsource"
+          "visual-studio-code@insiders"
           "vlc"
         ];
 

@@ -97,7 +97,6 @@
     grba = "${git}/bin/git rebase --abort";
     grbc = "${git}/bin/git rebase --continue";
     grbi = "${git}/bin/git rebase --interactive";
-    grbo = "${git}/bin/git rebase --onto";
     grbs = "${git}/bin/git rebase --skip";
     groh = "${git}/bin/git reset origin/$(git_current_branch) --hard";
     grs = "${git}/bin/git restore";
