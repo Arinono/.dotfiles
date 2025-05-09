@@ -102,6 +102,12 @@ in {
       settings = {
         add_newline = false;
         aws.disabled = true;
+
+        nix_shell = {
+          disabled = false;
+          impure_msg = "";
+          format = "[$symbol$state]($style) ";
+        };
       };
     };
   };
