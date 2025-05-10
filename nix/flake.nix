@@ -98,6 +98,8 @@
       username = params.username;
     };
 
+    proton-vpn = pkgs.callPackage ./darwin/modules/proton-vpn.nix {};
+
     configuration = {
       pkgs,
       lib,
@@ -161,6 +163,7 @@
           nodejs
           oha
           pnpm
+          proton-vpn
           ripgrep
           rsync
           rustc
