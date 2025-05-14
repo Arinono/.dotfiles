@@ -97,6 +97,7 @@
       inherit pkgs;
       username = params.username;
     };
+    firewall = import ./darwin/modules/firewall.nix {};
 
     proton-vpn = pkgs.callPackage ./darwin/modules/proton-vpn.nix {};
 
@@ -118,6 +119,7 @@
         ./darwin/services/sketchybar.nix
 
         fonts
+        firewall
       ];
 
       environment.systemPackages = with pkgs;
