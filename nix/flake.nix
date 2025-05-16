@@ -170,6 +170,7 @@
           ripgrep
           rsync
           rustc
+          rustfmt
           sccache
           sqld
           tailscale
