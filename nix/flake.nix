@@ -164,6 +164,7 @@
           nil
           nodejs
           oha
+          parallel
           pnpm
           proton-vpn
           ripgrep
