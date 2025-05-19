@@ -232,6 +232,7 @@
         masApps = {
           Tailscale = 1475387142;
           Wireguard = 1451685025;
+          Numbers = 409203825;
         };
       };
 
