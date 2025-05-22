@@ -6,6 +6,7 @@
       AppleMetricUnits = 1;
       AppleShowAllExtensions = true;
       AppleTemperatureUnit = "Celsius";
+      ApplePressAndHoldEnabled = false;
       InitialKeyRepeat = 20;
       KeyRepeat = 2;
       NSAutomaticCapitalizationEnabled = false;
