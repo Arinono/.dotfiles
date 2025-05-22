@@ -28,7 +28,6 @@ local function register_keymaps()
   vim.keymap.set("n", "gr", builtin.lsp_references)
   vim.keymap.set("n", "gI", builtin.lsp_implementations)
   vim.keymap.set("n", "gD", vim.lsp.buf.declaration)
-  -- vim.keymap.set("n", "K", vim.lsp.buf.hover)
   vim.keymap.set("n", "K", "<cmd>Lspsaga hover_doc<cr>")
 
   vim.keymap.set("n", "<leader>D", builtin.lsp_type_definitions)
@@ -44,22 +43,6 @@ local function register_keymaps()
   end)
 
   vim.keymap.set("n", "<leader>lr", "<cmd>LspRestart<cr>", { desc = "[L]SP [R]estart" })
-end
-
--- Function to highlight current word
-local function highlight_word(event)
-  local client = vim.lsp.get_client_by_id(event.data.client_id)
-  if client and client.server_capabilities.documentHighlightProvider then
-    vim.api.nvim_create_autocmd({ "CursorHold", "CursorHoldI" }, {
-      buffer = event.buf,
-      callback = vim.lsp.buf.document_highlight,
-    })
-
-    vim.api.nvim_create_autocmd({ "CursorMoved", "CursorMovedI" }, {
-      buffer = event.buf,
-      callback = vim.lsp.buf.clear_references,
-    })
-  end
 end
 
 return {
@@ -78,13 +61,11 @@ return {
     inlay_hints = { enabled = false },
   },
   config = function()
-    vim.api.nvim_create_autocmd("LspAttach", {
-      group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
-      callback = function(event)
-        register_keymaps()
-        require("lspsaga").setup({})
-        -- highlight_word(event)
-      end,
+    register_keymaps()
+    require("lspsaga").setup({
+      ui = {
+        code_action = "",
+      },
     })
 
     add_capability("force", require("cmp_nvim_lsp").default_capabilities())
@@ -197,7 +178,8 @@ return {
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
     -- Installed via nix profile for now
-    lspconfig.nil_ls.setup({})
+    -- lspconfig.nil.setup({})
+    -- lspconfig.alejandra.setup({})
 
     require("mason-lspconfig").setup({
       handlers = {
