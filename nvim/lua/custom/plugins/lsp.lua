@@ -78,10 +78,6 @@ return {
     inlay_hints = { enabled = false },
   },
   config = function()
-    if vim.g.obsidian then
-      return
-    end
-
     vim.api.nvim_create_autocmd("LspAttach", {
       group = vim.api.nvim_create_augroup("kickstart-lsp-attach", { clear = true }),
       callback = function(event)
@@ -96,7 +92,7 @@ return {
     local lspconfig = require("lspconfig")
 
     local servers = {
-      volar = {
+      vue_ls = {
         -- Volar will handle Vue files only
         filetypes = { "vue" },
         root_dir = lspconfig.util.root_pattern(

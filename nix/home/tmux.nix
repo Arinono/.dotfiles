@@ -50,6 +50,8 @@ in {
       set -gq mouse-resize-pane on
       set -gq mouse-select-window on
 
+      set -g default-terminal "tmux-256color"
+
       bind R neww -n "tmux-conf" "$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
       bind r source-file $XDG_CONFIG_HOME/tmux/tmux.conf \; display-message "tmux reloaded"
       bind s choose-tree -sZ -O name
