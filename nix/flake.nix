@@ -147,6 +147,8 @@
           git-crypt
           glow
           go
+          golangci-lint
+          gopls
           hexedit
           hexyl
           htop

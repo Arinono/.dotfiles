@@ -89,7 +89,7 @@ return {
             ),
           },
           vue = {
-            hybridMode = false, -- Disable hybrid mode for full Volar TS support
+            hybridMode = true,
           },
         },
       },
@@ -117,7 +117,7 @@ return {
       --     },
       --   },
       -- },
-      htmx = {},
+      -- htmx = {},
       rust_analyzer = {
         settings = {
           ["rust-analyzer"] = {
@@ -149,6 +149,28 @@ return {
           },
         },
       },
+
+      golangci_lint_ls = {
+        filetypes = { "go", "gomod" },
+        cmd = { "golangci-lint-langserver" },
+        init_options = {
+          command = { "golangci-lint", "run", "--output.json.path=stdout", "--show-stats=false" },
+        },
+        root_markers = {
+          ".golangci.yml",
+          ".golangci.yaml",
+          ".golangci.toml",
+          ".golangci.json",
+          "go.work",
+          "go.mod",
+          ".git",
+        },
+      },
+      gopls = {
+        manual_install = true,
+        filetypes = { "go", "gomod", "gowork", "gotmpl" },
+        cmd = { "gopls" },
+      },
     }
 
     local servers_to_install = vim.tbl_filter(function(key)
@@ -172,14 +194,16 @@ return {
       "stylua",
       "eslint-lsp",
       "prettier",
+      "ts_ls", -- for volar
     }
     vim.list_extend(ensure_installed, servers_to_install)
 
     require("mason-tool-installer").setup({ ensure_installed = ensure_installed })
 
     -- Installed via nix profile for now
-    -- lspconfig.nil.setup({})
-    -- lspconfig.alejandra.setup({})
+    vim.lsp.enable("nil")
+    vim.lsp.enable("alejandra")
+    vim.lsp.enable("gopls")
 
     require("mason-lspconfig").setup({
       handlers = {
