@@ -13,11 +13,19 @@
     git_worktree_clean = {
       url = "path:../git_worktree_clean";
       flake = true;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    simple_http_server = {
+      url = "github:arinono/simple-http-server";
+      flake = true;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
 
     private_flakes = {
       url = "git+ssh://git@github.com/arinono/private-flakes.git";
       flake = true;
+      inputs.nixpkgs.follows = "nixpkgs";
     };
   };
 
@@ -29,6 +37,7 @@
     home-manager,
     git_worktree_clean,
     private_flakes,
+    simple_http_server,
   }: let
     systems = ["aarch64-darwin" "x86_64-linux"];
     system = "aarch64-darwin";
@@ -174,6 +183,7 @@
           rustc
           rustfmt
           sccache
+          inputs.simple_http_server.packages.${pkgs.system}.default
           sqld
           tailscale
           terminal-notifier
