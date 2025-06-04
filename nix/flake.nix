@@ -257,6 +257,7 @@
           done
         '';
 
+      system.primaryUser = params.username;
       system.defaults = with defaults;
         {
           CustomSystemPreferences = with defaults;

@@ -1,5 +1,5 @@
 {...}: {
-  system.activationScripts.postUserActivation.text = ''
+  system.activationScripts.postActivation.text = ''
     echo "Enabling firewall"
     sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setglobalstate on
     sudo /usr/libexec/ApplicationFirewall/socketfilterfw --setallowsigned off
