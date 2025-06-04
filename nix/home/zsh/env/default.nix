@@ -15,8 +15,8 @@ in {
     ls = "eza";
     ll = "eza";
     la = "eza -a";
-    vim = "${pkgs.neovim}/bin/nvim";
-    v = "${pkgs.neovim}/bin/nvim";
+    vim = "nvim";
+    v = "nvim";
   };
 
   variables = {

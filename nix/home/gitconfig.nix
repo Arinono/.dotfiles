@@ -24,7 +24,7 @@ in
           [web]
             browser = ${browser}
           [core]
-            editor = ${neovim}/bin/nvim
+            editor = nvim
             excludesFile = ~/.gitignore
             ignorecase = false
           [color]
@@ -39,7 +39,7 @@ in
           [diff]
             tool = nvimdiff
           [difftool "nvimdiff"]
-            cmd = "${neovim}/bin/nvim -d \"$LOCAL\" \"$REMOTE\""
+            cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
           [commit]
             gpgsign = true
           [pull]
