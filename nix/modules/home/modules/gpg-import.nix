@@ -1,10 +1,21 @@
 {
-  config,
   pkgs,
   lib,
   secrets,
   ...
 }: {
+  # Make sure gnupg is installed
+  home.packages = with pkgs; [
+    gnupg
+    pinentry-tty
+  ];
+
+  services.gpg-agent = {
+    enable = true;
+    pinentry.package = pkgs.pinentry-tty;
+    enableSshSupport = true;
+  };
+
   # Import GPG key on setup
   home.activation.importGPGKey = lib.hm.dag.entryAfter ["writeBoundary"] ''
     set +o nounset
@@ -25,7 +36,8 @@
     echo "${secrets.gpg.key.private}" > $GPG_PRIVATE_KEY_FILE
 
     # Import the private key
-    ${pkgs.gnupg}/bin/gpg --allow-secret-key-import --import $GPG_PRIVATE_KEY_FILE
+    export GPG_TTY=$(tty) || export GPG_TTY=/dev/null
+    ${pkgs.gnupg}/bin/gpg --batch --yes --pinentry-mode loopback --allow-secret-key-import --import $GPG_PRIVATE_KEY_FILE
 
     # Clean up temporary files
     rm -f $GPG_KEY_FILE $GPG_PRIVATE_KEY_FILE
@@ -34,14 +46,4 @@
       echo "GPG key import completed."
     fi
   '';
-
-  home.file.".gnupg/gpg-agent.conf".text = ''
-    pinentry-program ${pkgs.pinentry-tty}/bin/pinentry-tty
-  '';
-
-  # Make sure gnupg is installed
-  home.packages = with pkgs; [
-    gnupg
-    pinentry-tty
-  ];
 }

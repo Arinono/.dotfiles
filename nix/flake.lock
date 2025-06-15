@@ -25,11 +25,32 @@
         ]
       },
       "locked": {
-        "lastModified": 1750127463,
-        "narHash": "sha256-K2xFtlD3PcKAZriOE3LaBLYmVfGQu+rIF4Jr1RFYR0Q=",
+        "lastModified": 1750973805,
+        "narHash": "sha256-BZXgag7I0rnL/HMHAsBz3tQrfKAibpY2vovexl2lS+Y=",
         "owner": "nix-community",
         "repo": "home-manager",
-        "rev": "28eef8722d1af18ca13e687dbf485e1c653a0402",
+        "rev": "080e8b48b0318b38143d5865de9334f46d51fce3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "type": "github"
+      }
+    },
+    "home-manager_2": {
+      "inputs": {
+        "nixpkgs": [
+          "zen-browser",
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1743604125,
+        "narHash": "sha256-ZD61DNbsBt1mQbinAaaEqKaJk2RFo9R/j+eYWeGMx7A=",
+        "owner": "nix-community",
+        "repo": "home-manager",
+        "rev": "180fd43eea296e62ae68e079fcf56aba268b9a1a",
         "type": "github"
       },
       "original": {
@@ -121,17 +142,17 @@
         "utils": "utils_2"
       },
       "locked": {
-        "lastModified": 1746486287,
-        "narHash": "sha256-YNilJmDwbSM/2EEFB8JEDB0sfnxKdVHQ476RkvERm8M=",
+        "lastModified": 1751065495,
+        "narHash": "sha256-KtVhfFCZpPAAuEYAPInhY5vHNP+AG0J//X0IjVPDa+8=",
         "ref": "refs/heads/main",
-        "rev": "cda29cb490130bac6cbf0974b33103079fc40eef",
-        "revCount": 503,
+        "rev": "6ceb572b7a21430771f2ea72127b3556cb17df88",
+        "revCount": 546,
         "type": "git",
-        "url": "ssh://git@github.com/arinono/nh-links-bak"
+        "url": "ssh://git@github.com/arinono/nh-links-bak.git"
       },
       "original": {
         "type": "git",
-        "url": "ssh://git@github.com/arinono/nh-links-bak"
+        "url": "ssh://git@github.com/arinono/nh-links-bak.git"
       }
     },
     "nix-darwin": {
@@ -141,11 +162,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1749873626,
-        "narHash": "sha256-1Mc/D/1RwwmDKY59f4IpDBgcQttxffm+4o0m67lQ8hc=",
+        "lastModified": 1750618568,
+        "narHash": "sha256-w9EG5FOXrjXGfbqCcQg9x1lMnTwzNDW5BMXp8ddy15E=",
         "owner": "nix-darwin",
         "repo": "nix-darwin",
-        "rev": "2f140d6ac8840c6089163fb43ba95220c230f22b",
+        "rev": "1dd19f19e4b53a1fd2e8e738a08dd5fe635ec7e5",
         "type": "github"
       },
       "original": {
@@ -172,11 +193,11 @@
     },
     "nixpkgs-stable": {
       "locked": {
-        "lastModified": 1750192413,
-        "narHash": "sha256-dgrJKgWKYjG/k1/jUOFZz2YNYc2MiRgsECvBv+Bub9w=",
+        "lastModified": 1750893034,
+        "narHash": "sha256-0e8oNuLZM6tC9oGLG8TDZOc1hIZ0Ho+c1GXxL7c+n4c=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "b67b0e45b68c428b46ad4b3f8264639fcc0b99e3",
+        "rev": "0bc4096930c64e71871d27b3fff0979541f22bc8",
         "type": "github"
       },
       "original": {
@@ -188,11 +209,11 @@
     },
     "nixpkgs_2": {
       "locked": {
-        "lastModified": 1750122687,
-        "narHash": "sha256-zcGClfkXh4pckf4aGOZ18GFv73n1xHbdMWl17cPLouE=",
+        "lastModified": 1750994206,
+        "narHash": "sha256-3u6rEbIX9CN/5A5/mc3u0wIO1geZ0EhjvPBXmRDHqWM=",
         "owner": "NixOS",
         "repo": "nixpkgs",
-        "rev": "c539ae8d21e49776966d714f82fba33b1fca78bc",
+        "rev": "80d50fc87924c2a0d346372d242c27973cf8cdbf",
         "type": "github"
       },
       "original": {
@@ -278,6 +299,22 @@
         "type": "github"
       }
     },
+    "nixpkgs_8": {
+      "locked": {
+        "lastModified": 1743448293,
+        "narHash": "sha256-bmEPmSjJakAp/JojZRrUvNcDX2R5/nuX6bm+seVaGhs=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "77b584d61ff80b4cef9245829a6f1dfad5afdfa3",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixos-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "private_flakes": {
       "inputs": {
         "nh_links_bak": "nh_links_bak",
@@ -287,11 +324,11 @@
         "rtools": "rtools"
       },
       "locked": {
-        "lastModified": 1746551431,
-        "narHash": "sha256-3RRcHweiD2aoUTpI+tm3TIVTz1L81HhFHsEsDa4P8as=",
+        "lastModified": 1750495129,
+        "narHash": "sha256-lxlVhfAPOS+LCLxklw8m4ITTVxFmwywhbjLSrC9uh0o=",
         "ref": "refs/heads/main",
-        "rev": "cf52b37688dfed4f125166cf033bbc8882e76af4",
-        "revCount": 2,
+        "rev": "b8758f796986c99202a0531f6b38512b88f3588b",
+        "revCount": 3,
         "type": "git",
         "url": "ssh://git@github.com/arinono/private-flakes.git"
       },
@@ -308,7 +345,8 @@
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
         "private_flakes": "private_flakes",
-        "simple_http_server": "simple_http_server"
+        "simple_http_server": "simple_http_server",
+        "zen-browser": "zen-browser"
       }
     },
     "rtools": {
@@ -325,13 +363,13 @@
         "rev": "d0182b58f507d11c677c9c5a5bffe331255ec4ff",
         "revCount": 7547,
         "type": "git",
-        "url": "ssh://git@github.com/arinono/platform"
+        "url": "ssh://git@github.com/arinono/platform.git"
       },
       "original": {
         "dir": "packages/rtools",
         "ref": "rtools",
         "type": "git",
-        "url": "ssh://git@github.com/arinono/platform"
+        "url": "ssh://git@github.com/arinono/platform.git"
       }
     },
     "simple_http_server": {
@@ -485,6 +523,25 @@
       "original": {
         "owner": "numtide",
         "repo": "flake-utils",
+        "type": "github"
+      }
+    },
+    "zen-browser": {
+      "inputs": {
+        "home-manager": "home-manager_2",
+        "nixpkgs": "nixpkgs_8"
+      },
+      "locked": {
+        "lastModified": 1751093194,
+        "narHash": "sha256-mlrXp76ulgniJEE34FtO8GSF2LxLcib1+MBh7BwgmdM=",
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
+        "rev": "6644da1c6eec4b4cf0b7d81d089aa64c0f9abc82",
+        "type": "github"
+      },
+      "original": {
+        "owner": "0xc000022070",
+        "repo": "zen-browser-flake",
         "type": "github"
       }
     }

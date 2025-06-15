@@ -97,7 +97,7 @@ in {
     starship = {
       enable = true;
       enableZshIntegration = true;
-      enableBashIntegration = true;
+      enableBashIntegration = false;
 
       settings = {
         add_newline = false;
@@ -112,7 +112,11 @@ in {
     };
   };
 
-  home = {
+  home = let
+    darwinPackages = [
+      remind.sh
+    ];
+  in {
     sessionPath =
       [
         "${home}/.local/bin"
@@ -122,26 +126,31 @@ in {
       ++ dart.path
       ++ node.path;
 
-    packages = [
-      nsh
-      key.sh
-      git_contrib.sh
-      ngrokd.sh
-      remind.sh
-      portscan.sh
-      dummy_file.sh
-      vmrss.sh
-      ntfy.sh
-      convert.sh
-      tmclean.sh
-      update_all_crates.sh
-      docker.denter
-      git.gsync
-      git.git_current_branch
-      git.git_branch_main
-      tmux.kill_session
-      tmux.tmux_sessionizer
-      tmux.tmux_worktree_panizer
-    ];
+    packages =
+      [
+        nsh
+        key.sh
+        git_contrib.sh
+        ngrokd.sh
+        portscan.sh
+        dummy_file.sh
+        vmrss.sh
+        ntfy.sh
+        convert.sh
+        tmclean.sh
+        update_all_crates.sh
+        docker.denter
+        git.gsync
+        git.git_current_branch
+        git.git_branch_main
+        tmux.kill_session
+        tmux.tmux_sessionizer
+        tmux.tmux_worktree_panizer
+      ]
+      ++ (
+        if isDarwin
+        then darwinPackages
+        else []
+      );
   };
 }
