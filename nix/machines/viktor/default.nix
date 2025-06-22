@@ -126,6 +126,7 @@
     fprintd
     python314
     gnumake
+    brightnessctl
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

@@ -116,6 +116,7 @@ in {
     system,
     nixpkgsVersion,
     extraModules,
+    extraHomeManagerModules,
   }: let
     pkgs = import nixpkgsVersion {
       inherit system;
@@ -169,9 +170,7 @@ in {
           configuration
           inputs.home-manager.nixosModules.home-manager
           ./machines/${hostname}/default.nix
-          (mkHomeManager params [
-            ./modules/home/modules/hyprland.nix
-          ])
+          (mkHomeManager params ([] ++ extraHomeManagerModules))
         ]
         ++ extraModules;
     };

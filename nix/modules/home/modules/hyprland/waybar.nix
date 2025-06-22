@@ -1,0 +1,211 @@
+{...}: {
+  programs.waybar = {
+    enable = true;
+  };
+
+  xdg.configFile.waybar-config = {
+    target = "./waybar/config.jsonc";
+    text = ''
+      {
+        "layer": "top",
+        "position": "top",
+        "modules-left": [
+              "hyprland/workspaces"
+          ],
+        "modules-center": ["clock"],
+        "modules-right": [
+          "pulseaudio",
+          "battery",
+          "network",
+          "cpu",
+          "memory",
+          "tray",
+          "custom/lock"
+        ],
+        "hyprland/workspaces": {
+          "format": "{name}: {icon}",
+          "format-icons": {
+            "active": "",
+            "default": ""
+          }
+        },
+        "tray": {
+          "icon-size": 21,
+          "spacing": 10
+        },
+        "clock": {
+          "timezone": "Europe/Amsterdam",
+          "tooltip-format": "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>",
+          "format": "{:%d - %H:%M}"
+        },
+        "network": {
+          "format-wifi": "󰤢 ",
+          "format-ethernet": "󰈀 ",
+          "format-disconnected": "󰤠 ",
+          "interval": 5,
+          "tooltip": false
+        },
+        "cpu": {
+          "interval": 1,
+          "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
+          "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+        },
+        "memory": {
+          "interval": 30,
+          "format": "  {used:0.1f}G/{total:0.1f}G"
+        },
+        "pulseaudio": {
+          "format": "{icon} {volume}%",
+          "format-muted": "",
+          "format-icons": {
+            "default": ["", "", " "]
+          },
+          "on-click": "pavucontrol"
+        },
+        "custom/lock": {
+          "tooltip": false,
+          "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
+          "format": ""
+        }
+      }
+    '';
+  };
+
+  xdg.configFile.waybar-style = {
+    target = "./waybar/style.css";
+    text = ''
+      * {
+          font-family: JetbrainsMono Nerd Font;
+          font-size: 16;
+          min-height: 0;
+          padding-right: 2px;
+          padding-left: 2px;
+          padding-bottom: 0px;
+        }
+
+        #waybar {
+          background: transparent;
+          color: #c6d0f5;
+          margin: 0;
+        }
+
+        #workspaces {
+          border-radius: 5px;
+          margin: 5px;
+          background: #101010;
+          margin-left: 1rem;
+        }
+
+        #workspaces button {
+          color: #babbf1;
+          border-radius: 5px;
+          padding: 0.4rem;
+        }
+
+        #workspaces button.active {
+          color: #99d1db;
+          border-radius: 5px;
+        }
+
+        #workspaces button:hover {
+          color: #85c1dc;
+          border-radius: 5px;
+        }
+
+        #custom-music,
+        #tray,
+        #backlight,
+        #clock,
+        #battery,
+        #pulseaudio,
+        #network,
+        #cpu,
+        #memory,
+        #custom-lock,
+        #custom-power {
+          background-color: #101010;
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+          border-radius: 0px 5px 5px 0px;
+        }
+
+        #custom-stream_status {
+          background-color: #101010;
+          padding: 0.5rem 1rem;
+          margin: 5px 0;
+          border-radius: 0px 5px 5px 0px;
+        }
+
+        #custom-stream_status.up {
+          color: #c3e88d;
+        }
+
+        #custom-stream_status.warning {
+          color: #ff9e64;
+        }
+
+        #custom-stream_status.down {
+          color: #ea999c;
+        }
+
+        #memory {
+          border-radius: 0px 5px 5px 0px;
+        }
+
+        #clock {
+          color: #8caaee;
+          border-radius: 5px;
+          margin-right: 1rem;
+        }
+
+        #battery {
+          color: #a6d189;
+        }
+
+        #battery.charging {
+          color: #a6d189;
+        }
+
+        #battery.warning:not(.charging) {
+          color: #e78284;
+        }
+
+        #backlight {
+          color: #e5c890;
+        }
+
+        #backlight,
+        #battery {
+          border-radius: 0;
+        }
+
+        #pulseaudio {
+          color: #ea999c;
+          border-radius: 5px 0px 0px 5%;
+          margin-left: 1rem;
+        }
+
+        #custom-music {
+          color: #ca9ee6;
+          border-radius: 5px;
+        }
+
+        #custom-lock {
+          border-radius: 5px 0px 0px 5px;
+          color: #babbf1;
+        }
+
+        #custom-power {
+          margin-right: 1rem;
+          border-radius: 0px 5px 5px 0px;
+          color: #e78284;
+        }
+
+        #tray {
+          margin-right: 1rem;
+          margin-left: 1rem;
+          border-radius: 5px;
+        }
+    '';
+  };
+}
