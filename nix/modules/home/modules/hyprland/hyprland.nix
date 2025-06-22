@@ -241,9 +241,9 @@
       bind = $mainMod, B, exec, $browser
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
 
-      bind = $shiftMod, 3, exec, hyprshot -m active -m output -o ~/Downloads
-      bind = $shiftMod, 4, exec, hyprshot -m region -o ~/Downloads
-      bind = $shiftMod, 5, exec, hyprshot -m active -m window -o ~/Downloads
+      bind = CTRL SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
+      bind = CTRL SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
+      bind = CTRL SHIFT, 5, exec, hyprshot -m active -m window -o ~/Downloads
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, H, movefocus, l
@@ -264,16 +264,16 @@
       bind = $mainMod, 0, workspace, 10
 
       # Move active window to a workspace with mainMod + SHIFT + [0-9]
-      bind = $mainMod SHIFT, 1, movetoworkspace, 1
-      bind = $mainMod SHIFT, 2, movetoworkspace, 2
-      bind = $mainMod SHIFT, 3, movetoworkspace, 3
-      bind = $mainMod SHIFT, 4, movetoworkspace, 4
-      bind = $mainMod SHIFT, 5, movetoworkspace, 5
-      bind = $mainMod SHIFT, 6, movetoworkspace, 6
-      bind = $mainMod SHIFT, 7, movetoworkspace, 7
-      bind = $mainMod SHIFT, 8, movetoworkspace, 8
-      bind = $mainMod SHIFT, 9, movetoworkspace, 9
-      bind = $mainMod SHIFT, 0, movetoworkspace, 10
+      bind = $shiftMod, 1, movetoworkspace, 1
+      bind = $shiftMod, 2, movetoworkspace, 2
+      bind = $shiftMod, 3, movetoworkspace, 3
+      bind = $shiftMod, 4, movetoworkspace, 4
+      bind = $shiftMod, 5, movetoworkspace, 5
+      bind = $shiftMod, 6, movetoworkspace, 6
+      bind = $shiftMod, 7, movetoworkspace, 7
+      bind = $shiftMod, 8, movetoworkspace, 8
+      bind = $shiftMod, 9, movetoworkspace, 9
+      bind = $shiftMod, 0, movetoworkspace, 10
 
       # Example special workspace (scratchpad)
       # bind = $mainMod, S, togglespecialworkspace, magic
@@ -301,9 +301,7 @@
       bindl = , XF86AudioPlay, exec, playerctl play-pause
       bindl = , XF86AudioPrev, exec, playerctl previous
 
-      # Lock on lid open
-      bindl=,switch:on:Lid Switch, exec, hyprlock --immediate
-      # Lock lid on close
+      bindl=,switch:on:Lid Switch, exec, hyprlock --immediate & systemctl suspend
       bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
 
       ##############################
