@@ -33,7 +33,7 @@
 
       # Set programs that you use
       $terminal = ghostty
-      $fileManager = dolphin
+      $fileManager = nautilus
       $menu = wofi --show drun
       $browser = zen
 
@@ -226,10 +226,11 @@
       ###################
 
       # See https://wiki.hypr.land/Configuring/Keywords/
-      $mainMod = SUPER # Sets "Windows" key as main modifier
+      $mainMod = SUPER
+      $shiftMod = SUPER_SHIFT
 
       # Example binds, see https://wiki.hypr.land/Configuring/Binds/ for more
-      bind = $mainMod, T, exec, $terminal
+      bind = $mainMod, return, exec, $terminal
       bind = $mainMod, W, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, $fileManager
@@ -239,6 +240,10 @@
       bind = $mainMod, N, togglesplit, # dwindle
       bind = $mainMod, B, exec, $browser
       bind = $mainMod, Z, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
+
+      bind = $shiftMod, 3, exec, hyprshot -m active -m output -o ~/Downloads
+      bind = $shiftMod, 4, exec, hyprshot -m region -o ~/Downloads
+      bind = $shiftMod, 5, exec, hyprshot -m active -m window -o ~/Downloads
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, H, movefocus, l
@@ -271,12 +276,12 @@
       bind = $mainMod SHIFT, 0, movetoworkspace, 10
 
       # Example special workspace (scratchpad)
-      bind = $mainMod, S, togglespecialworkspace, magic
-      bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+      # bind = $mainMod, S, togglespecialworkspace, magic
+      # bind = $mainMod SHIFT, S, movetoworkspace, special:magic
 
       # Scroll through existing workspaces with mainMod + scroll
-      bind = $mainMod, mouse_down, workspace, e+1
-      bind = $mainMod, mouse_up, workspace, e-1
+      # bind = $mainMod, mouse_down, workspace, e+1
+      # bind = $mainMod, mouse_up, workspace, e-1
 
       # Move/resize windows with mainMod + LMB/RMB and dragging
       bindm = $mainMod, mouse:272, movewindow
@@ -295,6 +300,11 @@
       bindl = , XF86AudioPause, exec, playerctl play-pause
       bindl = , XF86AudioPlay, exec, playerctl play-pause
       bindl = , XF86AudioPrev, exec, playerctl previous
+
+      # Lock on lid open
+      bindl=,switch:on:Lid Switch, exec, hyprlock --immediate
+      # Lock lid on close
+      bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
 
       ##############################
       ### WINDOWS AND WORKSPACES ###

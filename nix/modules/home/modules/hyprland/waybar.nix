@@ -10,16 +10,16 @@
         "layer": "top",
         "position": "top",
         "modules-left": [
-              "hyprland/workspaces"
-          ],
+          "hyprland/workspaces"
+        ],
         "modules-center": ["clock"],
         "modules-right": [
           "pulseaudio",
-          "battery",
           "network",
           "cpu",
           "memory",
           "tray",
+          "battery",
           "custom/lock"
         ],
         "hyprland/workspaces": {
@@ -61,6 +61,21 @@
             "default": ["", "", " "]
           },
           "on-click": "pavucontrol"
+        },
+        "battery": {
+          "states": {
+              // "good": 95,
+              "warning": 30,
+              "critical": 15
+          },
+          "format": "{capacity}% {icon}",
+          "format-full": "{capacity}% {icon}",
+          "format-charging": "{capacity}% ",
+          "format-plugged": "{capacity}% ",
+          "format-alt": "{time} {icon}",
+          // "format-good": "", // An empty format will hide the module
+          // "format-full": "",
+          "format-icons": ["", "", "", "", ""]
         },
         "custom/lock": {
           "tooltip": false,
