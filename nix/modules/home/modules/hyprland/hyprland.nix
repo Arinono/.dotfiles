@@ -47,7 +47,7 @@
 
       # exec-once = $terminal
       # exec-once = nm-applet &
-      exec-once = waybar #& hyprpaper & firefox
+      exec-once = waybar
 
 
       #############################
@@ -239,7 +239,7 @@
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
       bind = $mainMod, B, exec, $browser
-      bind = $mainMod, Z, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
+      bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
 
       bind = $shiftMod, 3, exec, hyprshot -m active -m output -o ~/Downloads
       bind = $shiftMod, 4, exec, hyprshot -m region -o ~/Downloads

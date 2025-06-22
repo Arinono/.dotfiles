@@ -19,6 +19,7 @@
           "cpu",
           "memory",
           "tray",
+          "temperature",
           "battery",
           "custom/lock"
         ],
@@ -61,6 +62,11 @@
             "default": ["", "", " "]
           },
           "on-click": "pavucontrol"
+        },
+        "temperature": {
+          "critical-threshold": 80,
+          "format": "{temperatureC}°C {icon}",
+          "format-icons": ["", "", ""]
         },
         "battery": {
           "states": {
@@ -136,6 +142,7 @@
         #network,
         #cpu,
         #memory,
+        #temperature,
         #custom-lock,
         #custom-power {
           background-color: #101010;
@@ -220,6 +227,14 @@
           margin-right: 1rem;
           margin-left: 1rem;
           border-radius: 5px;
+        }
+
+        #temperature {
+          color: #f0932b;
+        }
+
+        #temperature.critical {
+          color: #eb4d4b;
         }
     '';
   };
