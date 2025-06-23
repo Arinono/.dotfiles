@@ -28,13 +28,7 @@
   time.hardwareClockInLocalTime = true;
 
   services.fwupd.enable = true;
-  services.fprintd = {
-    enable = true;
-    tod = {
-      enable = true;
-      driver = pkgs.libfprint-2-tod1-goodix;
-    };
-  };
+  services.fprintd.enable = true;
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;

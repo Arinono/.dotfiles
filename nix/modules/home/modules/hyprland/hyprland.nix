@@ -2,6 +2,7 @@
   programs.wofi = {
     enable = true;
   };
+
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
@@ -22,7 +23,19 @@
       ################
 
       # See https://wiki.hypr.land/Configuring/Monitors/
-      monitor=,preferred,auto,auto
+      $moni_lg = LG Electronics LG Ultra HD 0x0000989C
+      $moni_asus = ASUSTek COMPUTER INC VG248 M4LMQS244850
+      $moni_dell = Dell Inc. DELL P2419HC 5784JQ2
+
+      monitor = eDP-1, 2880x1920@120, -1920x0, 1.5
+
+      monitor = desc:$moni_lg, 3840x2160, +1920x0, 1.5
+      monitor = desc:$moni_asus, 1920x1080@144, 0x0, 1
+      monitor = desc:$moni_dell, 1920x1080, -1080x0, 1, transform, 1
+
+      # Random monitors
+      monitor = , preferred, 1920x0, 1
+      # monitor = , preferred, auto, 1, mirror, eDP-1
 
 
       ###################
@@ -219,6 +232,10 @@
           name = epic-mouse-v1
           sensitivity = -0.5
       }
+      device {
+        name = logitech-pro-x-1
+        sensitivity = -0.7
+      }
 
 
       ###################
@@ -275,6 +292,9 @@
       bind = $shiftMod, 9, movetoworkspace, 9
       bind = $shiftMod, 0, movetoworkspace, 10
 
+      bind = CTRL $shiftMod, comma, movecurrentworkspacetomonitor, l
+      bind = CTRL $shiftMod, period, movecurrentworkspacetomonitor, r
+
       # Example special workspace (scratchpad)
       # bind = $mainMod, S, togglespecialworkspace, magic
       # bind = $mainMod SHIFT, S, movetoworkspace, special:magic
@@ -301,7 +321,7 @@
       bindl = , XF86AudioPlay, exec, playerctl play-pause
       bindl = , XF86AudioPrev, exec, playerctl previous
 
-      bindl=,switch:on:Lid Switch, exec, hyprlock --immediate & systemctl suspend
+      bindl=,switch:on:Lid Switch, exec, ~/.config/hypr/lid-handler.sh
       bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
 
       ##############################
@@ -319,6 +339,24 @@
 
       # Fix some dragging issues with XWayland
       windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+    '';
+  };
+
+  xdg.configFile.lid-handler = {
+    target = "./hypr/lid-handler.sh";
+    executable = true;
+    text = ''
+      #!/bin/bash
+      # Count active monitors (excluding the built-in laptop screen)
+      monitor_count=$(hyprctl monitors -j | jq length)
+
+      if [ "$monitor_count" -gt 1 ]; then
+          # Multiple monitors detected - just lock, don't suspend
+          hyprlock --immediate
+      else
+          # Only laptop screen - lock and suspend
+          hyprlock --immediate & systemctl suspend
+      fi
     '';
   };
 }
