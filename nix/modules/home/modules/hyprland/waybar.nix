@@ -92,7 +92,7 @@
           },
           "format": "{capacity}% {icon}",
           "format-full": "{capacity}% {icon}",
-          "format-charging": "{capacity}% ",
+          "format-charging": "{capacity}% ",
           "format-plugged": "{capacity}% ",
           "format-alt": "{time} {icon}",
           "format-icons": ["", "", "", "", ""]
@@ -148,8 +148,6 @@
           border-radius: 5px;
         }
 
-        #custom-music,
-        #tray,
         #backlight,
         #clock,
         #battery,
@@ -199,10 +197,6 @@
 
         #pulseaudio {
           color: #ea999c;
-        }
-
-        #custom-music {
-          color: #ca9ee6;
         }
 
         #custom-lock {

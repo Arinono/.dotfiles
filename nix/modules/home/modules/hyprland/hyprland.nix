@@ -321,8 +321,10 @@
       bindl = , XF86AudioPlay, exec, playerctl play-pause
       bindl = , XF86AudioPrev, exec, playerctl previous
 
-      bindl=,switch:on:Lid Switch, exec, ~/.config/hypr/lid-handler.sh
-      bindl=,switch:off:Lid Switch, exec, hyprlock --immediate
+      # closed
+      bindl=,switch:on:Lid Switch, exec, ~/.config/hypr/lid-handler.sh close
+      # open
+      bindl=,switch:off:Lid Switch, exec, ~/.config/hypr/lid-handler.sh open
 
       ##############################
       ### WINDOWS AND WORKSPACES ###
@@ -346,17 +348,21 @@
     target = "./hypr/lid-handler.sh";
     executable = true;
     text = ''
-      #!/bin/bash
-      # Count active monitors (excluding the built-in laptop screen)
-      monitor_count=$(hyprctl monitors -j | jq length)
+      #!/usr/bin/env zsh
 
-      if [ "$monitor_count" -gt 1 ]; then
-          # Multiple monitors detected - just lock, don't suspend
-          hyprlock --immediate
+      if [[ "$(hyprctl monitors)" =~ "\sDP-[0-9]+" ]]; then
+          if [[ $1 == "open" ]]; then
+            hyprctl keyword monitor "eDP-1, 2880x1920@120, auto-left, 1"
+          else
+            hyprctl keyword monitor "eDP-1, disable"
+          fi
       else
-          # Only laptop screen - lock and suspend
-          hyprlock --immediate & systemctl suspend
+          if [[ $1 != "open" ]]; then
+            systemctl suspend
+          fi
       fi
+
+      hyprlock --immediate
     '';
   };
 }
