@@ -132,6 +132,8 @@
     playerctl
     hyprshot
     pavucontrol
+    libnotify
+    overskride
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
