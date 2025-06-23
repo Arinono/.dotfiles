@@ -31,8 +31,8 @@
           }
         },
         "tray": {
-          "icon-size": 21,
-          "spacing": 10
+          "icon-size": 18,
+          "spacing": 8
         },
         "clock": {
           "timezone": "Europe/Amsterdam",
@@ -66,11 +66,11 @@
         "temperature": {
           "critical-threshold": 80,
           "format": "{temperatureC}°C {icon}",
-          "format-icons": ["", "", ""]
+          "format-icons": [""]
         },
         "battery": {
           "states": {
-              // "good": 95,
+              "good": 95,
               "warning": 30,
               "critical": 15
           },
@@ -79,13 +79,11 @@
           "format-charging": "{capacity}% ",
           "format-plugged": "{capacity}% ",
           "format-alt": "{time} {icon}",
-          // "format-good": "", // An empty format will hide the module
-          // "format-full": "",
           "format-icons": ["", "", "", "", ""]
         },
         "custom/lock": {
           "tooltip": false,
-          "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
+          "on-click": "sh -c '(sleep 0.5s; hyprlock)' & systemctl suspend & disown",
           "format": ""
         }
       }
@@ -108,6 +106,7 @@
           background: transparent;
           color: #c6d0f5;
           margin: 0;
+          border-radius: 7px;
         }
 
         #workspaces {
@@ -148,36 +147,24 @@
           background-color: #101010;
           padding: 0.5rem 1rem;
           margin: 5px 0;
-          border-radius: 0px 5px 5px 0px;
         }
 
-        #custom-stream_status {
-          background-color: #101010;
-          padding: 0.5rem 1rem;
-          margin: 5px 0;
-          border-radius: 0px 5px 5px 0px;
+        #clock,
+        #workspaces {
+          border-radius: 7px;
         }
-
-        #custom-stream_status.up {
-          color: #c3e88d;
+        #pulseaudio {
+          border-radius: 7px 0 0 7px;
         }
-
-        #custom-stream_status.warning {
-          color: #ff9e64;
-        }
-
-        #custom-stream_status.down {
-          color: #ea999c;
+        #custom-lock {
+          border-radius: 0 7px 7px 0;
         }
 
         #memory {
-          border-radius: 0px 5px 5px 0px;
         }
 
         #clock {
           color: #8caaee;
-          border-radius: 5px;
-          margin-right: 1rem;
         }
 
         #battery {
@@ -203,30 +190,19 @@
 
         #pulseaudio {
           color: #ea999c;
-          border-radius: 5px 0px 0px 5%;
-          margin-left: 1rem;
         }
 
         #custom-music {
           color: #ca9ee6;
-          border-radius: 5px;
         }
 
         #custom-lock {
-          border-radius: 5px 0px 0px 5px;
           color: #babbf1;
         }
 
         #custom-power {
           margin-right: 1rem;
-          border-radius: 0px 5px 5px 0px;
           color: #e78284;
-        }
-
-        #tray {
-          margin-right: 1rem;
-          margin-left: 1rem;
-          border-radius: 5px;
         }
 
         #temperature {
