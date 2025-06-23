@@ -84,7 +84,6 @@
   services.printing.enable = true;
 
   # Enable sound with pipewire.
-  services.pulseaudio.enable = false;
   security.rtkit.enable = true;
   services.pipewire = {
     enable = true;
@@ -132,6 +131,7 @@
     brightnessctl
     playerctl
     hyprshot
+    pavucontrol
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
