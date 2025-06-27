@@ -9,10 +9,13 @@
       {
         "layer": "top",
         "position": "top",
+        "reload-style-on-change": true,
         "modules-left": [
           "hyprland/workspaces"
         ],
-        "modules-center": ["clock"],
+        "modules-center": [
+          "clock"
+        ],
         "modules-right": [
           "pulseaudio",
           "bluetooth",
@@ -21,6 +24,8 @@
           "memory",
           "temperature",
           "battery",
+          "power-profiles-daemon",
+          "idle_inhibitor",
           "custom/lock"
         ],
         "hyprland/workspaces": {
@@ -91,6 +96,24 @@
           "format-alt": "{time} {icon}",
           "format-icons": ["", "", "", "", ""]
         },
+        "idle_inhibitor": {
+          "format": "{icon}",
+          "format-icons": {
+            "activated": "",
+            "deactivated": ""
+          }
+        },
+        "power-profiles-daemon": {
+          "format": "{icon}",
+          "tooltip-format": "Power profile: {profile}",
+          "tooltip": true,
+          "format-icons": {
+            "default": "",
+            "performance": "",
+            "balanced": "",
+            "power-saver": ""
+          }
+        },
         "custom/lock": {
           "tooltip": false,
           "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
@@ -151,6 +174,8 @@
         #cpu,
         #memory,
         #temperature,
+        #idle_inhibitor,
+        #power-profiles-daemon,
         #custom-lock,
         #custom-power {
           background-color: #101010;
@@ -162,9 +187,11 @@
         #workspaces {
           border-radius: 7px;
         }
+
         #pulseaudio {
           border-radius: 7px 0 0 7px;
         }
+
         #custom-lock {
           border-radius: 0 7px 7px 0;
         }
@@ -193,8 +220,19 @@
           color: #ea999c;
         }
 
-        #custom-lock {
+        #custom-lock,
+        #idle_inhibitor.activated,
+        #power-profiles-daemon,
+        #power-profiles-daemon.balanced {
           color: #babbf1;
+        }
+
+        #power-profiles-daemon.performance {
+          color: #ea999c;
+        }
+
+        #power-profiles-daemon.power-saver {
+          color: #a6d189;
         }
 
         #custom-power {
