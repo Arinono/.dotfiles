@@ -58,9 +58,8 @@
       # Autostart necessary processes (like notifications daemons, status bars, etc.)
       # Or execute your favorite apps at launch like this:
 
-      # exec-once = $terminal
-      # exec-once = nm-applet &
-      exec-once = waybar
+      exec-once = waybar &
+      exec-once = wl-paste --watch cliphist store &
 
 
       #############################
@@ -234,7 +233,7 @@
       }
       device {
         name = logitech-pro-x-1
-        sensitivity = -0.7
+        sensitivity = -1
       }
 
 
@@ -251,12 +250,13 @@
       bind = $mainMod, W, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, $fileManager
-      bind = $mainMod, V, togglefloating,
+      bind = $mainMod, F, togglefloating,
       bind = $mainMod, space, exec, $menu
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
       bind = $mainMod, B, exec, $browser
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
+      bind = $mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
       bind = CTRL SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
       bind = CTRL SHIFT, 4, exec, hyprshot -m region -o ~/Downloads

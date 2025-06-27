@@ -3,6 +3,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./hyprlock.nix
+    ./wofi.nix
   ];
 
   programs.wofi = {

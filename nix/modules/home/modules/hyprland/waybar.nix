@@ -19,7 +19,6 @@
           "network",
           "cpu",
           "memory",
-          "tray",
           "temperature",
           "battery",
           "custom/lock"
@@ -30,10 +29,6 @@
             "active": "",
             "default": ""
           }
-        },
-        "tray": {
-          "icon-size": 18,
-          "spacing": 8
         },
         "clock": {
           "timezone": "Europe/Amsterdam",
