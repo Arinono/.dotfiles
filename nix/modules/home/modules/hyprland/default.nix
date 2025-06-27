@@ -50,7 +50,7 @@
       ];
 
       wallpaper = [
-        ",~/Pictures/Wallpapers/kr_street.jpg"
+        ",~/Pictures/Wallpapers/kr_bridge.jpg"
       ];
     };
   };

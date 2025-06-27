@@ -14,7 +14,7 @@
       #
       # shortcuts to clear password buffer: ESC, Ctrl+U, Ctrl+Backspace
 
-      $font = Monospace
+      $font = Dank Mono
 
       general {
           hide_cursor = false
@@ -40,7 +40,7 @@
 
       background {
           monitor =
-          path = screenshot
+          path = ~/Pictures/Wallpapers/tokyonight.png
           blur_passes = 3
       }
 
