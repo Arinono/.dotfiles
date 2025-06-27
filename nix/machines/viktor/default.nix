@@ -27,6 +27,16 @@
   };
   time.hardwareClockInLocalTime = true;
 
+  services.logind.extraConfig = ''
+    HandlePowerKey=suspen
+    HandlePowerKeyLongPress=hibernate
+    HandleSuspendKey=suspend
+    HandleSuspendKeyLongPress=hibernate
+    HandleLidSwitch=suspend
+    HandleLidSwitchExternalPower=ignore
+    HandleLidSwitchDocked=ignore
+  '';
+
   services.fwupd.enable = true;
   services.fprintd.enable = true;
 

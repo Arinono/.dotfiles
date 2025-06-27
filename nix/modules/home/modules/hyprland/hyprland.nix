@@ -34,8 +34,13 @@
       monitor = desc:$moni_dell, 1920x1080, -1080x0, 1, transform, 1
 
       # Random monitors
-      monitor = , preferred, 1920x0, 1
+      monitor = , preferred, 0x0, 1
       # monitor = , preferred, auto, 1, mirror, eDP-1
+
+      # closed
+      bindl=,switch:on:Lid Switch, exec, ~/.config/hypr/lid-handler.sh close
+      # open
+      bindl=,switch:off:Lid Switch, exec, ~/.config/hypr/lid-handler.sh open
 
 
       ###################
@@ -321,11 +326,6 @@
       bindl = , XF86AudioPlay, exec, playerctl play-pause
       bindl = , XF86AudioPrev, exec, playerctl previous
 
-      # closed
-      bindl=,switch:on:Lid Switch, exec, ~/.config/hypr/lid-handler.sh close
-      # open
-      bindl=,switch:off:Lid Switch, exec, ~/.config/hypr/lid-handler.sh open
-
       ##############################
       ### WINDOWS AND WORKSPACES ###
       ##############################
@@ -350,19 +350,22 @@
     text = ''
       #!/usr/bin/env zsh
 
+      # external monitors
       if [[ "$(hyprctl monitors)" =~ "\sDP-[0-9]+" ]]; then
-          if [[ $1 == "open" ]]; then
-            hyprctl keyword monitor "eDP-1, 2880x1920@120, auto-left, 1"
+          if [[ "$1" == "open" ]]; then
+            hyprctl keyword monitor "eDP-1, 2880x1920@120, auto-left, 1.5"
           else
             hyprctl keyword monitor "eDP-1, disable"
           fi
       else
-          if [[ $1 != "open" ]]; then
+          if [[ "$1" == "open" ]]; then
+            hyprctl dispatch exec 'hyprlock --immediate'
+            hyprctl keyword monitor "eDP-1, 2880x1920@120, auto-left, 1.5"
+          else
             systemctl suspend
           fi
       fi
 
-      hyprlock --immediate
     '';
   };
 }

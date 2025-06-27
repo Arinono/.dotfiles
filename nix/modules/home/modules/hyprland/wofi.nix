@@ -2,7 +2,7 @@
   xdg.configFile.wofi = {
     target = "./wofi/config";
     text = ''
-      width=420
+      width=1000
       height=550
       location=center
       show=drun

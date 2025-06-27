@@ -20,6 +20,7 @@ in rec {
     fzf
     gcc
     gh
+    gh-dash
     git
     git-crypt
     glow
