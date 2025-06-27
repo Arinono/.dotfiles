@@ -59,12 +59,11 @@
         },
         "cpu": {
           "interval": 1,
-          "format": "  {icon0}{icon1}{icon2}{icon3} {usage:>2}%",
-          "format-icons": ["▁", "▂", "▃", "▄", "▅", "▆", "▇", "█"]
+          "format": "  {usage:>2}%"
         },
         "memory": {
           "interval": 30,
-          "format": "  {used:0.1f}G/{total:0.1f}G"
+          "format": "  {used:0.1f}G"
         },
         "pulseaudio": {
           "format": "{icon} {volume}%",
