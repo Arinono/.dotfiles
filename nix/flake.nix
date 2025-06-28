@@ -58,12 +58,17 @@
         hostname = "lux";
         system = "aarch64-darwin";
         nixpkgsVersion = nixpkgs;
+        extraModules = [];
+        extraHomeManagerModules = [
+          ./darwin/modules/home/ghostty.nix
+        ];
       })
       (mkNixos {
         hostname = "viktor";
         system = "x86_64-linux";
         nixpkgsVersion = nixpkgs;
         extraModules = [
+          ./modules/ghostty.nix
           ./modules/tailscale.nix
           ./modules/hyprland.nix
         ];

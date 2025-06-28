@@ -5,18 +5,18 @@
   ...
 }: let
   defaults = {
-    general = import ./darwin/defaults/general.nix {inherit params;};
-    global = import ./darwin/defaults/global.nix {};
-    dock_finder = import ./darwin/defaults/dock_finder.nix {inherit pkgs params;};
-    shottr = import ./darwin/defaults/shottr.nix {inherit params secrets;};
-    istat_menus = import ./darwin/defaults/istat_menus.nix {inherit secrets;};
-    flycut = import ./darwin/defaults/flycut.nix {};
-    scroll_reverser = import ./darwin/defaults/scroll_reverser.nix {};
-    soundsource = import ./darwin/defaults/soundsource.nix {inherit secrets;};
-    arc_browser = import ./darwin/defaults/arc_browser.nix {};
-    keycastr = import ./darwin/defaults/keycastr.nix {};
-    tailscale = import ./darwin/defaults/tailscale.nix {};
-    vlc = import ./darwin/defaults/vlc.nix {};
+    general = import ../defaults/general.nix {inherit params;};
+    global = import ../defaults/global.nix {};
+    dock_finder = import ../defaults/dock_finder.nix {inherit pkgs params;};
+    shottr = import ../defaults/shottr.nix {inherit params secrets;};
+    istat_menus = import ../defaults/istat_menus.nix {inherit secrets;};
+    flycut = import ../defaults/flycut.nix {};
+    scroll_reverser = import ../defaults/scroll_reverser.nix {};
+    soundsource = import ../defaults/soundsource.nix {inherit secrets;};
+    arc_browser = import ../defaults/arc_browser.nix {};
+    keycastr = import ../defaults/keycastr.nix {};
+    tailscale = import ../defaults/tailscale.nix {};
+    vlc = import ../defaults/vlc.nix {};
   };
 in {
   system.defaults = with defaults;

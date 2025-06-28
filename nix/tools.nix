@@ -4,7 +4,7 @@ inputs: let
     isDarwin,
     system,
   }: rec {
-    inherit hostname system;
+    inherit hostname system isDarwin;
     username = "arinono";
     home =
       if isDarwin
@@ -39,6 +39,9 @@ in {
     hostname,
     system,
     nixpkgsVersion,
+    extraModules,
+    extraHomeManagerModules,
+    ...
   }: let
     pkgs = import nixpkgsVersion {
       inherit system;
@@ -52,15 +55,18 @@ in {
       isDarwin = true;
     };
 
-    secrets = import ./secrets {inherit params;};
+    secrets = import ./modules/secrets {inherit params;};
 
     fonts = import ./darwin/modules/fonts.nix {
       inherit pkgs;
       username = params.username;
     };
     firewall = import ./darwin/modules/firewall.nix {};
+    defaults = import ./darwin/modules/defaults.nix {
+      inherit pkgs params secrets;
+    };
 
-    packages = import ./shared/modules/packages.nix {inherit inputs pkgs params;};
+    packages = import ./modules/packages.nix {inherit inputs pkgs params;};
 
     configuration = {
       pkgs,
@@ -75,27 +81,23 @@ in {
 
       imports = [
         ./darwin/services/aerospace.nix
-        ./darwin/services/sketchybar.nix
         ./darwin/modules/homebrew.nix
         ./darwin/modules/macos-applications.nix
-        ./darwin/modules/defaults.nix
 
         ./modules/nix.nix
 
         fonts
         firewall
+        defaults
       ];
 
       environment.systemPackages = with packages;
         base
         ++ darwin
-        ++ dev
-        ++ private_flakes.bins system;
+        ++ dev;
+      # ++ private_flakes.bins system;
 
       system.primaryUser = params.username;
-      defaults = import ./darwin/modules/defaults.nix {
-        inherit params pkgs secrets;
-      };
 
       ids.gids.nixbld = 350;
       system.stateVersion = 5;
@@ -103,11 +105,14 @@ in {
     };
   in {
     darwinConfigurations."${hostname}" = inputs.nix-darwin.lib.darwinSystem {
-      modules = [
-        configuration
-        inputs.home-manager.darwinModules.home-manager
-        (mkHomeManager params [])
-      ];
+      modules =
+        [
+          configuration
+          inputs.home-manager.darwinModules.home-manager
+          ./machines/${hostname}/default.nix
+          (mkHomeManager params ([] ++ extraHomeManagerModules))
+        ]
+        ++ extraModules;
     };
   };
 
@@ -117,6 +122,7 @@ in {
     nixpkgsVersion,
     extraModules,
     extraHomeManagerModules,
+    ...
   }: let
     pkgs = import nixpkgsVersion {
       inherit system;

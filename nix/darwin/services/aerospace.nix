@@ -3,12 +3,6 @@
     enable = true;
 
     settings = {
-      exec-on-workspace-change = [
-        "/bin/bash"
-        "-c"
-        "${sketchybar}/bin/sketchybar --update"
-      ];
-
       # Used as a service, so no need for this home manager option
       # start-at-login = true;
 

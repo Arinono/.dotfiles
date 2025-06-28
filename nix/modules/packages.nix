@@ -93,7 +93,6 @@ in rec {
     [
       calibre
       discord
-      ghostty
       nerd-fonts.meslo-lg
       vlc
       inputs.zen-browser.packages."${params.system}".default

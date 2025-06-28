@@ -31,7 +31,6 @@ in {
     ./modules/ctop.nix
     ./modules/btop.nix
     ./modules/gh-dash.nix
-    ./modules/ghostty.nix
     ./modules/tealdeer.nix
     ./modules/tmux.nix
     # ./modules/wezterm.nix
@@ -58,11 +57,7 @@ in {
   fonts.fontconfig.enable = true;
 
   xdg.enable = true;
-  xdg.configFile =
-    {
-      nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim";
-    }
-    // lib.optionalAttrs isDarwin {
-      sketchybar.source = mkOutOfStoreSymlink "${home}/.dotfiles/sketchybar";
-    };
+  xdg.configFile = {
+    nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim";
+  };
 }
