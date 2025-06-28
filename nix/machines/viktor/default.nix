@@ -102,12 +102,16 @@
         "bluez5.roles" = ["hsp_hs" "hsp_ag" "hfp_hf" "hfp_ag"];
       };
     };
-    # If you want to use JACK applications, uncomment this
-    #jack.enable = true;
-
-    # use the example session manager (no others are packaged yet so this is enabled by default,
-    # no need to redefine it in your config for now)
-    #media-session.enable = true;
+  };
+  hardware.bluetooth = {
+    enable = true;
+    powerOnBoot = true;
+    settings = {
+      General = {
+        Enable = "Source,Sink,Media,Socket";
+        Experimental = true; # Enables newer features
+      };
+    };
   };
 
   # Enable touchpad support (enabled default in most desktopManager).
@@ -143,9 +147,17 @@
     brightnessctl
     playerctl
     hyprshot
-    pavucontrol
     libnotify
+
+    pavucontrol
     overskride
+    # codecs
+    bluez
+    bluez-tools
+    sbc
+    ldacbt
+    libfreeaptx
+
     wl-clipboard
     cliphist
   ];
