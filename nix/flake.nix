@@ -68,12 +68,12 @@
         system = "x86_64-linux";
         nixpkgsVersion = nixpkgs;
         extraModules = [
-          ./modules/ghostty.nix
           ./modules/tailscale.nix
           ./modules/hyprland.nix
         ];
         extraHomeManagerModules = [
           ./modules/home/modules/hyprland/default.nix
+          ./modules/home/modules/ghostty.nix
         ];
       })
       {
