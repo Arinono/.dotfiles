@@ -13,6 +13,7 @@ in rec {
     btop
     curl
     direnv
+    dig
     dua
     dust
     eza
