@@ -233,12 +233,12 @@
       # Example per-device config
       # See https://wiki.hypr.land/Configuring/Keywords/#per-device-input-configs for more
       device {
-          name = epic-mouse-v1
-          sensitivity = -0.5
-      }
-      device {
         name = logitech-pro-x-1
         sensitivity = -1
+      }
+      device {
+        name = logitech-wireless-mouse-mx-master-2s-1
+        sensitivity = -0.7
       }
 
 
