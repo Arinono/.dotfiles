@@ -21,6 +21,7 @@
     device = "/dev/disk/by-label/nixos";
     fsType = "ext4";
   };
+  boot.initrd.luks.devices."cryptroot".device = "/dev/disk/by-label/nixos_encrypted";
 
   fileSystems."/boot" = {
     device = "/dev/disk/by-label/EFI";
