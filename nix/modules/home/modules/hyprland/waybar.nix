@@ -67,7 +67,7 @@
           "format": "  {usage:>2}%"
         },
         "memory": {
-          "interval": 30,
+          "interval": 10,
           "format": "  {used:0.1f}G"
         },
         "pulseaudio": {
