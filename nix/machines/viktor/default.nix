@@ -52,6 +52,14 @@
 
   # Enable networking
   networking.networkmanager.enable = true;
+  # https://nixos.wiki/wiki/Firewall
+  networking.firewall = {
+    enable = true;
+    allowedTCPPorts = [];
+    allowedUDPPortRanges = [];
+  };
+
+  services.openssh.enable = true;
 
   # Set your time zone.
   time.timeZone = "Europe/Paris";
@@ -171,15 +179,6 @@
   # };
 
   # List services that you want to enable:
-
-  # Enable the OpenSSH daemon.
-  # services.openssh.enable = true;
-
-  # Open ports in the firewall.
-  # networking.firewall.allowedTCPPorts = [ ... ];
-  # networking.firewall.allowedUDPPorts = [ ... ];
-  # Or disable the firewall altogether.
-  # networking.firewall.enable = false;
 
   # This value determines the NixOS release from which the default
   # settings for stateful data, like file locations and database versions
