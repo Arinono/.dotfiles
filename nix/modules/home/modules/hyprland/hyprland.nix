@@ -266,6 +266,7 @@
       bind = CTRL SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
       bind = CTRL SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
       bind = CTRL SHIFT, 5, exec, hyprshot -m active -m window -o ~/Downloads
+      bind = CTRL SHIFT, G, exec, sh -c 'gradia $(fd -e .png hyprshot ~/Downloads | tail -n 1)'
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, H, movefocus, l
@@ -335,6 +336,7 @@
 
       # Example windowrule
       # windowrule = float,class:^(kitty)$,title:^(kitty)$
+      windowrule = float,class:^be\.alexandervanhee\.gradia$
 
       # Ignore maximize requests from apps. You'll probably like this.
       windowrule = suppressevent maximize, class:.*

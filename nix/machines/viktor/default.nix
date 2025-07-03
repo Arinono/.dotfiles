@@ -155,6 +155,7 @@
     brightnessctl
     playerctl
     hyprshot
+    gradia
     libnotify
 
     pavucontrol
