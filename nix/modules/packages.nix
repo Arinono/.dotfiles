@@ -75,6 +75,7 @@ in rec {
   shared = with pkgs; [
     obsidian
     spotify
+    brave
   ];
 
   darwin = with pkgs;
@@ -87,7 +88,6 @@ in rec {
       tailscale
 
       arc-browser
-      brave
     ]
     ++ shared;
 
