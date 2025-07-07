@@ -26,12 +26,14 @@
       $moni_lg = LG Electronics LG Ultra HD 0x0000989C
       $moni_asus = ASUSTek COMPUTER INC VG248 M4LMQS244850
       $moni_dell = Dell Inc. DELL P2419HC 5784JQ2
+      $moni_samsung = Samsung Electric Company LS27A800U HNMW900207
 
       monitor = eDP-1, 2880x1920@120, -1920x0, 1.5
 
       monitor = desc:$moni_lg, 3840x2160, +1920x0, 1.5
       monitor = desc:$moni_asus, 1920x1080@144, 0x0, 1
       monitor = desc:$moni_dell, 1920x1080, -1080x0, 1, transform, 1
+      monitor = desc:$moni_samsung, 3840x2160, 0x0, 1.5
 
       # Random monitors
       monitor = , preferred, 0x0, 1
