@@ -14,7 +14,7 @@
 
       builders-use-substitutes = true;
       builders = lib.mkForce [
-        "aatrox aarch64-linux /var/root/.ssh/remotebuild 4 1 ; ahri x86_64-linux /var/root/.ssh/remotebuild 4 1"
+        "aatrox aarch64-linux ~/.ssh/id_ed25519 4 1 ; ahri x86_64-linux ~/.ssh/id_ed25519 4 1"
       ];
 
       substituters = ["https://hyprland.cachix.org"];

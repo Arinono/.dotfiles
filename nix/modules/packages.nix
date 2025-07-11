@@ -12,8 +12,8 @@ in rec {
     bc
     btop
     curl
-    direnv
     dig
+    direnv
     dua
     dust
     eza
@@ -32,6 +32,7 @@ in rec {
     mdbook
     neovim
     nil
+    openssl
     parallel
     ripgrep
     rsync
