@@ -80,10 +80,12 @@ in rec {
 
   darwin = with pkgs;
     [
+      ollama
       flyctl
       keycastr
       terminal-notifier
       utm
+      docker
       proton-vpn
       tailscale
 
