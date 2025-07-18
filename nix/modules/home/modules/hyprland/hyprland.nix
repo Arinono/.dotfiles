@@ -362,10 +362,10 @@
             hyprctl keyword monitor "eDP-1, disable"
           fi
       else
-          hyprlock --immediate
           if [[ "$1" == "open" ]]; then
             hyprctl keyword monitor "eDP-1, 2880x1920@120, auto-left, 1.5"
           else
+            hyprlock --immediate
             systemctl suspend
           fi
       fi
