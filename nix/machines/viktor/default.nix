@@ -31,7 +31,7 @@
   services.logind.powerKeyLongPress = "hibernate";
   services.logind.suspendKey = "suspend";
   services.logind.suspendKeyLongPress = "hibernate";
-  services.logind.lidSwitch = "suspend";
+  services.logind.lidSwitch = "ignore";
   services.logind.lidSwitchExternalPower = "ignore";
   services.logind.lidSwitchDocked = "ignore";
 

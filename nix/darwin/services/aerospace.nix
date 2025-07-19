@@ -122,12 +122,8 @@
       };
 
       mode.apps.binding = {
-        alt-a = "exec-and-forget open -a /Applications/Nix\ Apps/Arc.app";
-        alt-o = "exec-and-forget open -a /Applications/Nix\ Apps/Obsidian.app";
-        alt-g = "exec-and-forget open -a /Applications/Ghostty.app";
-        alt-s = "exec-and-forget open -a /Applications/Nix\ Apps/Spotify.app";
-        alt-d = "exec-and-forget open -a /Applications/Discord.app";
-        alt-b = "exec-and-forget open -a /Applications/Nix\ Apps/Brave\ Browser.app/";
+        alt-b = "exec-and-forget open -a /Applications/Nix\ Apps/Arc.app";
+        alt-enter = "exec-and-forget open -a /Applications/Ghostty.app";
         esc = "mode main";
       };
     };
