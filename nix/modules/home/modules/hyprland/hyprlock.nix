@@ -40,7 +40,7 @@
 
       background {
           monitor =
-          path = ~/Pictures/Wallpapers/tokyonight.png
+          path = ~/Pictures/Wallpapers/kr_bridge.png
           blur_passes = 3
       }
 
