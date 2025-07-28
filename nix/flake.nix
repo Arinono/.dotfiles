@@ -70,6 +70,7 @@
         extraModules = [
           ./modules/tailscale.nix
           ./modules/hyprland.nix
+          ./modules/steam.nix
         ];
         extraHomeManagerModules = [
           ./modules/home/modules/hyprland/default.nix
