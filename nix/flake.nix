@@ -74,6 +74,21 @@
         ];
         extraHomeManagerModules = [
           ./modules/home/modules/hyprland/default.nix
+          ./modules/home/modules/hyprland/hypridle.nix
+          ./modules/home/modules/ghostty.nix
+        ];
+      })
+      (mkNixos {
+        hostname = "urgot";
+        system = "x86_64-linux";
+        nixpkgsVersion = nixpkgs;
+        extraModules = [
+          ./modules/tailscale.nix
+          ./modules/hyprland.nix
+          ./modules/steam.nix
+        ];
+        extraHomeManagerModules = [
+          ./modules/home/modules/hyprland/default.nix
           ./modules/home/modules/ghostty.nix
         ];
       })

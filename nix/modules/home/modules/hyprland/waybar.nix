@@ -1,4 +1,11 @@
-{...}: {
+{params, ...}: let
+  hwmonPath =
+    if params.hostname == "viktor"
+    then "/sys/class/hwmon/hwmon5/temp1_input"
+    else if params.hostname == "urgot"
+    then "/sys/class/hwmon/hwmon2/temp1_input"
+    else "";
+in {
   programs.waybar = {
     enable = true;
   };
@@ -80,7 +87,7 @@
         },
         "temperature": {
           "critical-threshold": 80,
-          "hwmon-path": "/sys/class/hwmon/hwmon5/temp1_input",
+          "hwmon-path": "${hwmonPath}",
           "format": "{temperatureC}°C {icon}",
           "format-icons": [""]
         },
