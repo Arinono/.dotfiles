@@ -28,11 +28,11 @@
     options = ["fmask=0077" "dmask=0077"];
   };
 
-  # fileSystems."/mnt/games" = {
-  #   device = "/dev/nvme0n1p1";
-  #   fsType = "exfat";
-  #   options = ["nofail" "uid=1000" "fmask=0022" "dmask=0022" "rw"];
-  # };
+  fileSystems."/mnt/games" = {
+    device = "/dev/disk/by-label/Data";
+    fsType = "exfat";
+    options = ["rw" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "iocharset=utf8" "errors=remount-ro"];
+  };
 
   swapDevices = [];
 
