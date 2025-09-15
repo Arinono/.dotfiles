@@ -77,6 +77,7 @@
 
       # See https://wiki.hypr.land/Configuring/Environment-variables/
 
+      env = HYPRCURSOR_THEME,rose-pine-hyprcursor
       env = XCURSOR_SIZE,24
       env = HYPRCURSOR_SIZE,24
 
