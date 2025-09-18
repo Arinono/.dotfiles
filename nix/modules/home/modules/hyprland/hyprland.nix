@@ -268,10 +268,10 @@
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
       bind = $mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
-      bind = CTRL SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
-      bind = CTRL SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
-      bind = CTRL SHIFT, 5, exec, hyprshot -m active -m window -o ~/Downloads
-      bind = CTRL SHIFT, G, exec, sh -c 'gradia $(fd -e .png hyprshot ~/Downloads | tail -n 1)'
+      bind = ALT SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
+      bind = ALT SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
+      bind = ALT SHIFT, 5, exec, hyprshot -m active -m window -o ~/Downloads
+      bind = ALT SHIFT, G, exec, sh -c 'gradia $(fd -e .png hyprshot ~/Downloads | tail -n 1)'
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, H, movefocus, l
