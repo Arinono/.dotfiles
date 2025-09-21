@@ -110,6 +110,7 @@ in
         Thumbs.db
         .bundle
         .pnpm-debug.log
+        .claude
         /result
         /target
       '';
