@@ -135,6 +135,7 @@
     claude-code
     obs-studio
     discord-ptb
+    flyctl
     # framework
     fprintd
 
