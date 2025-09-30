@@ -31,9 +31,9 @@
 
       monitor = eDP-1, 2880x1920@120, -1920x0, 1.5
 
-      monitor = desc:$moni_lg, 3840x2160, +1920x0, 1.5
+      monitor = desc:$moni_lg, 3840x2160, +1920x-300, 1.5
       monitor = desc:$moni_asus, 1920x1080@144, 0x0, 1
-      monitor = desc:$moni_dell, 1920x1080, -1080x0, 1, transform, 1
+      monitor = desc:$moni_dell, 1920x1080, -1080x-300, 1, transform, 1
       monitor = desc:$moni_samsung, 3840x2160, 0x0, 1.5
       monitor = desc:$moni_lg_smj, 1920x1080, 0x-1920, 1
 
