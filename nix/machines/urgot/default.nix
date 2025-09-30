@@ -126,6 +126,7 @@
 
   # List packages installed in system profile. To search, run: $ nix search wget
   environment.systemPackages = with pkgs; [
+    ftb-app
     discord-ptb
     # special dev (node native modules)
     python314
