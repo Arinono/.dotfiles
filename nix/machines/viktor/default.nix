@@ -27,13 +27,13 @@
   };
   time.hardwareClockInLocalTime = true;
 
-  services.logind.powerKey = "suspend";
-  services.logind.powerKeyLongPress = "hibernate";
-  services.logind.suspendKey = "suspend";
-  services.logind.suspendKeyLongPress = "hibernate";
-  services.logind.lidSwitch = "ignore";
-  services.logind.lidSwitchExternalPower = "ignore";
-  services.logind.lidSwitchDocked = "ignore";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
+  services.logind.settings.Login.HandlePowerKeyLongPress = "hibernate";
+  services.logind.settings.Login.HandleSuspendKey = "suspend";
+  services.logind.settings.Login.HandleSuspendKeyLongPress = "hibernate";
+  services.logind.settings.Login.HandleLidSwitch = "ignore";
+  services.logind.settings.Login.HandleLidSwitchExternalPower = "ignore";
+  services.logind.settings.Login.HandleLidSwitchDocked = "ignore";
 
   services.fwupd.enable = true;
   services.fprintd.enable = true;

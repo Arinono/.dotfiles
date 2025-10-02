@@ -232,7 +232,7 @@
 
       # https://wiki.hypr.land/Configuring/Variables/#gestures
       gestures {
-          workspace_swipe = false
+          workspace_swipe_touch = false
       }
 
       # Example per-device config
