@@ -15,10 +15,10 @@
   boot.loader.efi.canTouchEfiVariables = true;
   time.hardwareClockInLocalTime = true;
 
-  services.logind.powerKey = "suspend";
-  services.logind.powerKeyLongPress = "hibernate";
-  services.logind.suspendKey = "suspend";
-  services.logind.suspendKeyLongPress = "hibernate";
+  services.logind.settings.Login.HandlePowerKey = "suspend";
+  services.logind.settings.Login.HandlePowerKeyLongPress = "hibernate";
+  services.logind.settings.Login.HandleSuspendKey = "suspend";
+  services.logind.settings.Login.HandleSuspendKeyLongPress = "hibernate";
 
   services.fwupd.enable = true;
 
