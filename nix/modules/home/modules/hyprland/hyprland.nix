@@ -57,8 +57,6 @@
       $terminal = ghostty
       $fileManager = nautilus
       $menu = wofi --show drun
-      $browser = zen
-
 
       #################
       ### AUTOSTART ###
@@ -264,7 +262,6 @@
       bind = $mainMod, space, exec, $menu
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
-      bind = $mainMod, B, exec, $browser
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
       bind = $mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
 
