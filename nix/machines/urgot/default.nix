@@ -33,10 +33,19 @@
   # Enable networking
   networking.networkmanager.enable = true;
   # https://nixos.wiki/wiki/Firewall
-  networking.firewall = {
-    enable = true;
-    allowedTCPPorts = [];
-    allowedUDPPortRanges = [];
+  networking = {
+    firewall = {
+      enable = false;
+      allowedTCPPorts = [];
+      allowedUDPPortRanges = [];
+    };
+
+    nameservers = [
+      "10.4.1.7"
+      "10.4.1.4"
+      "1.1.1.1"
+      "1.0.0.1"
+    ];
   };
 
   services.openssh.enable = true;
