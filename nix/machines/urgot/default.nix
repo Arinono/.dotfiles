@@ -137,6 +137,8 @@
   environment.systemPackages = with pkgs; [
     ftb-app
     discord-ptb
+    winetricks
+    protontricks
     # special dev (node native modules)
     python314
     gnumake
