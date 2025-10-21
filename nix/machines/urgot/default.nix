@@ -138,7 +138,7 @@
     obs-studio
     ftb-app
     discord-ptb
-    proton-ge-bin
+    # proton-ge-bin
     protonup-qt
     # special dev (node native modules)
     python314
