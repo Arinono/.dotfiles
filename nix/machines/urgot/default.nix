@@ -138,8 +138,8 @@
     obs-studio
     ftb-app
     discord-ptb
-    winetricks
-    protontricks
+    proton-ge-bin
+    protonup-qt
     # special dev (node native modules)
     python314
     gnumake
