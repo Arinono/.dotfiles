@@ -10,12 +10,6 @@
     home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    git_worktree_clean = {
-      url = "path:../git_worktree_clean";
-      flake = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-
     simple_http_server = {
       url = "github:arinono/simple-http-server";
       flake = true;

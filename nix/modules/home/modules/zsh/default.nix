@@ -143,6 +143,7 @@ in {
         git.gsync
         git.git_current_branch
         git.git_branch_main
+        git.clean_worktrees
         tmux.kill_session
         tmux.tmux_sessionizer
         tmux.tmux_worktree_panizer

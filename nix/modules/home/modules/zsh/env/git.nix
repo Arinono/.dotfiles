@@ -58,6 +58,27 @@
     '';
   };
 
+  clean_worktrees = pkgs.writeShellApplication {
+    name = "clean_worktrees";
+    runtimeInputs = [pkgs.git];
+
+    text = ''
+      #!/usr/bin/env bash
+
+      set -euo pipefail
+
+      worktrees=$(git worktree list | grep -v "locked$" | cut -d ' ' -f 1 | grep -v "main$")
+      selected_worktrees=$(echo "$worktrees" | fzf --multi)
+
+      if [[ "$1" == "-f" ]]; then
+          echo "$selected_worktrees" | xargs -I {} git worktree remove --force {}
+      else
+          echo "$selected_worktrees" | xargs -I {} git worktree remove {}
+      fi
+
+      git worktree prune
+    '';
+
   aliases = with pkgs; {
     gs = "${git}/bin/git status";
     gp = "${git}/bin/git pull --rebase";
