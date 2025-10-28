@@ -11,7 +11,7 @@
       cursor-color = "ffffff";
       font-size = 14;
       window-decoration = false;
-      theme = "Tokyonight Storm";
+      theme = "TokyoNight Storm";
       auto-update = "download";
       confirm-close-surface = false;
     };

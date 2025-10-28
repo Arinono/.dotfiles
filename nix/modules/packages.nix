@@ -54,7 +54,6 @@ in rec {
     gopls
     hexedit
     hexyl
-    inputs.git_worktree_clean.packages.${pkgs.system}.default
     minio
     minio-client
     ngrok

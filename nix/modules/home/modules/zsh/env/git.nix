@@ -78,6 +78,7 @@
 
       git worktree prune
     '';
+  };
 
   aliases = with pkgs; {
     gs = "${git}/bin/git status";
