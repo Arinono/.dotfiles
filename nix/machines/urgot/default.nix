@@ -143,6 +143,7 @@
     obs-studio
     ftb-app
     discord-ptb
+    cryptomator
     # proton-ge-bin
     protonup-qt
     # special dev (node native modules)
