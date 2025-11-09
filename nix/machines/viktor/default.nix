@@ -150,6 +150,7 @@
     obs-studio
     discord-ptb
     flyctl
+    cryptomator
     # framework
     fprintd
 
