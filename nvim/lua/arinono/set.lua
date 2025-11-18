@@ -56,7 +56,7 @@ vim.opt.wrap = false
 vim.opt.cursorline = true
 
 -- mainly for md and obsidian support
-vim.opt.conceallevel = 2
+vim.opt.conceallevel = 0
 
 vim.opt.colorcolumn = { 80, 100 }
 vim.opt.termguicolors = true
