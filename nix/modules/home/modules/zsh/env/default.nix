@@ -17,6 +17,8 @@ in {
     la = "eza -a";
     vim = "nvim";
     v = "nvim";
+    bat = "bat --paging=never";
+    cat = "bat --paging=never --plain";
   };
 
   variables = {
