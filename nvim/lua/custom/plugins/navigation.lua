@@ -6,15 +6,15 @@ local function toggle_telescope(harpoon_files)
   end
 
   require("telescope.pickers")
-    .new({}, {
-      prompt_title = "Harpoon",
-      finder = require("telescope.finders").new_table({
-        results = file_paths,
-      }),
-      previewer = conf.file_previewer({}),
-      sorter = conf.generic_sorter({}),
-    })
-    :find()
+      .new({}, {
+        prompt_title = "Harpoon",
+        finder = require("telescope.finders").new_table({
+          results = file_paths,
+        }),
+        previewer = conf.file_previewer({}),
+        sorter = conf.generic_sorter({}),
+      })
+      :find()
 end
 
 local function map(keys, func, desc)
@@ -45,7 +45,10 @@ local function telescope_keymaps()
   end, { desc = "[S]earch Hidden [F]iles" })
 
   vim.keymap.set("n", "<leader>ps", function()
-    builtin.grep_string({ search = vim.fn.input("🔭 > ") })
+    builtin.grep_string({
+      search = vim.fn.input("🔭 > "),
+      use_regex = true,
+    })
   end)
 
   vim.keymap.set("n", "<leader>/", function()
@@ -84,7 +87,7 @@ return {
       },
       { "nvim-telescope/telescope-ui-select.nvim" },
 
-      { "nvim-tree/nvim-web-devicons", enabled = vim.g.have_nerd_font },
+      { "nvim-tree/nvim-web-devicons",            enabled = vim.g.have_nerd_font },
     },
     config = function()
       require("telescope").setup({
