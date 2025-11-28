@@ -13,7 +13,6 @@
     flycut = import ../defaults/flycut.nix {};
     scroll_reverser = import ../defaults/scroll_reverser.nix {};
     soundsource = import ../defaults/soundsource.nix {inherit secrets;};
-    arc_browser = import ../defaults/arc_browser.nix {};
     keycastr = import ../defaults/keycastr.nix {};
     tailscale = import ../defaults/tailscale.nix {};
     vlc = import ../defaults/vlc.nix {};
@@ -27,8 +26,7 @@ in {
         // dock_finder.CustomSystemPreferences;
 
       CustomUserPreferences = with defaults;
-        arc_browser.CustomUserPreferences
-        // flycut.CustomUserPreferences
+        flycut.CustomUserPreferences
         // istat_menus.CustomUserPreferences
         // keycastr.CustomUserPreferences
         // scroll_reverser.CustomUserPreferences

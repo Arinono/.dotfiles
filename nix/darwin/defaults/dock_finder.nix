@@ -38,9 +38,6 @@
         {
           app = "${pkgs.spotify}/Applications/Spotify.app";
         }
-        {
-          app = "${pkgs.arc-browser}/Applications/Arc.app";
-        }
       ];
       persistent-others = [
         "${params.home}/Downloads"

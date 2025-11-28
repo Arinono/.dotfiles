@@ -88,8 +88,7 @@ in rec {
       docker
       proton-vpn
       tailscale
-
-      arc-browser
+      inputs.zen-browser.packages."${params.system}".default
     ]
     ++ shared;
 
