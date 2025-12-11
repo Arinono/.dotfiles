@@ -151,6 +151,7 @@
     discord-ptb
     flyctl
     cryptomator
+    scaleway-cli
     #realvnc-vnc-viewer
     # framework
     fprintd
