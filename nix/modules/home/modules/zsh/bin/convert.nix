@@ -31,8 +31,9 @@
       fi
 
       if [[ "$selected_format" == "gif" ]]; then
-        ffmpeg -i "$file" -r 10 \
-          -vf "scale=1920:1080:force_original_aspect_ratio=decrease" "$dir/$name.gif"
+        ffmpeg -i "$file" \
+          -filter_complex "[0:v] fps=15,scale=1024:-1,split [a][b];[a] palettegen [p];[b][p] paletteuse" \
+          "$dir/$name.gif"
       elif [[ "$selected_format" == "discord_sticker" ]]; then
         ffmpeg -i "$file" -plays 0 \
           -vf "setpts=PTS_STARTPTS, scale=320:320:1080:force_original_aspect_ratio=decrease" \
