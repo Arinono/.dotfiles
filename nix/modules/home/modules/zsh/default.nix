@@ -61,6 +61,14 @@ in {
       };
       syntaxHighlighting.enable = true;
 
+      plugins = [
+        {
+          name = "fzf-tab";
+          src = pkgs.zsh-fzf-tab;
+          file = "share/fzf-tab/fzf-tab.plugin.zsh";
+        }
+      ];
+
       history = {
         save = 100000;
         size = 100000;
@@ -69,6 +77,10 @@ in {
 
       envExtra = ''
         export GPG_TTY=$(tty)
+
+        autoload -Uz edit-command-line
+        zle -N edit-command-line
+        bindkey '^X^E' edit-command-line
       '';
 
       sessionVariables =
