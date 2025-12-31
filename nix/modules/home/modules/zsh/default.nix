@@ -81,6 +81,23 @@ in {
         autoload -Uz edit-command-line
         zle -N edit-command-line
         bindkey '^X^E' edit-command-line
+
+        bindkey ' ' magic-space
+
+        # Suffixe aliases
+        alias -s json=jq
+        alias -s md=bat
+        alias -s go='$EDITOR'
+        alias -s rs='$EDITOR'
+        alias -s txt=bat
+        alias -s log=bat
+        alias -s py='$EDITOR'
+        alias -s js='$EDITOR'
+        alias -s ts='$EDITOR'
+        # check how to integrate only on darwin
+        # alias -s html=open
+        # alias -s png=open
+        # alias -s jpg=open
       '';
 
       sessionVariables =
@@ -91,6 +108,15 @@ in {
         // go.variables
         // tmux.variables
         // secrets.wtg.variables;
+
+      shellGlobalAliases = {
+        NE = "2>/dev/null";
+        NO = ">/dev/null";
+        NUL = ">/dev/null 2>&1";
+        SILNO = "&>/dev/null &";
+        C = "| pbcopy";
+        J = "| jq";
+      };
 
       shellAliases =
         default.aliases
