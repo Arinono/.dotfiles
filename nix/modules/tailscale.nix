@@ -11,7 +11,7 @@
   networking.firewall.trustedInterfaces = ["tailscale0"];
 
   services.tailscale = {
-    enable = true;
+    enable = false;
     authKeyFile = ./secrets/tailscale_key;
   };
 }
