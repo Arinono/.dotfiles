@@ -65,12 +65,6 @@ in
             smudge = ${git-lfs}/bin/git-lfs smudge -- %f
             process = ${git-lfs}/bin/git-lfs filter-process
             required = true
-          [filter "git-crypt"]
-            smudge = ${git-crypt}/bin/git-crypt smudge
-            clean = ${git-crypt}/bin/git-crypt clean
-            required = true
-          [diff "git-crypt"]
-            textconv = ${git-crypt}/bin/git-crypt diff
           [alias]
             apa = add --patch
             st = status
