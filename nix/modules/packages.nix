@@ -8,7 +8,6 @@
 in rec {
   base = with pkgs; [
     alejandra
-    bat
     bc
     btop
     curl

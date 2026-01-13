@@ -28,6 +28,7 @@ in {
     ./modules/zsh
     ./modules/gitconfig.nix
     # ./modules/carapace.nix
+    ./modules/bat.nix
     ./modules/ctop.nix
     ./modules/btop.nix
     ./modules/gh-dash.nix

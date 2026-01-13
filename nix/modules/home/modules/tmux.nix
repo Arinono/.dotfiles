@@ -18,16 +18,30 @@ in {
     focusEvents = true;
     keyMode = "vi";
     plugins = with pkgs; [
+      # {
+      #   plugin = tmuxPlugins.dracula;
+      #   extraConfig = ''
+      #     set -g @dracula-plugins "time"
+      #     set -g @dracula-show-powerline true
+      #     set -g @dracula-show-flags true
+      #     set -g @dracula-show-left-icon session
+      #     set -g @dracula-day-month true
+      #     set -g @dracula-show-timezone false
+      #     set -g @dracula-military-time true
+      #   '';
+      # }
       {
-        plugin = tmuxPlugins.dracula;
+        plugin = tmuxPlugins.tokyo-night-tmux;
         extraConfig = ''
-          set -g @dracula-plugins "time"
-          set -g @dracula-show-powerline true
-          set -g @dracula-show-flags true
-          set -g @dracula-show-left-icon session
-          set -g @dracula-day-month true
-          set -g @dracula-show-timezone false
-          set -g @dracula-military-time true
+          set -g @tokyo-night-tmux_theme storm    # storm | day | default to 'night'
+          set -g @tokyo-night-tmux_transparent 1  # 1 or 0
+          set -g @tokyo-night-tmux_terminal_icon 
+          set -g @tokyo-night-tmux_active_terminal_icon 
+          set -g @tokyo-night-tmux_window_tidy_icons 0
+
+          set -g @tokyo-night-tmux_show_datetime 1
+          set -g @tokyo-night-tmux_date_format "%Y-%m-%d %H:%M"
+          set -g @tokyo-night-tmux_time_format 24H
         '';
       }
       tmuxPlugins.resurrect
@@ -50,7 +64,8 @@ in {
       set -gq mouse-resize-pane on
       set -gq mouse-select-window on
 
-      set -g default-terminal "tmux-256color"
+      set -g default-terminal "screen"
+      set -ga terminal-overrides ",xterm-256color:RGB"
 
       bind R neww -n "tmux-conf" "$EDITOR $XDG_CONFIG_HOME/tmux/tmux.conf"
       bind r source-file $XDG_CONFIG_HOME/tmux/tmux.conf \; display-message "tmux reloaded"
