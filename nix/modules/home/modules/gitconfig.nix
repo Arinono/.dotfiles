@@ -105,6 +105,7 @@ in
         .bundle
         .pnpm-debug.log
         .claude
+        **/node_modules
         /result
         /target
       '';
