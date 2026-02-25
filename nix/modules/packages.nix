@@ -93,7 +93,6 @@ in rec {
 
   linux = with pkgs;
     [
-      calibre
       discord
       nerd-fonts.meslo-lg
       vlc
