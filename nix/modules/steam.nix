@@ -4,11 +4,17 @@
     remotePlay.openFirewall = false;
     dedicatedServer.openFirewall = false;
     localNetworkGameTransfers.openFirewall = true;
+    gamescopeSession.enable = true;
+  };
+
+  programs.gamescope = {
+    enable = true;
+    capSysNice = true;
   };
 
   environment.systemPackages = with pkgs; [
     steam
-    steam-run
+    steam-run-free
     steamcmd
   ];
 

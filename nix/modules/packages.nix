@@ -61,7 +61,7 @@ in rec {
     pnpm
     rustc
     rustfmt
-    inputs.simple_http_server.packages.${pkgs.system}.default
+    inputs.simple_http_server.packages.${pkgs.stdenv.hostPlatform.system}.default
     sqld
     tokei
     trunk

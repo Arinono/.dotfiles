@@ -4,6 +4,7 @@
   username,
   params,
   secrets,
+  config,
   ...
 }: let
   editor = "nvim";
@@ -53,6 +54,7 @@ in {
   programs = {
     zsh = {
       enable = true;
+      dotDir = "${config.xdg.configHome}/zsh";
 
       enableCompletion = true;
       autosuggestion = {
