@@ -15,14 +15,16 @@
   services.hyprpaper = {
     enable = true;
     settings = {
-      preload = [
-        "~/Pictures/Wallpapers/kr_street.jpg"
-        "~/Pictures/Wallpapers/kr_bridge.jpg"
-        "~/Pictures/Wallpapers/tokyonight.png"
-      ];
+      splash = false;
 
+      # "~/Pictures/Wallpapers/kr_street.jpg"
+      # "~/Pictures/Wallpapers/kr_bridge.jpg"
+      # "~/Pictures/Wallpapers/tokyonight.png"
       wallpaper = [
-        ",~/Pictures/Wallpapers/kr_bridge.jpg"
+        {
+          monitor = "";
+          path = "~/Pictures/Wallpapers/kr_bridge.jpg";
+        }
       ];
     };
   };
