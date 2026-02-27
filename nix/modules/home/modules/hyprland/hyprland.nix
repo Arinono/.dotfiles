@@ -338,13 +338,13 @@
 
       # Example windowrule
       # windowrule = float,class:^(kitty)$,title:^(kitty)$
-      windowrule = float,class:^be\.alexandervanhee\.gradia$
+      # windowrule = float,class:^be\.alexandervanhee\.gradia$
 
       # Ignore maximize requests from apps. You'll probably like this.
-      windowrule = suppressevent maximize, class:.*
+      # windowrule = suppressevent maximize, class:.*
 
       # Fix some dragging issues with XWayland
-      windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+      # windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
     '';
   };
 
