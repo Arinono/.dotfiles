@@ -67,7 +67,7 @@ in {
           "format-disconnected": "󰤠 ",
           "interval": 5,
           "tooltip": false,
-          "on-click": "$XDG_CONFIG_HOME/waybar/wifi.sh"
+          "on-click": "nm-connection-editor"
         },
         "cpu": {
           "interval": 1,
@@ -255,80 +255,6 @@ in {
         #temperature.critical {
           color: #eb4d4b;
         }
-    '';
-  };
-
-  xdg.configFile.wifi = {
-    target = "./waybar/wifi.sh";
-    executable = true;
-    text = ''
-      #!/usr/bin/env bash
-
-      connect_wifi() {
-          notify-send "Fetching available Wi-Fi networks ..." -t 3000 -r 9991 -u normal
-
-          current=$(nmcli -t -f active,ssid dev wifi | awk -F: '/^yes/ {print $2}')
-          wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
-
-          if [ -n "$current" ]; then
-              wifi_list=$(echo "$wifi_list" | grep -v "$current")
-              wifi_list="󰖩  $current [Connected]\n$wifi_list"
-          fi
-
-          choice=$(echo -e "$toggle\n$wifi_list" | uniq -u | wofi -dmenu -i -p "  Wifi" -selected-row 1 -config "$HOME/.config/wofi/regular.rasi")
-
-          if [ -z "$choice" ]; then
-              exit
-          fi
-
-          ssid=$(echo "$choice" | awk '{$1=""; print $0}' | sed 's/^ *//' | sed 's/ \[connected\]//')
-
-          if [[ "$choice" = "$toggle" ]]; then
-              nmcli radio wifi off
-              notify-send "Wi-Fi Disabled" -r 9991 -u normal -t 5000
-              exit
-          fi
-
-          if [[ "$ssid" = "$current" ]]; then
-              notify-send "Already connected to $ssid" -r 9991 -u normal -t 5000
-              exit
-          else
-              saved=$(nmcli -g NAME connection)
-              if [[ $(echo "$saved" | grep -w "$ssid") = "$ssid" ]]; then
-                  nmcli connection up id "$ssid" | grep "successfully" && notify-send "Connection Established" "Connected to $ssid" -t 5000 -r 9991 && exit
-              fi
-              if [[ "$choice" =~ "" ]]; then
-                  password=$(wofi -dmenu -p "Password: " -l 0 -config "$HOME/.config/wofi/regular.rasi")
-              fi
-              if nmcli device wifi connect "$ssid" password "$password" | grep "successfully"; then
-                  notify-send "Connection Established" "Connected to $ssid" -t 5000 -r 9991
-              else
-                  notify-send "Connection Failed" "Could not connect to $ssid" -t 5000 -r 9991
-              fi
-          fi
-      }
-
-      status=$(nmcli -fields WIFI g | sed -n 2p)
-      if [[ "$status" =~ "enabled" ]]; then
-          toggle="󰖪  Disable Wi-Fi"
-          flag=1
-      elif [[ "$status" =~ "disabled" ]]; then
-          toggle="󰖩  Enable Wi-Fi"
-          flag=0
-      fi
-
-      if [ "$flag" -eq 1 ]; then
-          connect_wifi
-      else
-          choice=$(echo -e "$toggle" | wofi -dmenu -i -p "  Wifi" -config "$HOME/.config/wofi/regular.rasi")
-          if [[ "$choice" = "$toggle" ]]; then
-              nmcli radio wifi on
-              toggle="󰖪  Disable Wi-Fi"
-              notify-send "Wi-Fi Enabled" -r 9991 -u normal -t 5000
-              sleep 2
-              connect_wifi
-          fi
-      fi
     '';
   };
 }

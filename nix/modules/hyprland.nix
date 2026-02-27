@@ -9,7 +9,8 @@
     portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
   };
 
-  environment.systemPackages = [
-    inputs.rose-pine-hyprcursor.packages.${pkgs.stdenv.hostPlatform.system}.default
+  environment.systemPackages = with pkgs; [
+    networkmanagerapplet
+    inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
   ];
 }
