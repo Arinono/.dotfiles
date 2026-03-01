@@ -357,6 +357,16 @@
       }
 
       windowrule {
+        name = clocks
+        match:class = ^org.gnome.clocks$
+
+        float = on
+        animation = popin
+        move = (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))
+        size = 420 630
+      }
+
+      windowrule {
         name = pip
         match:title = ^Picture-in-Picture$
 
