@@ -58,6 +58,7 @@ in rec {
     ngrok
     nodejs
     oha
+    opencode
     pnpm
     rustc
     rustfmt

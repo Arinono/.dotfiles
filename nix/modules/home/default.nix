@@ -26,6 +26,7 @@ in {
 
   imports = [
     ./modules/zsh
+
     ./modules/gitconfig.nix
     # ./modules/carapace.nix
     ./modules/bat.nix
@@ -60,5 +61,8 @@ in {
   xdg.enable = true;
   xdg.configFile = {
     nvim.source = mkOutOfStoreSymlink "${home}/.dotfiles/nvim";
+  };
+  xdg.configFile = {
+    "gtk-4.0".source = mkOutOfStoreSymlink "${home}/.dotfiles/nix/modules/home/gtk-4.0-tokyonight";
   };
 }
