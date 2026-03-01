@@ -3,17 +3,7 @@
     ./hyprland.nix
     ./waybar.nix
     ./hyprlock.nix
-    # ./wofi.nix
   ];
-
-  programs.wofi = {
-    enable = false;
-  };
-
-  programs.rofi = with pkgs; {
-    enable = false;
-    terminal = "${ghostty}/bin/ghostty";
-  };
 
   programs.fuzzel = with pkgs; {
     enable = true;
@@ -32,7 +22,7 @@
         selection = "363d59ff";
         selection-match = "2ac3deff";
         selection-text = "c0caf5ff";
-        border = "29a4bdff";
+        border = "7aa2f7ff";
       };
     };
   };
