@@ -1,8 +1,4 @@
 {...}: {
-  programs.wofi = {
-    enable = true;
-  };
-
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
@@ -58,7 +54,7 @@
       # Set programs that you use
       $terminal = ghostty
       $fileManager = nautilus
-      $menu = wofi --show drun
+      $menu = fuzzel
 
       #################
       ### AUTOSTART ###
@@ -266,7 +262,7 @@
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
-      bind = $mainMod, V, exec, cliphist list | wofi --dmenu | cliphist decode | wl-copy
+      bind = $mainMod, V, exec, cliphist list | $menu --dmenu | cliphist decode | wl-copy
 
       bind = ALT SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
       bind = ALT SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
