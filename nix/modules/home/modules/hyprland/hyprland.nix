@@ -261,6 +261,7 @@
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, F, togglefloating,
+      bind = $mainMod, C, exec, gnome-calculator
       bind = $mainMod, space, exec, $menu
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
@@ -340,13 +341,34 @@
 
       # Example windowrule
       # windowrule = float,class:^(kitty)$,title:^(kitty)$
-      # windowrule = float,class:^be\.alexandervanhee\.gradia$
-
       # Ignore maximize requests from apps. You'll probably like this.
-      # windowrule = suppressevent maximize, class:.*
-
+      windowrule = suppress_event maximize, match:class .*
       # Fix some dragging issues with XWayland
-      # windowrule = nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0
+      windowrule = no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0
+
+      windowrule = float on, match:class ^be\.alexandervanhee\.gradia$
+
+      windowrule {
+        name = calculator
+        match:class = ^org.gnome.Calculator$
+
+        float = on
+        animation = popin
+        move = (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))
+        size = 470 340
+      }
+
+      windowrule {
+        name = pip
+        match:title = ^Picture-in-Picture$
+
+        float = on
+        pin = on
+        monitor = 0
+        animation = slide right
+        move = (monitor_w-window_w-8) 57
+        no_initial_focus = on
+      }
     '';
   };
 
