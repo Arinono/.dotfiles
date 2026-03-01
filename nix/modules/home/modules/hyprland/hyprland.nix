@@ -109,8 +109,10 @@
           border_size = 2
 
           # https://wiki.hypr.land/Configuring/Variables/#variable-types for info about colors
-          col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
-          col.inactive_border = rgba(595959aa)
+          # col.active_border = rgba(33ccffee) rgba(00ff99ee) 45deg
+          # col.inactive_border = rgba(595959aa)
+          col.active_border = rgb(7aa2f7)
+          col.inactive_border = rgb(1a1b26)
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
           resize_on_border = false
@@ -123,7 +125,7 @@
 
       # https://wiki.hypr.land/Configuring/Variables/#decoration
       decoration {
-          rounding = 10
+          rounding = 5
           rounding_power = 2
 
           # Change transparency of focused and unfocused windows
