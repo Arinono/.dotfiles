@@ -2,16 +2,17 @@
   wayland.windowManager.hyprland = {
     enable = true;
     extraConfig = ''
-      # This is an example Hyprland config file.
-      # Refer to the wiki for more information.
-      # https://wiki.hypr.land/Configuring/
+      ###################
+      ### MY PROGRAMS ###
+      ###################
 
-      # Please note not all available settings / options are set here.
-      # For a full list, see the wiki
+      # See https://wiki.hypr.land/Configuring/Keywords/
 
-      # You can split this configuration into multiple files
-      # Create your files separately and then link them to this file like this:
-      # source = ~/.config/hypr/myColors.conf
+      # Set programs that you use
+      $terminal = ghostty
+      $fileManager = nautilus
+      $menu = rofi
+      $dmenu = rofi -dmenu -p ""
 
 
       ################
@@ -44,17 +45,6 @@
       # open
       bindl=,switch:off:Lid Switch, exec, ~/.config/hypr/lid-handler.sh open
 
-
-      ###################
-      ### MY PROGRAMS ###
-      ###################
-
-      # See https://wiki.hypr.land/Configuring/Keywords/
-
-      # Set programs that you use
-      $terminal = ghostty
-      $fileManager = nautilus
-      $menu = fuzzel
 
       #################
       ### AUTOSTART ###
@@ -259,12 +249,12 @@
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, $fileManager
       bind = $mainMod, F, togglefloating,
-      bind = $mainMod, C, exec, gnome-calculator
-      bind = $mainMod, space, exec, $menu
+      bind = $mainMod, C, exec, $menu -show calc
+      bind = $mainMod, space, exec, $menu -show drun
       bind = $mainMod, P, pseudo, # dwindle
       bind = $mainMod, N, togglesplit, # dwindle
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
-      bind = $mainMod, V, exec, cliphist list | $menu --dmenu | cliphist decode | wl-copy
+      bind = $mainMod, V, exec, cliphist list | $dmenu | cliphist decode | wl-copy
 
       bind = ALT SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
       bind = ALT SHIFT, 4, exec, hyprshot -m region -o ~/Downloads

@@ -3,29 +3,8 @@
     ./hyprland.nix
     ./waybar.nix
     ./hyprlock.nix
+    ./launchers.nix
   ];
-
-  programs.fuzzel = with pkgs; {
-    enable = true;
-    settings = {
-      main = {
-        terminal = "${ghostty}/bin/ghostty";
-        layer = "overlay";
-        width = "80";
-        lines = "25";
-        horizontal-pad = "8";
-      };
-      colors = {
-        background = "1f2335ff";
-        text = "c0caf5ff";
-        match = "2ac3deff";
-        selection = "363d59ff";
-        selection-match = "2ac3deff";
-        selection-text = "c0caf5ff";
-        border = "7aa2f7ff";
-      };
-    };
-  };
 
   services.swaync.enable = true;
 
