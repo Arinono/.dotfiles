@@ -5,6 +5,7 @@
   secrets,
   ...
 }: {
+  services.ssh-agent.enable = true;
   # Import SSH key on setup
   home.activation.importSSHKey = lib.hm.dag.entryAfter ["writeBoundary"] ''
     set +o nounset
