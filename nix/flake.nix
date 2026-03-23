@@ -16,6 +16,7 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # inputs.private-flakes.bins pkgs.system;
     private_flakes = {
       url = "git+ssh://git@github.com/arinono/private-flakes.git";
       flake = true;

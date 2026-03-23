@@ -488,7 +488,7 @@
         "type": "github"
       }
     },
-    "nh_links_bak": {
+    "nh_links_bak_flake": {
       "inputs": {
         "naersk": "naersk",
         "nixpkgs": "nixpkgs_4",
@@ -693,18 +693,18 @@
     },
     "private_flakes": {
       "inputs": {
-        "nh_links_bak": "nh_links_bak",
+        "nh_links_bak_flake": "nh_links_bak_flake",
         "nixpkgs": [
           "nixpkgs"
         ],
-        "rtools": "rtools"
+        "rtools_flake": "rtools_flake"
       },
       "locked": {
-        "lastModified": 1750495129,
-        "narHash": "sha256-lxlVhfAPOS+LCLxklw8m4ITTVxFmwywhbjLSrC9uh0o=",
+        "lastModified": 1774297025,
+        "narHash": "sha256-3+PiDJnjTFggLYtAiPd313mYxYSs5rjqhSgU//L8etc=",
         "ref": "refs/heads/main",
-        "rev": "b8758f796986c99202a0531f6b38512b88f3588b",
-        "revCount": 3,
+        "rev": "20f96b700ed8c737a17a0b5994ed85144f712585",
+        "revCount": 4,
         "type": "git",
         "url": "ssh://git@github.com/arinono/private-flakes.git"
       },
@@ -751,7 +751,7 @@
         "type": "github"
       }
     },
-    "rtools": {
+    "rtools_flake": {
       "inputs": {
         "naersk": "naersk_2",
         "nixpkgs": "nixpkgs_6",
