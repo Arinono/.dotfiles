@@ -152,25 +152,12 @@
     python314
     gnumake
 
-    # hyprland
-    brightnessctl
-    playerctl
-    hyprshot
-    gradia
-    libnotify
-    xdg-desktop-portal-gtk
-
-    pavucontrol
-    overskride
     # codecs
     bluez
     bluez-tools
     sbc
     ldacbt
     libfreeaptx
-
-    wl-clipboard
-    cliphist
   ];
 
   # Some programs need SUID wrappers, can be configured further or are started in user sessions. programs.mtr.enable = true; programs.gnupg.agent = {

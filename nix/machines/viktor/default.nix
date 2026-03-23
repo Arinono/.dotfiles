@@ -162,24 +162,12 @@
     python314
     gnumake
 
-    # hyprland
-    brightnessctl
-    playerctl
-    hyprshot
-    gradia
-    libnotify
-
-    pavucontrol
-    overskride
     # codecs
     bluez
     bluez-tools
     sbc
     ldacbt
     libfreeaptx
-
-    wl-clipboard
-    cliphist
   ];
 
   # Some programs need SUID wrappers, can be configured further or are

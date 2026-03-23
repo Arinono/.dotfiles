@@ -256,10 +256,11 @@
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
       bind = $mainMod, V, exec, cliphist list | $dmenu | cliphist decode | wl-copy
 
-      bind = ALT SHIFT, 3, exec, hyprshot -m active -m output -o ~/Downloads
-      bind = ALT SHIFT, 4, exec, hyprshot -m region -o ~/Downloads
-      bind = ALT SHIFT, 5, exec, hyprshot -m active -m window -o ~/Downloads
-      bind = ALT SHIFT, G, exec, sh -c 'gradia $(fd -e .png hyprshot ~/Downloads | tail -n 1)'
+      bind = ALT SHIFT, 2, exec, hyprcap shot monitor -o ~/Downloads -w -c -n
+      bind = ALT SHIFT, 3, exec, hyprcap shot monitor:active -o ~/Downloads -w -c -n
+      bind = ALT SHIFT, 4, exec, hyprcap shot region -o ~/Downloads -w -c -n -z
+      bind = ALT SHIFT, 5, exec, hyprcap shot window:active -o ~/Downloads -w -c -n
+      bind = ALT SHIFT, G, exec, bash -c 'gradia "$(ls -t ~/Downloads/*_hyprcap.png 2>/dev/null | head -n 1)"'
 
       # Move focus with mainMod + arrow keys
       bind = $mainMod, H, movefocus, l
