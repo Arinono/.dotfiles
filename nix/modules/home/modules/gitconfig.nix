@@ -42,6 +42,8 @@ in
             cmd = "nvim -d \"$LOCAL\" \"$REMOTE\""
           [commit]
             gpgsign = true
+          [tag]
+            gpgsign = true
           [pull]
             rebase = true
           [rebase]
