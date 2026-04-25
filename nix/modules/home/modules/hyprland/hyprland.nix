@@ -368,6 +368,14 @@
         move = (monitor_w-window_w-8) 57
         no_initial_focus = on
       }
+
+      windowrule = match:class ^(gamescope)$, tag +games
+      windowrule = match:class ^(steam_app_\\d+)$, tag +games
+      windowrule {
+        name = games
+        match:tag = games
+        render_unfocused = on
+      }
     '';
   };
 
