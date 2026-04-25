@@ -47,6 +47,10 @@
         return 1
       fi
 
+      if [[ ! -z "$2" && "$2" == "impure" ]]; then
+        NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "nixpkgs#$1"
+      fi
+
       nix shell "nixpkgs#$1"
     '';
   };
