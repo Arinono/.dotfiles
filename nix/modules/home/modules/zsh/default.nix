@@ -47,7 +47,8 @@
         return 1
       fi
 
-      if [[ ! -z "$2" && "$2" == "impure" ]]; then
+      impure="''${2:-}"
+      if [[ ! -z "$impure" && "$impure" == "impure" ]]; then
         NIXPKGS_ALLOW_UNFREE=1 nix shell --impure "nixpkgs#$1"
       fi
 
