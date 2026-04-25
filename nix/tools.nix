@@ -94,8 +94,8 @@ in {
       environment.systemPackages = with packages;
         base
         ++ darwin
-        ++ dev
-        ++ private_flakes.bins system;
+        ++ dev;
+      # ++ private_flakes.bins system;
 
       system.primaryUser = params.username;
 
@@ -167,8 +167,8 @@ in {
       environment.systemPackages = with packages;
         base
         ++ linux
-        ++ dev
-        ++ inputs.private_flakes.bins system;
+        ++ dev;
+      # ++ inputs.private_flakes.bins system;
     };
   in {
     nixosConfigurations."${hostname}" = nixpkgsVersion.lib.nixosSystem {

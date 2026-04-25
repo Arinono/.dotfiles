@@ -17,11 +17,11 @@
     };
 
     # inputs.private-flakes.bins pkgs.system;
-    private_flakes = {
-      url = "git+ssh://git@github.com/arinono/private-flakes.git";
-      flake = true;
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
+    # private_flakes = {
+    #   url = "git+ssh://git@github.com/arinono/private-flakes.git";
+    #   flake = true;
+    #   inputs.nixpkgs.follows = "nixpkgs";
+    # };
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     hyprland.url = "github:hyprwm/Hyprland";
