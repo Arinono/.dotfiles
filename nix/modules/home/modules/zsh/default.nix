@@ -80,6 +80,11 @@ in {
       envExtra = ''
         export GPG_TTY=$(tty)
 
+        # Remove stale GPG lock file on shell startup
+        if [[ -f ~/.gnupg/public-keys.d/pubring.db.lock ]]; then
+          rm -f ~/.gnupg/public-keys.d/pubring.db.lock
+        fi
+
         autoload -Uz edit-command-line
         zle -N edit-command-line
         bindkey '^X^E' edit-command-line
