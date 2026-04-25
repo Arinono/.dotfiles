@@ -333,33 +333,21 @@
       # Ignore maximize requests from apps. You'll probably like this.
       windowrule = suppress_event maximize, match:class .*
       # Fix some dragging issues with XWayland
-      windowrule = no_focus on, match:class ^$, match:title ^$, match:xwayland 1, match:float 1, match:fullscreen 0, match:pin 0
-
-      windowrule = float on, match:class ^be\.alexandervanhee\.gradia$
-
       windowrule {
-        name = calculator
-        match:class = ^org.gnome.Calculator$
-
-        float = on
-        animation = popin
-        move = (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))
-        size = 470 340
+        name = no_focus
+        no_focus = on
+        match:class = ^$
+        match:title = ^$
+        match:xwayland = 1
+        match:float = 1
+        match:fullscreen = 0
+        match:pin = 0
       }
 
-      windowrule {
-        name = clocks
-        match:class = ^org.gnome.clocks$
-
-        float = on
-        animation = popin
-        move = (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))
-        size = 420 630
-      }
 
       windowrule {
         name = pip
-        match:title = ^Picture-in-Picture$
+        match:title = ^(Picture-in-Picture)$
 
         float = on
         pin = on
@@ -367,6 +355,18 @@
         animation = slide right
         move = (monitor_w-window_w-8) 57
         no_initial_focus = on
+      }
+
+      windowrule = match:class ^(be\.alexandervanhee\.gradia)$, tag +float_cursor
+      windowrule = match:class ^(org.gnome.Calculator)$, tag +float_cursor, size 470 340
+      windowrule = match:class ^(org.gnome.clocks)$, tag +float_cursor, size 420 630
+      windowrule {
+        name = float_cursor
+        match:tag = float_cursor
+
+        float = on
+        animation = popin
+        move = (cursor_x-(window_w*0.5)) (cursor_y-(window_h*0.5))
       }
 
       windowrule = match:class ^(gamescope)$, tag +games
