@@ -124,8 +124,8 @@
     grs = "${git}/bin/git restore";
     gsta = "${git}/bin/git stash push";
     gstp = "${git}/bin/git stash pop";
-    gwip = "${git}/bin/git git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign --message \"--wip-- [skip ci]\"";
-    gunwip = "${git}/bin/git rev-list --max-count=1 --format=\"%s\" HEAD | grep -q \"\--wip--\" && git reset HEAD~1";
+    gwip = "${git}/bin/git add -A; ${git}/bin/git rm $(${git}/bin/git ls-files --deleted) 2> /dev/null; ${git}/bin/git commit --no-verify --no-gpg-sign --message \"--wip-- [skip ci]\"";
+    gunwip = "${git}/bin/git rev-list --max-count=1 --format=\"%s\" HEAD | grep -q \"\--wip--\" && ${git}/bin/git reset HEAD~1";
     gwch = "${git}/bin/git whatchanged -p --abbrev-commit --pretty=medium";
   };
 }
