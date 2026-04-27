@@ -248,7 +248,8 @@
       bind = $mainMod, W, killactive,
       bind = $mainMod, M, exit,
       bind = $mainMod, E, exec, $fileManager
-      bind = $mainMod, F, togglefloating,
+      bind = $mainMod, F, togglefloating
+      bind = $shiftMod, F, fullscreen
       bind = $mainMod, C, exec, $menu -show calc
       bind = $mainMod, space, exec, $menu -show drun
       bind = $mainMod, P, pseudo, # dwindle
@@ -297,7 +298,7 @@
 
       # Example special workspace (scratchpad)
       # bind = $mainMod, S, togglespecialworkspace, magic
-      # bind = $mainMod SHIFT, S, movetoworkspace, special:magic
+      # bind = $shiftMod, S, movetoworkspace, special:magic
 
       # Scroll through existing workspaces with mainMod + scroll
       # bind = $mainMod, mouse_down, workspace, e+1
