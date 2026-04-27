@@ -16,6 +16,8 @@
     steam
     steam-run
     steamcmd
+    faugus-launcher
+    protonplus
   ];
 
   hardware.steam-hardware.enable = true;
