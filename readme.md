@@ -33,14 +33,14 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/in
 
 ### Install the config
 
-For now, change the information here:
-
-https://github.com//arinono/.dotfiles/blob/9f9c060cd20ed8d83c08fbbf9fdbb02d197720f4/nix/flake.nix#L43-L48
-
 ```bash
-# 1st run
+# macos
+## 1st run
 nix run nix-darwin/master#darwin-rebuild -- switch --flake ./nix#<your-hostname>
 
-# later run
+## later run
 darwin-rebuild switch --flake ./nix#<your-hostname>
+
+# nixos
+sudo nixos-rebuild switch --flake ~/.dotfiles/nix#<your-hostname>
 ```
