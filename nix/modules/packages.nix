@@ -76,6 +76,7 @@ in rec {
     obsidian
     spotify
     brave
+    localsend
   ];
 
   darwin = with pkgs;
