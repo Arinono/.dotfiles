@@ -69,6 +69,7 @@
         nixpkgsVersion = nixpkgs;
         extraModules = [
           ./modules/tailscale.nix
+          ./machines/viktor/tailscale.nix
           ./modules/hyprland.nix
           ./modules/steam.nix
         ];
@@ -84,6 +85,7 @@
         nixpkgsVersion = nixpkgs;
         extraModules = [
           ./modules/tailscale.nix
+          ./machines/urgot/tailscale.nix
           ./modules/hyprland.nix
           ./modules/steam.nix
         ];
