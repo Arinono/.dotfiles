@@ -45,15 +45,13 @@
     nameservers = [
       "10.4.1.7"
       "10.4.1.4"
-      "1.1.1.1"
-      "1.0.0.1"
     ];
   };
   services.resolved = {
     enable = true;
     settings.Resolve = {
-      DNSSEC = true;
-      fallbackDns = ["10.4.1.7" "10.4.1.4" "1.1.1.1" "1.0.0.1"];
+      DNSSEC = false;
+      fallbackDns = ["10.4.1.7" "10.4.1.4"];
     };
   };
 
