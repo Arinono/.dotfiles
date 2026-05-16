@@ -155,9 +155,8 @@ in {
 
       services.gnome.gcr-ssh-agent.enable = false;
 
-      virtualisation.docker.rootless = {
+      virtualisation.docker = {
         enable = true;
-        setSocketVariable = true;
       };
 
       imports = [

@@ -24,8 +24,6 @@
 
   # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
-  # Used to allow binding docker port 80 for testing
-  boot.kernel.sysctl."net.ipv4.ip_unprivileged_port_start" = 80;
 
   networking.hostName = "urgot"; # Define your hostname.
   # networking.wireless.enable = true; # Enables wireless support via wpa_supplicant.
