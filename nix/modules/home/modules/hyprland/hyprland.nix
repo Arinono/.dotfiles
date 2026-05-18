@@ -182,7 +182,6 @@
 
       # See https://wiki.hypr.land/Configuring/Dwindle-Layout/ for more
       dwindle {
-          pseudotile = true # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
           preserve_split = true # You probably want this
       }
 
@@ -254,7 +253,6 @@
       bind = $mainMod, C, exec, $menu -show calc
       bind = $mainMod, space, exec, $menu -show drun
       bind = $mainMod, P, pseudo, # dwindle
-      bind = $mainMod, N, togglesplit, # dwindle
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
       bind = $mainMod, V, exec, cliphist list | $dmenu | cliphist decode | wl-copy
 
