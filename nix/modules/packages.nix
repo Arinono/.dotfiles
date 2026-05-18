@@ -53,7 +53,6 @@ in rec {
     gopls
     hexedit
     hexyl
-    minio
     minio-client
     ngrok
     nodejs
