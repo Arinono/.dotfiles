@@ -13,15 +13,8 @@
   services.gpg-agent = {
     enable = true;
     pinentry.package = pkgs.pinentry-tty;
-    enableSshSupport = true;
+    enableSshSupport = false;
   };
-
-  sshAuthSock.initialization.bash = lib.mkForce ''
-    unset SSH_AGENT_PID
-    if [ "''${gnupg_SSH_AUTH_SOCK_by:-0}" -ne $$ ]; then
-      export SSH_AUTH_SOCK="$(gpgconf --list-dirs agent-ssh-socket)"
-    fi
-  '';
 
   # Import GPG key on setup
   home.activation.importGPGKey = lib.hm.dag.entryAfter ["writeBoundary"] ''
