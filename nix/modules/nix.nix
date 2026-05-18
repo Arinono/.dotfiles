@@ -12,10 +12,10 @@
       trusted-users = ["arinono" "@admin"];
       max-jobs = "auto";
 
-      builders-use-substitutes = true;
-      builders = lib.mkForce [
-        "aatrox aarch64-linux ~/.ssh/id_ed25519 4 1 ; ahri x86_64-linux ~/.ssh/id_ed25519 4 1"
-      ];
+      # builders-use-substitutes = true;
+      # builders = lib.mkForce [
+      #   "aatrox aarch64-linux /home/arinono/.ssh/id_ed25519 4 1 ; ahri x86_64-linux /home/arinono/.ssh/id_ed25519 4 1"
+      # ];
 
       substituters = ["https://hyprland.cachix.org"];
       trusted-substituters = ["https://hyprland.cachix.org"];
