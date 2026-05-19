@@ -33,6 +33,7 @@
           ~/workspace/wtg \
           ~/workspace/wtg/platform.git \
           ~/workspace/wtg/teleport.git \
+          ~/workspace/kleido.git \
           ~/workspace/private \
           ~/workspace \
           -mindepth 1 -maxdepth 1 -type d
