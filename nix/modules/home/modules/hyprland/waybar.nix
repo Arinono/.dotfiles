@@ -87,6 +87,7 @@ in {
         },
         "temperature": {
           "critical-threshold": 80,
+          "warning-threshold": 50,
           "hwmon-path": "${hwmonPath}",
           "format": "{temperatureC}°C {icon}",
           "format-icons": [""]
@@ -249,6 +250,10 @@ in {
         }
 
         #temperature {
+          color: #a6d189;
+        }
+
+        #temperature.warning {
           color: #f0932b;
         }
 
