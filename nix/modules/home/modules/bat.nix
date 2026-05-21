@@ -13,7 +13,7 @@
           owner = "folke";
           repo = "tokyonight.nvim";
           rev = "main"; # or pin to a specific commit/tag
-          hash = "sha256-4zfkv3egdWJ/GCWUehV0MAIXxsrGT82Wd1Qqj1SCGOk=";
+          hash = "sha256-a9iRWue7DB7s/wNdxqqB51Jya5P9X6sDftqhdmKggU0=";
         };
         file = "extras/sublime/tokyonight_storm.tmTheme";
       };
