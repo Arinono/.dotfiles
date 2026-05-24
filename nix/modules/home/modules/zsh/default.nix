@@ -84,6 +84,8 @@ in {
 
       envExtra = ''
         export GPG_TTY=$(tty)
+        export PATH="/opt/homebrew/bin:$PATH"
+
 
         # Remove stale GPG lock file on shell startup
         if [[ -f ~/.gnupg/public-keys.d/pubring.db.lock ]]; then

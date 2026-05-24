@@ -80,14 +80,19 @@ in rec {
 
   darwin = with pkgs;
     [
-      ollama
-      flyctl
+      discord
+      docker
+      # istat-menus Could not download from mirror
       keycastr
+      ollama
+      proton-vpn
+      raycast
+      scroll-reverser
+      secretive
+      shottr
+      tailscale
       terminal-notifier
       utm
-      docker
-      proton-vpn
-      tailscale
       inputs.zen-browser.packages."${params.system}".default
     ]
     ++ shared;
