@@ -19,7 +19,7 @@ inputs: let
 
     homeManagerArgs = {
       inherit params secrets;
-      isDarwin = false;
+      isDarwin = params.isDarwin;
     };
   in {
     home-manager = {
@@ -41,6 +41,7 @@ in {
     nixpkgsVersion,
     extraModules,
     extraHomeManagerModules,
+    signingKey ? null,
     ...
   }: let
     pkgs = import nixpkgsVersion {
@@ -50,10 +51,14 @@ in {
       };
     };
 
-    params = mkParams {
-      inherit hostname system;
-      isDarwin = true;
-    };
+    params =
+      mkParams {
+        inherit hostname system;
+        isDarwin = true;
+      }
+      // {
+        inherit signingKey;
+      };
 
     secrets = import ./modules/secrets {inherit params;};
 
@@ -82,7 +87,6 @@ in {
       imports = [
         ./darwin/services/aerospace.nix
         ./darwin/modules/homebrew.nix
-        ./darwin/modules/macos-applications.nix
 
         ./modules/nix.nix
 

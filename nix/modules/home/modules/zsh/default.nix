@@ -84,8 +84,10 @@ in {
 
       envExtra = ''
         export GPG_TTY=$(tty)
-        export PATH="/opt/homebrew/bin:$PATH"
-
+        ${pkgs.lib.optionalString isDarwin ''
+          export PATH="/opt/homebrew/bin:$PATH"
+          export SSH_AUTH_SOCK=${home}/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/socket.ssh
+        ''}
 
         # Remove stale GPG lock file on shell startup
         if [[ -f ~/.gnupg/public-keys.d/pubring.db.lock ]]; then

@@ -8,6 +8,11 @@
     if isDarwin
     then "arc"
     else "brave";
+
+  gpgConfig =
+    if isDarwin
+    then "format = ssh"
+    else "program = ${pkgs.gnupg}/bin/gpg";
 in
   with pkgs; {
     home.file = {
@@ -18,9 +23,9 @@ in
         ''
           [user]
             name = ${params.fullname}
-            email = ${params.email}
+            email = ${params.email}${lib.optionalString (params ? signingKey && params.signingKey != null) "\n  signingkey = ${params.signingKey}"}
           [gpg]
-            program = ${gnupg}/bin/gpg
+            ${gpgConfig}
           [web]
             browser = ${browser}
           [core]

@@ -84,7 +84,6 @@ in rec {
       docker
       # istat-menus Could not download from mirror
       keycastr
-      ollama
       proton-vpn
       raycast
       scroll-reverser
@@ -92,7 +91,6 @@ in rec {
       shottr
       tailscale
       terminal-notifier
-      utm
       inputs.zen-browser.packages."${params.system}".default
     ]
     ++ shared;

@@ -62,6 +62,7 @@
         extraHomeManagerModules = [
           ./darwin/modules/home/ghostty.nix
         ];
+        signingKey = "/Users/arinono/Library/Containers/com.maxgoedjen.Secretive.SecretAgent/Data/PublicKeys/5c7936010b8d6945a446ab9826aea8fe.pub";
       })
       (mkNixos {
         hostname = "viktor";

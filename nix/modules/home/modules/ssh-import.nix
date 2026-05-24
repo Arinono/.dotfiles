@@ -1,8 +1,7 @@
 {
-  config,
-  pkgs,
   lib,
   secrets,
+  isDarwin,
   ...
 }: {
   services.ssh-agent.enable = true;
@@ -34,13 +33,14 @@
   # Create ssh config file
   home.file.".ssh/config".text = secrets.ssh.config;
 
-  # Add SSH key to agent on shell startup (only if not already added)
   programs.zsh.initContent = ''
     unset SSH_ASKPASS
 
-    # Add SSH key to agent if not already added
-    if [ -z "$SSH_AUTH_SOCK" ] || ! ssh-add -l | grep -q "$(ssh-keygen -lf ~/.ssh/id_ed25519.pub | awk '{print $2}')"; then
-      ssh-add ~/.ssh/id_ed25519 2>/dev/null || true
-    fi
+    ${lib.optionalString (!isDarwin) ''
+      # Add SSH key to agent if not already added
+      if [ -z "$SSH_AUTH_SOCK" ] || ! ssh-add -l | grep -q "$(ssh-keygen -lf ~/.ssh/id_ed25519.pub | awk '{print $2}')"; then
+        ssh-add ~/.ssh/id_ed25519 2>/dev/null || true
+      fi
+    ''}
   '';
 }
