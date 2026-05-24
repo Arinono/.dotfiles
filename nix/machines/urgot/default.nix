@@ -34,10 +34,18 @@
   networking.networkmanager.enable = true;
   # https://nixos.wiki/wiki/Firewall
   networking = {
+    interfaces = {
+      enp14s0 = {
+        wakeOnLan.enable = true;
+      };
+    };
+
     firewall = {
       enable = false;
       allowedTCPPorts = [];
-      allowedUDPPortRanges = [];
+      allowedUDPPortRanges = [
+        9 # WoL
+      ];
     };
 
     nameservers = [
