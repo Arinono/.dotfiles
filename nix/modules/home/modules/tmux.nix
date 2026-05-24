@@ -18,18 +18,6 @@ in {
     focusEvents = true;
     keyMode = "vi";
     plugins = with pkgs; [
-      # {
-      #   plugin = tmuxPlugins.dracula;
-      #   extraConfig = ''
-      #     set -g @dracula-plugins "time"
-      #     set -g @dracula-show-powerline true
-      #     set -g @dracula-show-flags true
-      #     set -g @dracula-show-left-icon session
-      #     set -g @dracula-day-month true
-      #     set -g @dracula-show-timezone false
-      #     set -g @dracula-military-time true
-      #   '';
-      # }
       {
         plugin = tmuxPlugins.tokyo-night-tmux;
         extraConfig = ''

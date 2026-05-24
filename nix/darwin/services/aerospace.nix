@@ -1,5 +1,5 @@
 {pkgs, ...}: {
-  services.aerospace = with pkgs; {
+  services.aerospace = {
     enable = true;
 
     settings = {
@@ -103,16 +103,6 @@
         alt-shift-semicolon = "mode service";
         alt-shift-enter = "mode apps";
       };
-
-      # workspace-to-monitor-force-assignment = {
-      #   "1" = ["main"]; # terminal
-      #   "2" = ["LG Ultra HD" "main"]; # browser
-      #   "3" = ["DELL" "built-in"]; # browser 2/msg
-      #   "4" = ["LG Ultra HD" "built-in"]; # spotify
-      #   "5" = ["DELL" "main"]; # notes
-      #   "6" = ["main"]; # extra main
-      #   "7" = ["LG Ultra HD" "main"]; # extra 2nd
-      # };
 
       mode.service.binding = {
         esc = ["reload-config" "mode main"];
