@@ -26,4 +26,27 @@
       dscacheutil -flushcache
     '';
   };
+
+  raycastQuicklinks = pkgs.writeShellApplication {
+    name = "raycast-quicklinks";
+
+    text = ''
+      OUTDIR="$HOME/.config/raycast"
+      mkdir -p "$OUTDIR"
+
+      cat > "$OUTDIR/quicklinks.json" <<'EOF'
+      [
+        {"name":"Search Google","link":"https://google.com/search?q={argument}"},
+        {"name":"Search DuckDuckGo","link":"https://duckduckgo.com/?q={argument}"},
+        {"name":"vuetify","link":"https://vuetifyjs.com/en/api/{argument name=\"component\"}"},
+        {"iconName":"blank-document-16","name":"devdocs","link":"http://devdocs.io/#q={docs}"},
+        {"name":"dutch","link":"https://translate.google.com/?sl=auto&tl=nl&text={argument name=\"text\"}&op=translate"},
+        {"name":"english","link":"https://translate.google.com/?sl=auto&tl=en&text={argument name=\"text\"}&op=translate"}
+      ]
+      EOF
+
+      echo "Quicklinks written to $OUTDIR/quicklinks.json"
+      echo "Import them in Raycast via: Preferences > Extensions > Quicklinks > Import Quicklinks"
+    '';
+  };
 }

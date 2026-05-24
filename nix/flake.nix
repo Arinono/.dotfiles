@@ -97,6 +97,7 @@
       {
         packages.aarch64-darwin.installBrew = darwinTools.installBrew;
         packages.aarch64-darwin.setHostname = darwinTools.setHostname;
+        packages.aarch64-darwin.raycastQuicklinks = darwinTools.raycastQuicklinks;
         formatter = forAllSystems ({pkgs}: pkgs.alejandra);
       }
     ];
