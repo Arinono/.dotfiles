@@ -152,6 +152,7 @@
     flyctl
     cryptomator
     scaleway-cli
+    moonlight-qt
     #realvnc-vnc-viewer
     # framework
     fprintd
