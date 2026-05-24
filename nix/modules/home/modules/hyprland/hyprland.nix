@@ -1,4 +1,11 @@
-{...}: {
+{params, ...}: let
+  machineExtras = {
+    urgot = ''
+      monitor = HEADLESS-2,disable
+      exec-once = hyprctl output create headless
+    '';
+  };
+in {
   wayland.windowManager.hyprland = {
     enable = true;
     configType = "hyprlang";
@@ -56,7 +63,7 @@
 
       exec-once = waybar &
       exec-once = wl-paste --watch cliphist store &
-
+      ${machineExtras.${params.hostname} or ""}
 
       #############################
       ### ENVIRONMENT VARIABLES ###

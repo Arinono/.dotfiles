@@ -1,13 +1,14 @@
 # Edit this configuration file to define what should be installed on your system.  Help is available in the configuration.nix(5) man page and in the NixOS manual (accessible by running
 # ‘nixos-help’).
 {
-  config,
+  self,
   pkgs,
   ...
 }: {
   imports = [
     # Include the results of the hardware scan.
     ./hardware.nix
+    ../../modules/sunshine.nix
   ];
 
   # Bootloader.
@@ -123,6 +124,11 @@
   # Enable touchpad support (enabled default in most desktopManager). services.xserver.libinput.enable = true;
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
+  services.moonlight-host = {
+    enable = true;
+    user = "arinono";
+  };
+
   users.users.arinono = {
     isNormalUser = true;
     description = "arinono";
