@@ -5,5 +5,6 @@
     ollama
     utm
     moonlight-qt
+    wakeonlan
   ];
 }
