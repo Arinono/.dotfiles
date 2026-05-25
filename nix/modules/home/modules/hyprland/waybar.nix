@@ -1,4 +1,8 @@
-{params, pkgs, ...}: let
+{
+  params,
+  pkgs,
+  ...
+}: let
   hwmonPath =
     if params.hostname == "viktor"
     then "/sys/class/hwmon/hwmon5/temp1_input"
@@ -33,7 +37,8 @@ in {
           "battery",
           "power-profiles-daemon",
           "idle_inhibitor",
-          "custom/lock"
+          "custom/lock",
+          "custom/sleep"
         ],
         "hyprland/workspaces": {
           "format": "{name}: {icon}",
@@ -127,6 +132,11 @@ in {
           "tooltip": false,
           "on-click": "sh -c '(sleep 0.5s; ${pkgs.hyprlock}/bin/hyprlock)' & disown",
           "format": ""
+        },
+        "custom/sleep": {
+          "tooltip": false,
+          "on-click": "sh -c '(sleep 0.5s; systemctl suspend)'",
+          "format": "🛏"
         }
       }
     '';
@@ -186,6 +196,7 @@ in {
         #idle_inhibitor,
         #power-profiles-daemon,
         #custom-lock,
+        #custom-sleep,
         #custom-power {
           background-color: #101010;
           padding: 0.5rem 1rem;
@@ -201,7 +212,7 @@ in {
           border-radius: 7px 0 0 7px;
         }
 
-        #custom-lock {
+        #custom-sleep {
           border-radius: 0 7px 7px 0;
         }
 
@@ -230,6 +241,7 @@ in {
         }
 
         #custom-lock,
+        #custom-sleep,
         #idle_inhibitor.activated,
         #power-profiles-daemon,
         #power-profiles-daemon.balanced {
