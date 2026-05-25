@@ -18,6 +18,7 @@
     steamcmd
     faugus-launcher
     protonplus
+    protonup-qt
   ];
 
   hardware.steam-hardware.enable = true;

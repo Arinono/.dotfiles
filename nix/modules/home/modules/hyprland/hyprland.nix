@@ -383,6 +383,15 @@ in {
         match:tag = games
         render_unfocused = on
       }
+
+      windowrule {
+        name = bigpicture
+        match:class = ^(steam)$
+        match:title = ^(Steam Big Picture Mode)$
+        content = game
+        workspace = 10
+        fullscreen = 1
+      }
     '';
   };
 

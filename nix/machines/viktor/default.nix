@@ -146,14 +146,12 @@
   # List packages installed in system profile. To search, run:
   # $ nix search wget
   environment.systemPackages = with pkgs; [
-    claude-code
     obs-studio
     discord-ptb
     flyctl
     cryptomator
     scaleway-cli
     moonlight-qt
-    #realvnc-vnc-viewer
     # framework
     fprintd
 
