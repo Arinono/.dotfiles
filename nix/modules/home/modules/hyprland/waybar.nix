@@ -1,4 +1,4 @@
-{params, ...}: let
+{params, pkgs, ...}: let
   hwmonPath =
     if params.hostname == "viktor"
     then "/sys/class/hwmon/hwmon5/temp1_input"
@@ -59,7 +59,7 @@ in {
           "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
           "tooltip-format-enumerate-connected-battery": "{device_alias}\t{device_address}\t({device_battery_percentage}%)",
           "max-length": 35,
-          "on-click": "overskride"
+          "on-click": "${pkgs.overskride}/bin/overskride"
         },
         "network": {
           "format-wifi": "󰤢 ",
@@ -67,7 +67,7 @@ in {
           "format-disconnected": "󰤠 ",
           "interval": 5,
           "tooltip": false,
-          "on-click": "nm-connection-editor"
+          "on-click": "${pkgs.networkmanagerapplet}/bin/nm-connection-editor"
         },
         "cpu": {
           "interval": 1,
@@ -83,7 +83,7 @@ in {
           "format-icons": {
             "default": ["", "", " "]
           },
-          "on-click": "pavucontrol"
+          "on-click": "${pkgs.pavucontrol}/bin/pavucontrol"
         },
         "temperature": {
           "critical-threshold": 80,
@@ -125,7 +125,7 @@ in {
         },
         "custom/lock": {
           "tooltip": false,
-          "on-click": "sh -c '(sleep 0.5s; hyprlock)' & disown",
+          "on-click": "sh -c '(sleep 0.5s; ${pkgs.hyprlock}/bin/hyprlock)' & disown",
           "format": ""
         }
       }
