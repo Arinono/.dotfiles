@@ -8,7 +8,11 @@ return {
     "ruifm/gitlinker.nvim",
     requires = "nvim-lua/plenary.nvim",
     config = function()
-      require("gitlinker").setup()
+      require("gitlinker").setup({
+        callbacks = {
+          ["forgejo.team.internal"] = require "gitlinker.hosts".get_gitea_type_url
+        }
+      })
     end,
   },
 }
