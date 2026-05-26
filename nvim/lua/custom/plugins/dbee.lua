@@ -12,6 +12,9 @@ return {
         source.FileSource:new(vim.fn.stdpath("cache") .. "/dbee/persistence.json"),
       },
     })
+    vim.keymap.set("n", "<space>od", function()
+      require("dbee").open()
+    end, { desc = "[O]pen [D]Bee" })
     require("custom.dbee")
   end,
 }

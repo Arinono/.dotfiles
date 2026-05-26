@@ -28,7 +28,7 @@ return {
         { "kndndrj/nvim-dbee" },
       },
       ft = "sql.dbee", -- optional but good to have
-      opts = {}, -- needed
+      opts = {},       -- needed
     },
   },
   config = function()
@@ -95,7 +95,7 @@ return {
         { name = "nvim_lsp" },
         { name = "luasnip" },
         { name = "path" },
-        { name = "cmp-dbee" },
+        -- { name = "cmp-dbee" },
       },
     })
   end,

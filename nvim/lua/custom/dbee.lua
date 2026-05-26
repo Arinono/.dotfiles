@@ -1,7 +1,3 @@
-vim.keymap.set("n", "<space>od", function()
-  require("dbee").open()
-end, { desc = "[O]pen [D]Bee" })
-
 ---@diagnostic disable-next-line: param-type-mismatch
 local base = vim.fs.joinpath(vim.fn.stdpath("state"), "dbee", "notes")
 local pattern = string.format("%s/.*", base)
