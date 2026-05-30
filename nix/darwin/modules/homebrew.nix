@@ -13,7 +13,9 @@
     casks = [
       "balenaetcher"
       "cameracontroller"
+      "discord"
       "font-meslo-lg-nerd-font"
+      "ghostty"
       "istat-menus"
       "vlc"
     ];

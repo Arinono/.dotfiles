@@ -80,7 +80,6 @@ in rec {
 
   darwin = with pkgs;
     [
-      discord
       docker
       # istat-menus Could not download from mirror
       keycastr
