@@ -96,7 +96,9 @@ in rec {
 
   linux = with pkgs;
     [
+      busybox
       discord
+      gparted
       nerd-fonts.meslo-lg
       vlc
       inputs.zen-browser.packages."${params.system}".default
