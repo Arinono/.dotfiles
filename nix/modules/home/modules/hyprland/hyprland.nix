@@ -237,6 +237,10 @@ in {
         sensitivity = -1
       }
       device {
+        name = mouse-passthrough
+        sensitivity = -1
+      }
+      device {
         name = logitech-wireless-mouse-mx-master-2s-1
         sensitivity = -0.7
       }
