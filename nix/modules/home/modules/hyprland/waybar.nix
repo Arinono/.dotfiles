@@ -37,6 +37,7 @@ in {
           "battery",
           "power-profiles-daemon",
           "idle_inhibitor",
+          "custom/term",
           "custom/lock",
           "custom/sleep"
         ],
@@ -137,6 +138,11 @@ in {
           "tooltip": false,
           "on-click": "sh -c '(sleep 0.5s; systemctl suspend)'",
           "format": "🛏"
+        },
+        "custom/term": {
+          "tooltip": false,
+          "on-click": "sh -c 'ghostty'",
+          "format": "💻"
         }
       }
     '';
@@ -197,6 +203,7 @@ in {
         #power-profiles-daemon,
         #custom-lock,
         #custom-sleep,
+        #custom-term,
         #custom-power {
           background-color: #101010;
           padding: 0.5rem 1rem;
@@ -242,6 +249,7 @@ in {
 
         #custom-lock,
         #custom-sleep,
+        #custom-term,
         #idle_inhibitor.activated,
         #power-profiles-daemon,
         #power-profiles-daemon.balanced {
