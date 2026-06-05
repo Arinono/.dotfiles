@@ -57,18 +57,6 @@
       allowedTCPPorts = [];
       allowedUDPPortRanges = [];
     };
-
-    nameservers = [
-      "10.4.1.7"
-      "10.4.1.4"
-    ];
-  };
-  services.resolved = {
-    enable = true;
-    settings.Resolve = {
-      DNSSEC = true;
-      fallbackDns = ["10.4.1.7" "10.4.1.4"];
-    };
   };
 
   services.openssh.enable = true;
