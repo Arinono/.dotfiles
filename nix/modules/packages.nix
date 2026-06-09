@@ -4,7 +4,7 @@
   params,
   ...
 }: let
-  proton-vpn = pkgs.callPackage ../darwin/modules/proton-vpn.nix {};
+  proton-vpn-darwin = pkgs.callPackage ../darwin/modules/proton-vpn.nix {};
 in rec {
   base = with pkgs; [
     alejandra
@@ -83,7 +83,7 @@ in rec {
       docker
       # istat-menus Could not download from mirror
       keycastr
-      proton-vpn
+      proton-vpn-darwin
       raycast
       scroll-reverser
       secretive
@@ -103,6 +103,7 @@ in rec {
       vlc
       inputs.zen-browser.packages."${params.system}".default
       proton-pass
+      proton-vpn
     ]
     ++ shared;
 }
