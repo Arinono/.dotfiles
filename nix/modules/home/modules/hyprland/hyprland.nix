@@ -364,6 +364,18 @@ in {
         no_initial_focus = on
       }
 
+      windowrule {
+        name = pip-twitch
+        match:title = ^(Twitch — Zen Browser)$
+
+        float = on
+        pin = on
+        monitor = 0
+        animation = slide right
+        move = (monitor_w-window_w-8) 57
+        no_initial_focus = on
+      }
+
       windowrule = match:class ^(be\.alexandervanhee\.gradia)$, tag +float_cursor
       windowrule = match:class ^(org.gnome.Calculator)$, tag +float_cursor, size 470 340
       windowrule = match:class ^(org.gnome.clocks)$, tag +float_cursor, size 420 630
