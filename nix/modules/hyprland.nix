@@ -13,6 +13,7 @@ in {
 
   environment.systemPackages = with pkgs; [
     networkmanagerapplet
+    rofi-power-menu
     inputs.rose-pine-hyprcursor.packages.${stdenv.hostPlatform.system}.default
 
     # screenshot/recording tools

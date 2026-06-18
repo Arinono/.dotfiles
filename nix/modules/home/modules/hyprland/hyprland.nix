@@ -260,6 +260,7 @@ in {
       bind = $mainMod, C, exec, $menu -show calc
       bind = $mainMod, space, exec, $menu -show drun
       bind = $mainMod, P, pseudo, # dwindle
+      bind = $mainMod, L, exec, $menu -show power-menu -modi "power-menu:rofi-power-menu --no-symbols --choices=suspend/lockscreen/logout/reboot/shutdown"
       bind = $shiftMod, L, exec, sh -c '(sleep 0.5s; hyprlock)' & disown
       bind = $mainMod, V, exec, cliphist list | $dmenu | cliphist decode | wl-copy
 
