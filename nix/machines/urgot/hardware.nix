@@ -42,7 +42,7 @@ in {
   fileSystems."/mnt/games" = {
     device = "/dev/disk/by-label/Data";
     fsType = "exfat";
-    options = ["rw" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "iocharset=utf8" "errors=remount-ro"];
+    options = ["rw" "nofail" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "iocharset=utf8" "errors=remount-ro"];
   };
 
   swapDevices = [];
