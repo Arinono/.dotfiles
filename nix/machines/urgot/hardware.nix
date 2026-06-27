@@ -21,12 +21,12 @@ in {
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  boot.kernelPatches = [
-    {
-      name = "bluetooth-fix";
-      patch = btPatch;
-    }
-  ];
+  # boot.kernelPatches = [
+  #   {
+  #     name = "bluetooth-fix";
+  #     patch = btPatch;
+  #   }
+  # ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/09ecc7d9-c612-4c16-a23c-2de41a2b3610";
