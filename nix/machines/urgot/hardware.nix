@@ -4,15 +4,9 @@
 {
   config,
   lib,
-  pkgs,
   modulesPath,
   ...
-}: let
-  btPatch = pkgs.fetchpatch {
-    url = "https://git.kernel.org/pub/scm/linux/kernel/git/bluetooth/bluetooth-next.git/patch/?id=162b1adeb057d28ad84fd8a03f3c50cf08db5c62";
-    hash = "sha256-DE6im1PmLWFYRk2QtfCWXfBzBCMT4fyUgufDhUn0wL8=";
-  };
-in {
+}: {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
   ];
@@ -21,12 +15,6 @@ in {
   boot.initrd.kernelModules = [];
   boot.kernelModules = ["kvm-amd"];
   boot.extraModulePackages = [];
-  # boot.kernelPatches = [
-  #   {
-  #     name = "bluetooth-fix";
-  #     patch = btPatch;
-  #   }
-  # ];
 
   fileSystems."/" = {
     device = "/dev/disk/by-uuid/09ecc7d9-c612-4c16-a23c-2de41a2b3610";
