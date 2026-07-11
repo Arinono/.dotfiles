@@ -405,6 +405,16 @@ in {
         workspace = 10
         fullscreen = 1
       }
+
+      windowrule {
+        name = friends
+        match:class = ^(steam)$
+        match:title = ^(Friends List)$
+        float = on
+        animation = popin
+        size = 630 880
+      }
+
     '';
   };
 
