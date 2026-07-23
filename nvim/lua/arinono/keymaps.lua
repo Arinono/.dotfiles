@@ -57,6 +57,7 @@ vim.keymap.set("n", "<leader>zz", "zszH")
 vim.keymap.set("n", "]c", "]czz")
 vim.keymap.set("n", "[c", "[czz")
 vim.keymap.set("n", "<BS>", "<cmd>b#<cr>")
+vim.keymap.set("t", "<C-\\><C-\\>", "<C-\\><C-N>", { noremap = true })
 
 -- Crossyank
 vim.keymap.set("n", "<leader>y", '"+y')

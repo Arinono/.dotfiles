@@ -1,84 +1,41 @@
 return {
-  --   "greggh/claude-code.nvim",
-  --   dependencies = {
-  --     "nvim-lua/plenary.nvim", -- Required for git operations
-  --   },
-  --   lazy = true,
-  --   config = function()
-  --     require("claude-code").setup({
-  --       window = {
-  --         split_ratio = 0.5,
-  --         position = "vsplit",
-  --         enter_insert = false,
-  --       },
-  --     })
-  --   end,
-  --   keys = {
-  --     {
-  --       "<leader>cc",
-  --       "<cmd>ClaudeCode<cr>",
-  --       mode = "n",
-  --       desc = "[C]laude [C]ode",
-  --     },
-  --   },
-  -- {
-  --   "supermaven-inc/supermaven-nvim",
-  --   config = function()
-  --     require("supermaven-nvim").setup({
-  --       keymaps = {
-  --         accept_suggestion = "<Tab>",
-  --         clear_suggestion = "<C-]>",
-  --         accept_word = "<C-j>",
-  --       }
-  --     })
-  --   end,
-  -- }
   {
-    "ThePrimeagen/99",
+    "nickjvandyke/opencode.nvim",
+    version = "*", -- Latest stable release
     config = function()
-      local _99 = require("99")
+      local opencode = require('opencode')
+      ---@type opencode.Opts
+      vim.g.opencode_opts = {
+        -- Your configuration, if any; goto definition on the type for details
+      }
 
-      _99.setup({
-        model = "anthropic/claude-opus-4-5",
-        md_files = {
-          "AGENTS.md",
-        },
-        completion = {
-          custom_rules = {
-            "~/skills/",
-          },
-          source = "cmp",
-        },
-      })
-      vim.keymap.set("n", "<leader>9ff", function()
-        _99.fill_in_function()
-      end)
-      vim.keymap.set("n", "<leader>9fp", function()
-        _99.fill_in_function_prompt()
-      end)
-      vim.keymap.set("n", "<leader>9fd", function()
-        _99.fill_in_function({
-          additional_rules = {
-            _99:rule_from_path("~/.99/debug.md"),
-          },
-        })
-      end)
-      vim.keymap.set("v", "<leader>9vv", function()
-        _99.visual()
-      end)
-      vim.keymap.set("v", "<leader>9vp", function()
-        _99.visual_prompt()
-      end)
-      vim.keymap.set("n", "<leader>9s", function()
-        _99.stop_all_requests()
-      end)
+      vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
 
-      vim.keymap.set("n", "<leader>9i", function()
-        _99.info()
-      end)
-      vim.keymap.set("n", "<leader>9l", function()
-        _99.view_logs()
-      end)
+      -- Recommended/example keymaps
+      vim.keymap.set({ "n", "x" }, "<leader>opa", function()
+          opencode.ask("@this: ")
+        end,
+        { desc = "Ask OpenCode…" })
+      vim.keymap.set({ "n", "x" }, "<leader>ops", function()
+          opencode.select()
+        end,
+        { desc = "Select OpenCode…" })
+      vim.keymap.set({ "n", "x" }, "go", function()
+          return opencode.operator("@this ")
+        end,
+        { desc = "Append range to OpenCode", expr = true })
+      vim.keymap.set({ "n" }, "goo", function()
+          return opencode.operator("@this ") .. "_"
+        end,
+        { desc = "Append line to OpenCode", expr = true })
+      vim.keymap.set({ "n" }, "<S-C-u>", function()
+          opencode.command("session.half.page.up")
+        end,
+        { desc = "Scroll OpenCode up" })
+      vim.keymap.set({ "n" }, "<S-C-d>", function()
+          opencode.command("session.half.page.down")
+        end,
+        { desc = "Scroll OpenCode down" })
     end,
   }
 }
