@@ -1,41 +1,53 @@
 return {
-  {
-    "nickjvandyke/opencode.nvim",
-    version = "*", -- Latest stable release
-    config = function()
-      local opencode = require('opencode')
-      ---@type opencode.Opts
-      vim.g.opencode_opts = {
-        -- Your configuration, if any; goto definition on the type for details
-      }
+    {
+        "nickjvandyke/opencode.nvim",
+        version = "*", -- Latest stable release
+        config = function()
+            local opencode = require('opencode')
+            ---@type opencode.Opts
+            vim.g.opencode_opts = {
+                -- Your configuration, if any; goto definition on the type for details
+            }
 
-      vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
+            vim.o.autoread = true -- Required for `vim.g.opencode_opts.events.reload`
 
-      -- Recommended/example keymaps
-      vim.keymap.set({ "n", "x" }, "<leader>opa", function()
-          opencode.ask("@this: ")
+            -- Recommended/example keymaps
+            vim.keymap.set({ "n", "x" }, "<leader>opa", function()
+                    opencode.ask("@this: ")
+                end,
+                { desc = "Ask OpenCode…" }
+            )
+            vim.keymap.set({ "n", "x" }, "<leader>ops", function()
+                    opencode.select()
+                end,
+                { desc = "Select OpenCode…" }
+            )
+            vim.keymap.set({ "n", "x" }, "<leader>opr", function()
+                    opencode.command('session.new')
+                end,
+                { desc = "New opencode session …" }
+            )
+
+            vim.keymap.set({ "n", "x" }, "go", function()
+                    return opencode.operator("@this ")
+                end,
+                { desc = "Append range to OpenCode", expr = true }
+            )
+            vim.keymap.set({ "n" }, "goo", function()
+                    return opencode.operator("@this ") .. "_"
+                end,
+                { desc = "Append line to OpenCode", expr = true }
+            )
+            vim.keymap.set({ "n" }, "<S-C-u>", function()
+                    opencode.command("session.half.page.up")
+                end,
+                { desc = "Scroll OpenCode up" }
+            )
+            vim.keymap.set({ "n" }, "<S-C-d>", function()
+                    opencode.command("session.half.page.down")
+                end,
+                { desc = "Scroll OpenCode down" }
+            )
         end,
-        { desc = "Ask OpenCode…" })
-      vim.keymap.set({ "n", "x" }, "<leader>ops", function()
-          opencode.select()
-        end,
-        { desc = "Select OpenCode…" })
-      vim.keymap.set({ "n", "x" }, "go", function()
-          return opencode.operator("@this ")
-        end,
-        { desc = "Append range to OpenCode", expr = true })
-      vim.keymap.set({ "n" }, "goo", function()
-          return opencode.operator("@this ") .. "_"
-        end,
-        { desc = "Append line to OpenCode", expr = true })
-      vim.keymap.set({ "n" }, "<S-C-u>", function()
-          opencode.command("session.half.page.up")
-        end,
-        { desc = "Scroll OpenCode up" })
-      vim.keymap.set({ "n" }, "<S-C-d>", function()
-          opencode.command("session.half.page.down")
-        end,
-        { desc = "Scroll OpenCode down" })
-    end,
-  }
+    }
 }
