@@ -32,9 +32,10 @@ in {
     ./modules/bat.nix
     ./modules/ctop.nix
     ./modules/btop.nix
-    ./modules/gh-dash.nix
+    # ./modules/gh-dash.nix
     ./modules/tealdeer.nix
     ./modules/tmux.nix
+    # ./modules/herdr.nix
     # ./modules/wezterm.nix
     ./modules/zoxide.nix
     ./modules/ssh-import.nix

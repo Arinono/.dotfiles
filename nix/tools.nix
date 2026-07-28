@@ -18,7 +18,7 @@ inputs: let
     secrets = import ./modules/secrets {inherit params;};
 
     homeManagerArgs = {
-      inherit params secrets;
+      inherit params secrets inputs;
       isDarwin = params.isDarwin;
     };
   in {

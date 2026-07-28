@@ -16,6 +16,7 @@ This document provides guidance for AI agents working on the Nix/NixOS configura
 │   ├── hyprland.nix         # Hyprland window manager setup
 │   ├── packages.nix         # Package collections
 │   └── home/modules/        # Home Manager modules
+│       ├── herdr.nix        # herdr multiplexer config (plain TOML)
 │       ├── hyprland/        # Hyprland-specific home config
 │       ├── zsh/             # Zsh configuration
 │       └── ...
@@ -54,6 +55,17 @@ nixos-rebuild test --flake ~/.dotfiles/nix#viktor
 # Or for urgot:
 nixos-rebuild test --flake ~/.dotfiles/nix#urgot
 ```
+
+### Test Home Manager / Darwin
+
+Build the home-manager output without activating:
+
+```bash
+cd ~/.dotfiles/nix
+nix build .#homeConfigurations."arinono@lux".activationPackage
+```
+
+(Replace `arinono@lux` with the correct `user@hostname` for the target.)
 
 ## Important Notes
 
@@ -132,4 +144,21 @@ Edit `nix/modules/home/modules/hyprland/hyprland.nix` in the `extraConfig` secti
 
 ```nix
 bind = ALT SHIFT, 2, exec, command-here
+```
+
+## herdr
+
+herdr is installed from the official `herdr` flake input and configured through Home Manager so it is available on both NixOS and nix-darwin.
+
+- `nix/flake.nix`: declares the `herdr` input (`github:ogulcancelik/herdr`).
+- `nix/modules/home/modules/herdr.nix`: plain-text TOML config deployed to `~/.config/herdr/config.toml`.
+- `nix/modules/home/modules/zsh/env/herdr.nix`: helper scripts (`herdr_sessionizer`, `herdr_kill_workspace`) used by the config keybindings.
+
+The config is intentionally plain TOML so it can be copied directly to non-Nix systems.
+
+After adding the input, update the lock file before building:
+
+```bash
+cd ~/.dotfiles/nix
+nix flake lock --update-input herdr
 ```

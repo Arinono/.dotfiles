@@ -25,6 +25,8 @@
 
     zen-browser.url = "github:0xc000022070/zen-browser-flake";
     hyprland.url = "github:hyprwm/Hyprland";
+    herdr.url = "github:ogulcancelik/herdr";
+    herdr.inputs.nixpkgs.follows = "nixpkgs";
     rose-pine-hyprcursor = {
       url = "github:ndom91/rose-pine-hyprcursor";
       inputs.nixpkgs.follows = "nixpkgs";
