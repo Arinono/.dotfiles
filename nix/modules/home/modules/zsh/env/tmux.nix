@@ -12,7 +12,8 @@
       nbSession=$(tmux list-session | wc -l)
 
       if [[ "$nbSession" -gt 1 ]]; then
-        tmux switch-client -l
+        target=$(tmux list-sessions -F '#S' | grep -v "^$current$" | head -n 1)
+        tmux switch-client -t "$target"
       fi
 
       tmux kill-session -t "$current"
