@@ -40,17 +40,4 @@
       fi
     '';
   };
-
-  herdr_kill_workspace = pkgs.writeShellApplication {
-    name = "herdr_kill_workspace";
-    runtimeInputs = [herdr];
-
-    text = ''
-      if [[ -z "''${HERDR_ACTIVE_WORKSPACE_ID}" ]]; then
-        exit 1
-      fi
-
-      herdr workspace close "''${HERDR_ACTIVE_WORKSPACE_ID}"
-    '';
-  };
 }

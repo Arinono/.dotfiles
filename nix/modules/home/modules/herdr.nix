@@ -66,7 +66,7 @@ in {
 
     new_workspace = "prefix+shift+n"
     rename_workspace = "prefix+shift+w"
-    close_workspace = "prefix+shift+d"
+    close_workspace = "prefix+shift+k"
 
     new_tab = "prefix+c"
     rename_tab = "prefix+shift+t"
@@ -82,12 +82,8 @@ in {
 
     # navigate-mode hjkl instead of arrows.
     # workspace nav uses shifted J/K so it does not clash with pane h/j/k/l.
-    navigate_workspace_up = "shift+k"
-    navigate_workspace_down = "shift+j"
-    navigate_pane_left = "h"
-    navigate_pane_down = "j"
-    navigate_pane_up = "k"
-    navigate_pane_right = "l"
+    navigate_workspace_up = "k"
+    navigate_workspace_down = "j"
 
     swap_pane_left = "prefix+shift+h"
     swap_pane_down = "prefix+shift+j"
@@ -128,13 +124,6 @@ in {
     description = "find or create workspace"
     width = "80%"
     height = "80%"
-
-    # moved from prefix+shift+k because that is swap_pane_up
-    [[keys.command]]
-    key = "prefix+shift+q"
-    type = "shell"
-    command = "herdr_kill_workspace"
-    description = "close current workspace"
 
     [[keys.command]]
     key = "prefix+shift+f"
