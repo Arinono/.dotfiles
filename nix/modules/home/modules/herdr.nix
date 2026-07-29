@@ -28,7 +28,7 @@ in {
     mouse_capture = true
     copy_on_select = true
     pane_borders = true
-    pane_gaps = true
+    pane_gaps = false
     confirm_close = false
     prompt_new_tab_name = false
     prompt_new_workspace_name = false
