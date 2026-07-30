@@ -1,7 +1,7 @@
 {
+  inputs,
   pkgs,
   isDarwin,
-  username,
   params,
   secrets,
   config,
@@ -9,7 +9,7 @@
 }: let
   editor = "nvim";
   home = params.home;
-  herdrPkg = inputs.herdr.packages.${params.system}.default;
+  # herdrPkg = inputs.herdr.packages.${params.system}.default;
 
   # Envs
   default = import ./env {inherit editor pkgs isDarwin home;};
@@ -24,7 +24,7 @@
   node = import ./env/node.nix {inherit pkgs home;};
   tailscale = import ./env/tailscale.nix {inherit home isDarwin;};
   tmux = import ./env/tmux.nix {inherit pkgs home;};
-  herdr = import ./env/herdr.nix {inherit pkgs herdrPkg;};
+  # herdr = import ./env/herdr.nix {inherit pkgs herdrPkg;};
 
   # Scripts
   git_contrib = import ./bin/git_contrib.nix {inherit pkgs;};
@@ -203,8 +203,7 @@ in {
         tmux.kill_session
         tmux.tmux_sessionizer
         tmux.tmux_worktree_panizer
-        herdr.herdr_sessionizer
-        herdr.herdr_kill_workspace
+        # herdr.herdr_sessionizer
       ]
       ++ (
         if isDarwin

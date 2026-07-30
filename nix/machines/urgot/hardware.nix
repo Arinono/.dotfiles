@@ -28,9 +28,8 @@
   };
 
   fileSystems."/mnt/games" = {
-    device = "/dev/disk/by-label/Data";
-    fsType = "exfat";
-    options = ["rw" "nofail" "nosuid" "nodev" "relatime" "uid=1000" "gid=100" "fmask=0022" "dmask=0022" "iocharset=utf8" "errors=remount-ro"];
+    device = "/dev/disk/by-uuid/68346914-25e4-4dd1-927c-569458367886";
+    fsType = "ext4";
   };
 
   swapDevices = [];
