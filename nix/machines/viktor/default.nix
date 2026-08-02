@@ -118,7 +118,7 @@
   users.users.arinono = {
     isNormalUser = true;
     description = "arinono";
-    extraGroups = ["networkmanager" "wheel"];
+    extraGroups = ["networkmanager" "wheel" "plugdev"];
     packages = with pkgs; [
       #  thunderbird
     ];

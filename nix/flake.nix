@@ -75,6 +75,7 @@
           ./machines/viktor/tailscale.nix
           ./modules/hyprland.nix
           ./modules/steam.nix
+          ./modules/webhid.nix
         ];
         extraHomeManagerModules = [
           ./modules/home/modules/hyprland/default.nix
@@ -91,6 +92,7 @@
           ./machines/urgot/tailscale.nix
           ./modules/hyprland.nix
           ./modules/steam.nix
+          ./modules/webhid.nix
         ];
         extraHomeManagerModules = [
           ./modules/home/modules/hyprland/default.nix
