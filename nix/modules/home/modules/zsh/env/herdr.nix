@@ -31,7 +31,7 @@
 
       selected_name=$(basename "$selected" | tr . _)
 
-      existing=$(herdr workspace list --json 2>/dev/null | jq -r ".result.workspaces[] | select(.label == \"$selected_name\") | .workspace_id" | head -n 1)
+      existing=$(herdr workspace list 2>/dev/null | jq -r ".result.workspaces[] | select(.label == \"$selected_name\") | .workspace_id" | head -n 1)
 
       if [[ -n "$existing" ]]; then
         herdr workspace focus "$existing"
