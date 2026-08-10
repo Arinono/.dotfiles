@@ -6,6 +6,7 @@
       # Used as a service, so no need for this home manager option
       # start-at-login = true;
 
+      config-version = 2;
       enable-normalization-flatten-containers = true;
       enable-normalization-opposite-orientation-for-nested-containers = true;
       accordion-padding = 100;
