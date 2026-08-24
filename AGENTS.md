@@ -67,6 +67,19 @@ nix build .#homeConfigurations."arinono@lux".activationPackage
 
 (Replace `arinono@lux` with the correct `user@hostname` for the target.)
 
+### Materialize Home Files
+
+Build a directory tree containing all generated home files (`.config`, `.zshrc`, etc.) for use on a non-NixOS machine or for inspection:
+
+```bash
+cd ~/.dotfiles/nix
+nix build .#packages.x86_64-linux.home-files-viktor
+# or
+nix build .#packages.aarch64-darwin.home-files-lux
+```
+
+Store-resolved symlinks are copied as regular files; out-of-store symlinks (e.g. `~/.config/nvim -> ~/.dotfiles/nvim`) are preserved as symlinks so they work after cloning the dotfiles repo.
+
 ## Important Notes
 
 ### Git Tracking

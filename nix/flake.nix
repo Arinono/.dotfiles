@@ -41,7 +41,22 @@
     ...
   } @ inputs: let
     tools = import ./tools.nix inputs;
-    inherit (tools) mkDarwin mkNixos;
+    inherit (tools) mkDarwin mkNixos mkHome;
+
+    homeExtraModules = {
+      lux = [
+        ./darwin/modules/home/ghostty.nix
+      ];
+      viktor = [
+        ./modules/home/modules/hyprland/default.nix
+        ./modules/home/modules/hyprland/hypridle.nix
+        ./modules/home/modules/ghostty.nix
+      ];
+      urgot = [
+        ./modules/home/modules/hyprland/default.nix
+        ./modules/home/modules/ghostty.nix
+      ];
+    };
 
     systems = ["aarch64-darwin" "x86_64-linux"];
     forAllSystems = fn: nixpkgs.lib.genAttrs systems (system: fn {pkgs = import nixpkgs {inherit system;};});
@@ -99,11 +114,42 @@
           ./modules/home/modules/ghostty.nix
         ];
       })
-      {
-        packages.aarch64-darwin.installBrew = darwinTools.installBrew;
-        packages.aarch64-darwin.setHostname = darwinTools.setHostname;
-        packages.aarch64-darwin.raycastQuicklinks = darwinTools.raycastQuicklinks;
+      (let
+        homeConfigurations = {
+          "arinono@lux" = mkHome {
+            hostname = "lux";
+            system = "aarch64-darwin";
+            isDarwin = true;
+            extraModules = homeExtraModules.lux;
+          };
+          "arinono@viktor" = mkHome {
+            hostname = "viktor";
+            system = "x86_64-linux";
+            isDarwin = false;
+            extraModules = homeExtraModules.viktor;
+          };
+          "arinono@urgot" = mkHome {
+            hostname = "urgot";
+            system = "x86_64-linux";
+            isDarwin = false;
+            extraModules = homeExtraModules.urgot;
+          };
+        };
+      in {
+        inherit homeConfigurations;
+
+        packages.aarch64-darwin = {
+          inherit (darwinTools) installBrew setHostname raycastQuicklinks;
+          home-lux = homeConfigurations."arinono@lux".activationPackage;
+          home-files-lux = homeConfigurations."arinono@lux".files;
+        };
+        packages.x86_64-linux = {
+          home = homeConfigurations."arinono@viktor".activationPackage;
+          home-files = homeConfigurations."arinono@viktor".files;
+          home-urgot = homeConfigurations."arinono@urgot".activationPackage;
+          home-files-urgot = homeConfigurations."arinono@urgot".files;
+        };
         formatter = forAllSystems ({pkgs}: pkgs.alejandra);
-      }
+      })
     ];
 }

@@ -34,7 +34,74 @@ inputs: let
       extraSpecialArgs = homeManagerArgs;
     };
   };
+  mkHome = {
+    hostname,
+    system,
+    isDarwin,
+    extraModules ? [],
+  }: let
+    pkgs = import inputs.nixpkgs {
+      inherit system;
+      config = {
+        allowUnfree = true;
+      };
+    };
+
+    params = mkParams {
+      inherit hostname system;
+      inherit isDarwin;
+    };
+
+    secrets = import ./modules/secrets {inherit params;};
+
+    homeConfig = inputs.home-manager.lib.homeManagerConfiguration {
+      inherit pkgs;
+      modules =
+        [
+          ./modules/home
+        ]
+        ++ extraModules;
+      extraSpecialArgs = {
+        inherit params secrets inputs;
+        isDarwin = params.isDarwin;
+      };
+    };
+
+    homeFiles = pkgs.runCommand "home-files-${hostname}" {} ''
+      mkdir -p $out
+      src="${homeConfig.config.home-files}"
+      find "$src" -mindepth 1 -print0 | while IFS= read -r -d $'\0' item; do
+        rel=$(printf '%s\n' "$item" | sed "s#^$src/##")
+        dst="$out/$rel"
+        if [ -L "$item" ]; then
+          target=$(readlink "$item")
+          if [ -e "$item" ]; then
+            mkdir -p "$(dirname "$dst")"
+            if [ -d "$item" ]; then
+              cp -rL "$item" "$dst"
+            else
+              cp -L "$item" "$dst"
+            fi
+          else
+            mkdir -p "$(dirname "$dst")"
+            ln -s "$target" "$dst"
+          fi
+        elif [ -d "$item" ]; then
+          mkdir -p "$dst"
+        else
+          mkdir -p "$(dirname "$dst")"
+          cp "$item" "$dst"
+        fi
+      done
+    '';
+  in
+    homeConfig
+    // {
+      files = homeFiles;
+    };
 in {
+  inherit mkHome;
+
   mkDarwin = {
     hostname,
     system,
