@@ -96,6 +96,7 @@ in rec {
 
   linux = with pkgs;
     [
+      kitty
       busybox
       discord
       gparted
