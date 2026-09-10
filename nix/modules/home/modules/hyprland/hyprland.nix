@@ -1,13 +1,13 @@
 {params, ...}: let
   machineMonitors = {
-    urgot = ''
-      hl.monitor({ output = "HEADLESS-2", disabled = true })
-    '';
+    # urgot = ''
+    #   hl.monitor({ output = "HEADLESS-2", disabled = true })
+    # '';
   };
   machineAutostart = {
-    urgot = ''
-      hl.exec_cmd("hyprctl output create headless")
-    '';
+    # urgot = ''
+    #   hl.exec_cmd("hyprctl output create headless")
+    # '';
   };
 in {
   wayland.windowManager.hyprland = {
