@@ -105,6 +105,7 @@ in rec {
       inputs.zen-browser.packages."${params.system}".default
       proton-pass
       proton-vpn
+      picard
     ]
     ++ shared;
 }
