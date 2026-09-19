@@ -54,6 +54,7 @@ in rec {
     hexedit
     hexyl
     minio-client
+    mise
     ngrok
     nodejs
     oha
