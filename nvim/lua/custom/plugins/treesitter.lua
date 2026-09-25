@@ -8,6 +8,7 @@ local parsers = {
   "javascript",
   "typescript",
   "markdown",
+  "hurl",
 }
 
 local context = {
