@@ -16,10 +16,11 @@
       # "~/Pictures/Wallpapers/kr_street.jpg"
       # "~/Pictures/Wallpapers/kr_bridge.jpg"
       # "~/Pictures/Wallpapers/tokyonight.png"
+      # "~/Pictures/Wallpapers/mikuos.jpg"
       wallpaper = [
         {
           monitor = "";
-          path = "~/Pictures/Wallpapers/kr_bridge.jpg";
+          path = "~/Pictures/Wallpapers/mikuos.jpg";
         }
       ];
     };

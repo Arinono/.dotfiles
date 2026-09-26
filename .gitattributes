@@ -1,3 +1,4 @@
 nix/modules/secrets/*.nix filter=git-crypt diff=git-crypt
 nix/modules/secrets/tailscale_key filter=git-crypt diff=git-crypt
+Wallpapers/* filter=git-crypt diff="git-crypt
 .gitattributes !filter !diff
