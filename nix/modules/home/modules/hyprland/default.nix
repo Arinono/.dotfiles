@@ -13,14 +13,14 @@
     settings = {
       splash = false;
 
-      # "~/Pictures/Wallpapers/kr_street.jpg"
-      # "~/Pictures/Wallpapers/kr_bridge.jpg"
-      # "~/Pictures/Wallpapers/tokyonight.png"
-      # "~/Pictures/Wallpapers/mikuos.jpg"
+      # "~/.dotfiles/Wallpapers/kr_street.jpg"
+      # "~/.dotfiles/Wallpapers/kr_bridge.jpg"
+      # "~/.dotfiles/Wallpapers/tokyonight.png"
+      # "~/.dotfiles/Wallpapers/mikuos.jpg"
       wallpaper = [
         {
           monitor = "";
-          path = "~/Pictures/Wallpapers/mikuos.jpg";
+          path = "~/.dotfiles/Wallpapers/mikuos.jpg";
         }
       ];
     };
