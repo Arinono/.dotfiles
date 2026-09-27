@@ -40,6 +40,7 @@ in {
     ./modules/zoxide.nix
     ./modules/ssh-import.nix
     ./modules/gpg-import.nix
+    ./modules/syncthing.nix
   ];
 
   home.file = {
