@@ -202,6 +202,10 @@ in {
           name        = "logitech-wireless-mouse-mx-master-2s-1",
           sensitivity = -0.7,
       })
+      hl.device({
+          name        = "wallhack-wallhack-m-001",
+          sensitivity = -1,
+      })
 
 
       ---------------------
