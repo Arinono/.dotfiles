@@ -81,6 +81,7 @@ in
             cams = commit --amend --no-verify
             came = commit --amend --no-edit
             cames = commit --amend --no-edit --no-verify
+            camf = commit --fixup
             sta = stash push
             staa = stash push --all
             stp = stash pop

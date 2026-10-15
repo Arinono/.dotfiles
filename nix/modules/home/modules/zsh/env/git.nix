@@ -120,6 +120,7 @@
     grbc = "${git}/bin/git rebase --continue";
     grbi = "${git}/bin/git rebase --interactive";
     grbs = "${git}/bin/git rebase --skip";
+    grbas = "${git}/bin/git rebase --autosquash";
     groh = "${git}/bin/git reset origin/$(git_current_branch) --hard";
     grs = "${git}/bin/git restore";
     gsta = "${git}/bin/git stash push";
