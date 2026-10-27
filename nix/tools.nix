@@ -239,6 +239,12 @@ in {
         ++ linux
         ++ dev;
       # ++ inputs.private_flakes.bins system;
+
+      security.pki.caCertificateBlacklist = [
+        "emSign ECC Root CA - G3"
+        "emSign Root CA - C1"
+        "emSign ECC Root CA - C3"
+      ];
     };
   in {
     nixosConfigurations."${hostname}" = nixpkgsVersion.lib.nixosSystem {
