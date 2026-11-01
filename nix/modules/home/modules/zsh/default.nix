@@ -178,6 +178,7 @@ in {
         "${home}/.local/bin"
       ]
       ++ cargo.path
+      ++ go.path
       ++ android_studio.path
       ++ dart.path
       ++ node.path;
