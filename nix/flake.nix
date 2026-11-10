@@ -16,6 +16,12 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    id-finals-companion = {
+      url = "github:arinono/finals-flake";
+      flake = true;
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # inputs.private-flakes.bins pkgs.system;
     # private_flakes = {
     #   url = "git+ssh://git@github.com/arinono/private-flakes.git";

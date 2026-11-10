@@ -430,6 +430,26 @@
         "type": "github"
       }
     },
+    "id-finals-companion": {
+      "inputs": {
+        "nixpkgs": [
+          "nixpkgs"
+        ]
+      },
+      "locked": {
+        "lastModified": 1794331689,
+        "narHash": "sha256-pTSGEAWRZ6yuOGOdUQx9XE17qIUtOF2rIAGCe8uSqLo=",
+        "owner": "arinono",
+        "repo": "finals-flake",
+        "rev": "8618900a6addfd81139d4253cbd9624cc0da6044",
+        "type": "github"
+      },
+      "original": {
+        "owner": "arinono",
+        "repo": "finals-flake",
+        "type": "github"
+      }
+    },
     "naersk": {
       "inputs": {
         "nixpkgs": "nixpkgs_3"
@@ -576,6 +596,7 @@
         "herdr": "herdr",
         "home-manager": "home-manager",
         "hyprland": "hyprland",
+        "id-finals-companion": "id-finals-companion",
         "nix-darwin": "nix-darwin",
         "nixpkgs": "nixpkgs_2",
         "nixpkgs-stable": "nixpkgs-stable",
