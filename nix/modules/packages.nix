@@ -59,6 +59,7 @@ in rec {
     nodejs
     oha
     opencode
+    opentofu
     pnpm
     rustc
     rustfmt
