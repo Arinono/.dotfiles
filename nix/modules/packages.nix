@@ -43,6 +43,7 @@ in rec {
   ];
 
   dev = with pkgs; [
+    dotenvx
     cargo
     cargo-generate
     cargo-info
