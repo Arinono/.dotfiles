@@ -41,6 +41,7 @@ in {
     ./modules/ssh-import.nix
     ./modules/gpg-import.nix
     ./modules/syncthing.nix
+    ./modules/opencode.nix
   ];
 
   home.file = {
