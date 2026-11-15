@@ -15,5 +15,8 @@
   services.udev.extraRules = ''
     # WebHID: allow access to hidraw devices
     KERNEL=="hidraw*", SUBSYSTEM=="hidraw", MODE="0660", TAG+="uaccess", GROUP="plugdev"
+
+    # Wallhack M001
+    KERNEL=="hidraw*", ATTRS{idVendor}=="3879", ATTRS{idProduct}=="1110", MODE="0660", GROUP="plugdev"
   '';
 }
